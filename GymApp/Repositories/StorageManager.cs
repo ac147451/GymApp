@@ -9,7 +9,7 @@ namespace GymApp.Repositories
 {
     public class StorageManager
     {
-        private SqlConnec conn;
+        private SqlConnection conn;
 
 
     }
