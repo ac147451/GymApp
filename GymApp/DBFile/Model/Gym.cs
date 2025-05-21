@@ -8,13 +8,13 @@ namespace GymApp.DBFile.Model
 {
     public class Gym
     {
-        private int Gym_id { get; set; }
-        private string Gym_name { get; set; }
+        public int Gym_id { get; set; }
+        public string Gym_name { get; set; }
         
-        public Gym(int inGym_id, string inGym )
+        public Gym(int gym_id, string gymName )
         {
-            Gym_id = inGym_id;
-            Gym_name = inGym;
-        }
+            Gym_id = gym_id;
+            Gym_name = gymName;
+        }//Gym Class
     }
 }
