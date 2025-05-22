@@ -38,14 +38,14 @@ namespace GymApp
                     break;
 
                 case "4":
-                    //DeleteGymByName();
+                    DeleteGymByName();
                     break;
 
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
             }
-           
+            storageManager.CloseConnection();
         }
         private static void UpdateGymName()
         {
@@ -64,15 +64,23 @@ namespace GymApp
             string gymname = view.GetInput();
             int gymID = 0;
             Gym gym1 = new Gym(gymID, gymname);
-            int generatedID = storageManager.InsertGym(gymname);
+            int generatedID = storageManager.InsertGym(gym1);
             view.DisplayMessage($"New gym inserted with ID: {generatedID}");
+        }
+
+        private static void DeleteGymByName()
+        {
+            view.DisplayMessage("Enter the gym name to delete: ");
+            string gymname = view.GetInput();
+            int rowsAffected = storageManager.DeleteGymByName(gymname);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
     }
 }
 
 /*
-case "5":
+   case "5":
                     exit = true;
                     break;
 */

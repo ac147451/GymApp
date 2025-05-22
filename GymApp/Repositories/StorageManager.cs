@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using GymApp.DBFile.Model;
 using Microsoft.Identity.Client;
+using System.Data;
 
 namespace GymApp
 {
@@ -68,12 +69,30 @@ namespace GymApp
             }
         }
 
-        public int InsertGym(string gymname)
+        public int InsertGym(Gym gymtemp)
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname) VALUES (@gymname); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@gymname", gymname);
+                cmd.Parameters.AddWithValue("@gymname", gymtemp.Gym_name);
                 return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int DeleteGymByName(string gymname)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Gym.gyms WHERE gymname = @gymname", conn))
+            {
+                cmd.Parameters.AddWithValue("@gymname", gymname);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void CloseConnection()
+        {
+            if (conn != null && conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+                Console.WriteLine("Connection closed");
             }
         }
 
