@@ -58,5 +58,24 @@ namespace GymApp
 
         }
 
+        public int UpdateGymName(int gymID, string gymname)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Gym.gyms SET gymname = @gymname WHERE gymID = @gymID", conn))
+            {
+                cmd.Parameters.AddWithValue("@gymname", gymname);
+                cmd.Parameters.AddWithValue("@gymID", gymID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertGym(string gymname)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname) VALUES (@gymname); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@gymname", gymname);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
     }
 }

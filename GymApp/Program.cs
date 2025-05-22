@@ -10,13 +10,14 @@ namespace GymApp
     public class Program
     {
         private static StorageManager storageManager;
+        private static ConsoleView view;
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"B51282CAD28FE80C2E657E4ED5124728_TABASE\\SOURCE\\REPOS\\AC147451\\GYMDATABASE\\GYMDATABASE\\SQLSCRIPTS\\SQL SCRIPTS\\GYMAPP DATABASE.MDF\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
             storageManager = new StorageManager(connectionString);
-            ConsoleView view = new ConsoleView();
+            view = new ConsoleView();
             string choice = view.DisplayMenu();
 
             switch (choice)
@@ -37,16 +38,34 @@ namespace GymApp
                     break;
 
                 case "4":
-                    DeleteGymByName();
+                    //DeleteGymByName();
                     break;
 
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
             }
-
-            //storageManager.Closeconnection();
            
+        }
+        private static void UpdateGymName()
+        {
+
+            view.DisplayMessage("Enter the gymID to update: ");
+            int gymID = view.GetIntInput();
+            view.DisplayMessage("Enter the new gym name: ");
+            string gymname = view.GetInput();
+            int rowsAffected = storageManager.UpdateGymName(gymID, gymname);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewGym()
+        {
+            view.DisplayMessage("Enter the new gym name: ");
+            string gymname = view.GetInput();
+            int gymID = 0;
+            Gym gym1 = new Gym(gymID, gymname);
+            int generatedID = storageManager.InsertGym(gymname);
+            view.DisplayMessage($"New gym inserted with ID: {generatedID}");
         }
 
     }
