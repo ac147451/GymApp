@@ -10,11 +10,13 @@ namespace GymApp.DBFile.Model
     {
         public int Gym_id { get; set; }
         public string Gym_name { get; set; }
+        public string Streetaddress { get; set; }
         
-        public Gym(int gym_id, string gymName )
+        public Gym(int gym_id, string gymName, string streetaddress )
         {
             Gym_id = gym_id;
             Gym_name = gymName;
+            Streetaddress = streetaddress;
         }//Gym Class
     }
 
