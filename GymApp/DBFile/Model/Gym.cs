@@ -17,4 +17,17 @@ namespace GymApp.DBFile.Model
             Gym_name = gymName;
         }//Gym Class
     }
+
+    public class Member
+    {
+        public int Member_id { get; set; }
+        public string Member_name { get; set; }
+
+        public Member(int member_id, string memberName)
+        {
+            Member_id = member_id;
+            Member_name = memberName;
+        }//Member Class
+    }
+
 }
