@@ -56,4 +56,28 @@ namespace GymApp.DBFile.Model
         }//Country Class
     }
 
+    public class City
+    {
+        public int City_id { get; set; }
+        public string City_name { get; set; }
+
+        public City(int city_id, string cityname)
+        {
+            City_id = city_id;
+            City_name = cityname;
+        }//City Class
+    }
+
+    public class Suburb
+    {
+        public int Suburb_id { get; set; }
+        public string Suburb_name { get; set; }
+
+        public Suburb(int suburb_id, string suburbname)
+        {
+            Suburb_id = suburb_id;
+            Suburb_name = suburbname;
+        }//Suburb Class
+    }
+
 }
