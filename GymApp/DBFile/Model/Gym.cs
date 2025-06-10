@@ -29,12 +29,14 @@ namespace GymApp.DBFile.Model
     public class Member
     {
         public int Member_id { get; set; }
-        public string Member_name { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
 
-        public Member(int member_id, string memberName)
+        public Member(int member_id, string firstname, string lastname)
         {
             Member_id = member_id;
-            Member_name = memberName;
+            Firstname = firstname;
+            Lastname = lastname;
         }//Member Class
     }
 
