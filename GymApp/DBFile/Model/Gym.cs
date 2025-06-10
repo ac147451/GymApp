@@ -80,4 +80,30 @@ namespace GymApp.DBFile.Model
         }//Suburb Class
     }
 
+    public class Instructor
+    {
+        public int Instructor_id { get; set; }
+        public string Instructor_name { get; set; }
+
+        public Instructor(int instructor_id, string instructorname)
+        {
+            Instructor_id = instructor_id;
+            Instructor_name = instructorname;
+        }//Instructor Class
+    }
+
+    public class ClassType
+    {
+        public int Classtype_id { get; set; }
+        public string Classtype { get; set; }
+        public int Classprice { get; set; }
+
+        public ClassType(int classtype_id, string classtype, int classprice)
+        {
+            Classtype_id = classtype_id;
+            Classtype = classtype;
+            Classprice = classprice;
+        }//Classtype Class
+    }
+
 }
