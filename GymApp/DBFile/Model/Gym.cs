@@ -26,24 +26,6 @@ namespace GymApp.DBFile.Model
         }//Gym Class
     }
 
-    public class Member
-    {
-        public int Member_id { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public int Phonenumber { get; set; }
-        public string Emailaddress { get; set; }
-
-        public Member(int member_id, string firstname, string lastname, int phonenumber, string emailaddress)
-        {
-            Member_id = member_id;
-            Firstname = firstname;
-            Lastname = lastname;
-            Phonenumber = phonenumber;
-            Emailaddress = emailaddress;
-        }//Member Class
-    }
-
     public class Country
     {
         public int Country_id { get; set; }
@@ -104,6 +86,18 @@ namespace GymApp.DBFile.Model
             Classtype = classtype;
             Classprice = classprice;
         }//Classtype Class
+    }
+
+    public class Sessionbooking
+    {
+        public int Session_id { get; set; }
+        public int Instructor_id { get; set; }
+        public int Classtype_id { get; set; }
+        public int Member_id { get; set; }
+        public int Gym_id { get; set; }
+        public DateTime Sessiondate { get; set; }
+
+        publc
     }
 
 }
