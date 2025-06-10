@@ -97,7 +97,15 @@ namespace GymApp.DBFile.Model
         public int Gym_id { get; set; }
         public DateTime Sessiondate { get; set; }
 
-        publc
-    }
+        public Sessionbooking(int session_id, int instructor_id, int classtype_id, int member_id, int gym_id, DateTime sessiondate)
+        {
+            Session_id = session_id;
+            Instructor_id = instructor_id;
+            Classtype_id = classtype_id;
+            Member_id = member_id;
+            Gym_id = gym_id;
+            Sessiondate = sessiondate;
+        }
+    }//Sessionbooking Class
 
 }
