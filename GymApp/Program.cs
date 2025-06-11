@@ -14,7 +14,7 @@ namespace GymApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=\"B51282CAD28FE80C2E657E4ED5124728_TABASE\\SOURCE\\REPOS\\AC147451\\GYMDATABASE\\GYMDATABASE\\SQLSCRIPTS\\SQL SCRIPTS\\GYMAPP DATABASE.MDF\";Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\ac147451\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymApp Database.mdf\";Integrated Security=True;Connect Timeout=30";
 
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
@@ -62,10 +62,19 @@ namespace GymApp
         {
             view.DisplayMessage("Enter the new gym name: ");
             string gymname = view.GetInput();
+            view.DisplayMessage("Enter the street address: ");
+            string streetaddress = view.GetInput();
+            view.DisplayMessage("Enter the country ID: ");
+            int countryID = view.GetInput();
+            view.DisplayMessage("Enter the city ID: ");
+            int cityID = 0;
+            view.DisplayMessage("Enter the suburb ID: ");
+            int suburbID = 0;
             int gymID = 0;
-            Gym gym1 = new Gym(gymID, gymname);
+            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID);
             int generatedID = storageManager.InsertGym(gym1);
             view.DisplayMessage($"New gym inserted with ID: {generatedID}");
+
         }
 
         private static void DeleteGymByName()
