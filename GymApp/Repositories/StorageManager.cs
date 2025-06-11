@@ -50,7 +50,11 @@ namespace GymApp
                     {
                         int gymid = Convert.ToInt32(reader["gymID"]);
                         string gymname = reader["gymname"].ToString();
-                        gyms.Add(new Gym(gymid, gymname));
+                        string streetaddress = reader["streetaddress"].ToString();
+                        int countryid = Convert.ToInt32(reader["countryID"]);
+                        int cityid = Convert.ToInt32(reader["cityID"]);
+                        int suburbid = Convert.ToInt32(reader["suburbID"]);
+                        gyms.Add(new Gym(gymid, gymname, streetaddress, countryid, cityid, suburbid));
                     }
                 }
 
