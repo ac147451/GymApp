@@ -65,11 +65,11 @@ namespace GymApp
             view.DisplayMessage("Enter the street address: ");
             string streetaddress = view.GetInput();
             view.DisplayMessage("Enter the country ID: ");
-            int countryID = view.GetInput();
+            int countryID = view.GetIntInput();
             view.DisplayMessage("Enter the city ID: ");
-            int cityID = 0;
+            int cityID = view.GetIntInput();
             view.DisplayMessage("Enter the suburb ID: ");
-            int suburbID = 0;
+            int suburbID = view.GetIntInput();
             int gymID = 0;
             Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID);
             int generatedID = storageManager.InsertGym(gym1);
@@ -87,6 +87,11 @@ namespace GymApp
 
     }
 }
+
+
+
+
+
 
 /*
    case "5":

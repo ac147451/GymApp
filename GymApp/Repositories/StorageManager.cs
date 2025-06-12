@@ -75,9 +75,9 @@ namespace GymApp
 
         public int InsertGym(Gym gymtemp)
         {
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname) VALUES (@gymname); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, streetaddress, countryID, cityID, suburbID) VALUES (@gymname, @streetaddress, @countryID, @cityID, @suburbID); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@gymname", gymtemp.Gym_name);
+                cmd.Parameters.AddWithValue("@gymname", "@streetaddress", gymtemp.Gym_name);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -89,6 +89,27 @@ namespace GymApp
                 cmd.Parameters.AddWithValue("@gymname", gymname);
                 return cmd.ExecuteNonQuery();
             }
+        }
+
+        public List<Country> GetAllCountries()
+        {
+            List<Country> countries = new List<Country>();
+            string sqlString = "SELECT * FROM Location.country";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int countryid = Convert.ToInt32(reader["countryID"]);
+                        string countryname = reader["countryname"].ToString();
+                        countries.Add(new Country(countryid, countryname));
+                    }
+                }
+
+            }
+            return countries;
+
         }
 
         public void CloseConnection()
