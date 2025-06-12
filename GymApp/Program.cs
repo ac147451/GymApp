@@ -41,6 +41,17 @@ namespace GymApp
                     DeleteGymByName();
                     break;
 
+                case "5":
+                    {
+                        List<Country> countries = storageManager.GetAllCountries();
+                        view.DisplayCountries(countries);
+                    }
+                    break;
+
+                case "6":
+                    UpdateCountryName();
+                    break;
+
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
@@ -83,6 +94,17 @@ namespace GymApp
             string gymname = view.GetInput();
             int rowsAffected = storageManager.DeleteGymByName(gymname);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
+        private static void UpdateCountryName()
+        {
+
+            view.DisplayMessage("Enter the countryID to update: ");
+            int countryID = view.GetIntInput();
+            view.DisplayMessage("Enter the new country name: ");
+            string countryname = view.GetInput();
+            int rowsAffected = storageManager.UpdateCountryName(countryID, countryname);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
     }

@@ -77,7 +77,7 @@ namespace GymApp
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, streetaddress, countryID, cityID, suburbID) VALUES (@gymname, @streetaddress, @countryID, @cityID, @suburbID); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@gymname", "@streetaddress", gymtemp.Gym_name);
+                //cmd.Parameters.AddWithValue("@gymname", "@streetaddress", gymtemp.Gym_name);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -110,6 +110,16 @@ namespace GymApp
             }
             return countries;
 
+        }
+
+        public int UpdateCountryName(int countryID, string countryname)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Location.country SET countryname = @countryname WHERE countryID = @countryID", conn))
+            {
+                cmd.Parameters.AddWithValue("@countryname", countryname);
+                cmd.Parameters.AddWithValue("@countryID", countryID);
+                return cmd.ExecuteNonQuery();
+            }
         }
 
         public void CloseConnection()
