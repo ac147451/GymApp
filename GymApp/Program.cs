@@ -52,7 +52,9 @@ namespace GymApp
                     UpdateCountryName();
                     break;
 
-                
+                case "7":
+                    DeleteCountryByName();
+                    break;
 
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
@@ -107,6 +109,14 @@ namespace GymApp
             string countryname = view.GetInput();
             int rowsAffected = storageManager.UpdateCountryName(countryID, countryname);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void DeleteCountryByName()
+        {
+            view.DisplayMessage("Enter the country name to delete: ");
+            string countryname = view.GetInput();
+            int rowsAffected = storageManager.DeleteCountryByName(countryname);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
     }

@@ -126,6 +126,15 @@ namespace GymApp
             }
         }
 
+        public int DeleteCountryByName(string countryname)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.country WHERE countryname = @countryname", conn))
+            {
+                cmd.Parameters.AddWithValue("@countryname", countryname);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)
