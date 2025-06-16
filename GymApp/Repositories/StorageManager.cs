@@ -77,7 +77,11 @@ namespace GymApp
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, streetaddress, countryID, cityID, suburbID) VALUES (@gymname, @streetaddress, @countryID, @cityID, @suburbID); SELECT SCOPE_IDENTITY();", conn))
             {
-                //cmd.Parameters.AddWithValue("@gymname", "@streetaddress", gymtemp.Gym_name);
+                cmd.Parameters.AddWithValue("@gymname", gymtemp.Gym_name);
+                cmd.Parameters.AddWithValue("@streetaddress", gymtemp.Streetaddress);
+                cmd.Parameters.AddWithValue("@countryID", gymtemp.Country_id);
+                cmd.Parameters.AddWithValue("@cityID", gymtemp.City_id);
+                cmd.Parameters.AddWithValue("@suburbID", gymtemp.Suburb_id);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }

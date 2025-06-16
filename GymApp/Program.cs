@@ -52,6 +52,8 @@ namespace GymApp
                     UpdateCountryName();
                     break;
 
+                
+
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
