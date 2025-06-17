@@ -53,6 +53,10 @@ namespace GymApp
                     break;
 
                 case "7":
+                    InsertNewCountry();
+                    break;
+
+                case "8":
                     DeleteCountryByName();
                     break;
 
@@ -109,6 +113,17 @@ namespace GymApp
             string countryname = view.GetInput();
             int rowsAffected = storageManager.UpdateCountryName(countryID, countryname);
             view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewCountry()
+        {
+            view.DisplayMessage("Enter the new country name: ");
+            string countryname = view.GetInput();
+            int countryID = 0;
+            Country country1 = new Country(countryID, countryname);
+            int generatedID = storageManager.InsertCountry(country1);
+            view.DisplayMessage($"New country inserted with ID: {generatedID}");
+
         }
 
         private static void DeleteCountryByName()

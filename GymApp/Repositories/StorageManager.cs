@@ -126,6 +126,15 @@ namespace GymApp
             }
         }
 
+        public int InsertCountry(Country countrytemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Location.country (countryname) VALUES (@countryname); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@countryname", countrytemp.Country_name);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
         public int DeleteCountryByName(string countryname)
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.country WHERE countryname = @countryname", conn))
