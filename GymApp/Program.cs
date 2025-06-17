@@ -4,6 +4,7 @@ using GymApp.View;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System;
+using System.Threading.Channels;
 
 namespace GymApp
 {
@@ -22,7 +23,7 @@ namespace GymApp
 
             switch (choice)
             {
-                case "1":
+                case "1": //Gym Table
                     {
                         string choice1 = view.GymMenu();
                         switch (choice1)
@@ -31,26 +32,42 @@ namespace GymApp
                                 {
                                     List<Gym> gyms = storageManager.GetAllGyms();
                                     view.DisplayGyms(gyms);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
                                 }
                                 break;
 
                             case "2":
                                 UpdateGymName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
                                 break;
 
                             case "3":
                                 InsertNewGym();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
                                 break;
 
                             case "4":
                                 DeleteGymByName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
                                 break;
                         }
                         
                     }
                     break;
 
-                case "2":
+                case "2": //Country Table
                     {
                         string choice2 = view.CountryMenu();
                         switch (choice2)
@@ -59,19 +76,35 @@ namespace GymApp
                                 {
                                     List<Country> countries = storageManager.GetAllCountries();
                                     view.DisplayCountries(countries);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
                                 }
                                 break;
 
                             case "2":
                                 UpdateCountryName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
                                 break;
 
                             case "3":
                                 InsertNewCountry();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
                                 break;
 
                             case "4":
                                 DeleteCountryByName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
                                 break;
                         }
                    

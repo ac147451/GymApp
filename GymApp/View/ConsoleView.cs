@@ -14,15 +14,15 @@ namespace GymApp.View
         {
             Console.WriteLine("Welcome to my Gym");
             Console.WriteLine("Menu: ");
-            Console.WriteLine("1. Modify Gym Table");
-            Console.WriteLine("2. Modify Country Table");
-            Console.WriteLine("3. Modify City Table");
-            Console.WriteLine("4. Modify Suburb Table");
-            Console.WriteLine("5. Modify Instructor Table");
-            Console.WriteLine("6. Modify Classtype Table");
-            Console.WriteLine("7. Modify Member Table");
-            Console.WriteLine("8. Modify Role Table");
-            Console.WriteLine("9. Modify Sessionbooking Table");
+            Console.WriteLine("1. Gym Table");
+            Console.WriteLine("2. Country Table");
+            Console.WriteLine("3. City Table");
+            Console.WriteLine("4. Suburb Table");
+            Console.WriteLine("5. Instructor Table");
+            Console.WriteLine("6. Classtype Table");
+            Console.WriteLine("7. Member Table");
+            Console.WriteLine("8. Role Table");
+            Console.WriteLine("9. Sessionbooking Table");
             Console.WriteLine("Please choose a table to change: ");
 
 
@@ -31,6 +31,7 @@ namespace GymApp.View
 
         public string GymMenu()
         {
+            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all records in Gym");
             Console.WriteLine("2. Update a gym's name by gymID");
@@ -43,6 +44,7 @@ namespace GymApp.View
 
         public string CountryMenu()
         {
+            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all records in Country");
             Console.WriteLine("2. Update a countries name by countryID");
