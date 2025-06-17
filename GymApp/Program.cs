@@ -24,40 +24,58 @@ namespace GymApp
             {
                 case "1":
                     {
-                        List<Gym> gyms = storageManager.GetAllGyms();
-                        view.DisplayGyms(gyms);
+                        string choice1 = view.GymMenu();
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    List<Gym> gyms = storageManager.GetAllGyms();
+                                    view.DisplayGyms(gyms);
+                                }
+                                break;
+
+                            case "2":
+                                UpdateGymName();
+                                break;
+
+                            case "3":
+                                InsertNewGym();
+                                break;
+
+                            case "4":
+                                DeleteGymByName();
+                                break;
+                        }
+                        
                     }
                     break;
 
                 case "2":
-                    UpdateGymName();
-                    break;
-
-                case "3":
-                    InsertNewGym();
-                    break;
-
-                case "4":
-                    DeleteGymByName();
-                    break;
-
-                case "5":
                     {
-                        List<Country> countries = storageManager.GetAllCountries();
-                        view.DisplayCountries(countries);
+                        string choice2 = view.CountryMenu();
+                        switch (choice2)
+                        {
+                            case "1":
+                                {
+                                    List<Country> countries = storageManager.GetAllCountries();
+                                    view.DisplayCountries(countries);
+                                }
+                                break;
+
+                            case "2":
+                                UpdateCountryName();
+                                break;
+
+                            case "3":
+                                InsertNewCountry();
+                                break;
+
+                            case "4":
+                                DeleteCountryByName();
+                                break;
+                        }
+                   
                     }
-                    break;
-
-                case "6":
-                    UpdateCountryName();
-                    break;
-
-                case "7":
-                    InsertNewCountry();
-                    break;
-
-                case "8":
-                    DeleteCountryByName();
                     break;
 
                 default:

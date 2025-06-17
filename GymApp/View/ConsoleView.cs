@@ -14,19 +14,45 @@ namespace GymApp.View
         {
             Console.WriteLine("Welcome to my Gym");
             Console.WriteLine("Menu: ");
+            Console.WriteLine("1. Modify Gym Table");
+            Console.WriteLine("2. Modify Country Table");
+            Console.WriteLine("3. Modify City Table");
+            Console.WriteLine("4. Modify Suburb Table");
+            Console.WriteLine("5. Modify Instructor Table");
+            Console.WriteLine("6. Modify Classtype Table");
+            Console.WriteLine("7. Modify Member Table");
+            Console.WriteLine("8. Modify Role Table");
+            Console.WriteLine("9. Modify Sessionbooking Table");
+            Console.WriteLine("Please choose a table to change: ");
+
+
+            return Console.ReadLine();
+        }
+
+        public string GymMenu()
+        {
+            Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all records in Gym");
             Console.WriteLine("2. Update a gym's name by gymID");
             Console.WriteLine("3. Insert a new gym");
             Console.WriteLine("4. Delete a gym by gymname");
-            Console.WriteLine("");
-            Console.WriteLine("5. View all records in Country");
-            Console.WriteLine("6. Update a countries name by countryID");
-            Console.WriteLine("7. Insert a new country");
-            Console.WriteLine("8. Delete a country by countryname");
             Console.WriteLine("Select an option: ");
 
             return Console.ReadLine();
         }
+
+        public string CountryMenu()
+        {
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all records in Country");
+            Console.WriteLine("2. Update a countries name by countryID");
+            Console.WriteLine("3. Insert a new country");
+            Console.WriteLine("4. Delete a country by countryname");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
         public void DisplayGyms(List<Gym> gyms)
         {
             foreach (Gym gym in gyms)
