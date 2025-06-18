@@ -81,6 +81,19 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
+        public string InstructorMenu()
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all records in Instructor");
+            Console.WriteLine("2. Update an instructors name by instructorID");
+            Console.WriteLine("3. Insert a new instructor");
+            Console.WriteLine("4. Delete an instructor by instructorname");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
         public void DisplayGyms(List<Gym> gyms)
         {
             foreach (Gym gym in gyms)
