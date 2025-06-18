@@ -68,6 +68,19 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
+        public string SuburbMenu()
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all records in Suburb");
+            Console.WriteLine("2. Update a suburbs name by suburbID");
+            Console.WriteLine("3. Insert a new suburb");
+            Console.WriteLine("4. Delete a suburb by suburbname");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
         public void DisplayGyms(List<Gym> gyms)
         {
             foreach (Gym gym in gyms)
@@ -89,6 +102,14 @@ namespace GymApp.View
             foreach (City city in cities)
             {
                 Console.WriteLine($"{city.City_id}, {city.City_name}");
+            }
+        }
+
+        public void DisplaySuburbs(List<Suburb> suburbs)
+        {
+            foreach (Suburb suburb in suburbs)
+            {
+                Console.WriteLine($"{suburb.Suburb_id}, {suburb.Suburb_name}");
             }
         }
 
