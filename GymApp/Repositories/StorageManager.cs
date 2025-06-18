@@ -171,7 +171,7 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand($"UPDATE Location.city SET cityname = @cityname WHERE cityID = @cityID", conn))
             {
                 cmd.Parameters.AddWithValue("@cityname", cityname);
-                cmd.Parameters.AddWithValue("@countryID", cityID);
+                cmd.Parameters.AddWithValue("@cityID", cityID);
                 return cmd.ExecuteNonQuery();
             }
         }
@@ -190,6 +190,55 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.city WHERE cityname = @cityname", conn))
             {
                 cmd.Parameters.AddWithValue("@cityname", cityname);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public List<Suburb> GetAllSuburbs()
+        {
+            List<Suburb> suburbs = new List<Suburb>();
+            string sqlString = "SELECT * FROM Location.suburb";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int suburbid = Convert.ToInt32(reader["suburbID"]);
+                        string suburbname = reader["suburbname"].ToString();
+                        suburbs.Add(new Suburb(suburbid, suburbname));
+                    }
+                }
+
+            }
+            return suburbs;
+
+        }
+
+        public int UpdateSuburbName(int suburbID, string suburbname)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Location.suburb SET suburbname = @suburbname WHERE suburbID = @suburbID", conn))
+            {
+                cmd.Parameters.AddWithValue("@suburbname", suburbname);
+                cmd.Parameters.AddWithValue("@suburbID", suburbID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertSuburb(Suburb suburbtemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Location.suburb (suburbname) VALUES (@suburbname); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@suburbname", suburbtemp.Suburb_name);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int DeleteSuburbByName(string suburbname)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.suburb WHERE suburbname = @suburbname", conn))
+            {
+                cmd.Parameters.AddWithValue("@suburb", suburbname);
                 return cmd.ExecuteNonQuery();
             }
         }

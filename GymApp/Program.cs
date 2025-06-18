@@ -155,6 +155,50 @@ namespace GymApp
                     }
                     break;
 
+                case "4": //Suburb Table
+                    {
+                        string choice1 = view.SuburbMenu();
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    List<Suburb> suburbs = storageManager.GetAllSuburbs();
+                                    view.DisplaySuburbs(suburbs);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
+                                }
+                                break;
+
+                            case "2":
+                                UpdateSuburbName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "3":
+                                InsertNewSuburb();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "4":
+                                DeleteSuburbByName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+                        }
+
+                    }
+                    break;
+
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
@@ -256,6 +300,36 @@ namespace GymApp
             view.DisplayMessage("Enter the city name to delete: ");
             string cityname = view.GetInput();
             int rowsAffected = storageManager.DeleteCityByName(cityname);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
+        private static void UpdateSuburbName()
+        {
+
+            view.DisplayMessage("Enter the suburbID to update: ");
+            int suburbID = view.GetIntInput();
+            view.DisplayMessage("Enter the new suburb name: ");
+            string suburbname = view.GetInput();
+            int rowsAffected = storageManager.UpdateSuburbName(suburbID, suburbname);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewSuburb()
+        {
+            view.DisplayMessage("Enter the new suburb name: ");
+            string suburbname = view.GetInput();
+            int suburbID = 0;
+            Suburb suburb1 = new Suburb(suburbID, suburbname);
+            int generatedID = storageManager.InsertSuburb(suburb1);
+            view.DisplayMessage($"New suburb inserted with ID: {generatedID}");
+
+        }
+
+        private static void DeleteSuburbByName()
+        {
+            view.DisplayMessage("Enter the suburb name to delete: ");
+            string suburbname = view.GetInput();
+            int rowsAffected = storageManager.DeleteSuburbByName(suburbname);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
