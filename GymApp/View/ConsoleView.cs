@@ -55,6 +55,19 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
+        public string CityMenu()
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all records in City");
+            Console.WriteLine("2. Update a cities name by cityID");
+            Console.WriteLine("3. Insert a new city");
+            Console.WriteLine("4. Delete a city by cityname");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
         public void DisplayGyms(List<Gym> gyms)
         {
             foreach (Gym gym in gyms)
@@ -68,6 +81,14 @@ namespace GymApp.View
             foreach (Country country in countries)
             {
                 Console.WriteLine($"{country.Country_id}, {country.Country_name}");
+            }
+        }
+
+        public void DisplayCities(List<City> cities)
+        {
+            foreach (City city in cities)
+            {
+                Console.WriteLine($"{city.City_id}, {city.City_name}");
             }
         }
 

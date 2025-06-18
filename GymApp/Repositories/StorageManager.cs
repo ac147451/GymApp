@@ -145,6 +145,55 @@ namespace GymApp
             }
         }
 
+        public List<City> GetAllCities()
+        {
+            List<City> cities = new List<City>();
+            string sqlString = "SELECT * FROM Location.city";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int cityid = Convert.ToInt32(reader["cityID"]);
+                        string cityname = reader["cityname"].ToString();
+                        cities.Add(new City(cityid, cityname));
+                    }
+                }
+
+            }
+            return cities;
+
+        }
+
+        public int UpdateCityName(int cityID, string cityname)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Location.city SET cityname = @cityname WHERE cityID = @cityID", conn))
+            {
+                cmd.Parameters.AddWithValue("@cityname", cityname);
+                cmd.Parameters.AddWithValue("@countryID", cityID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertCity(City citytemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Location.city (cityname) VALUES (@cityname); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@cityname", citytemp.City_name);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int DeleteCityByName(string cityname)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.city WHERE cityname = @cityname", conn))
+            {
+                cmd.Parameters.AddWithValue("@cityname", cityname);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

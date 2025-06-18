@@ -69,8 +69,8 @@ namespace GymApp
 
                 case "2": //Country Table
                     {
-                        string choice2 = view.CountryMenu();
-                        switch (choice2)
+                        string choice1 = view.CountryMenu();
+                        switch (choice1)
                         {
                             case "1":
                                 {
@@ -108,6 +108,50 @@ namespace GymApp
                                 break;
                         }
                    
+                    }
+                    break;
+
+                case "3": //City Table
+                    {
+                        string choice1 = view.CityMenu();
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    List<City> cities = storageManager.GetAllCities();
+                                    view.DisplayCities(cities);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
+                                }
+                                break;
+
+                            case "2":
+                                UpdateCityName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "3":
+                                InsertNewCity();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "4":
+                                DeleteCityByName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+                        }
+
                     }
                     break;
 
@@ -182,6 +226,36 @@ namespace GymApp
             view.DisplayMessage("Enter the country name to delete: ");
             string countryname = view.GetInput();
             int rowsAffected = storageManager.DeleteCountryByName(countryname);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
+        private static void UpdateCityName()
+        {
+
+            view.DisplayMessage("Enter the cityID to update: ");
+            int cityID = view.GetIntInput();
+            view.DisplayMessage("Enter the new city name: ");
+            string cityname = view.GetInput();
+            int rowsAffected = storageManager.UpdateCityName(cityID, cityname);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewCity()
+        {
+            view.DisplayMessage("Enter the new city name: ");
+            string cityname = view.GetInput();
+            int cityID = 0;
+            City city1 = new City(cityID, cityname);
+            int generatedID = storageManager.InsertCity(city1);
+            view.DisplayMessage($"New city inserted with ID: {generatedID}");
+
+        }
+
+        private static void DeleteCityByName()
+        {
+            view.DisplayMessage("Enter the city name to delete: ");
+            string cityname = view.GetInput();
+            int rowsAffected = storageManager.DeleteCityByName(cityname);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
