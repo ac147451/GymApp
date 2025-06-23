@@ -98,7 +98,7 @@ namespace GymApp.View
         {
             foreach (Gym gym in gyms)
             {
-                Console.WriteLine($"{gym.Gym_id}, {gym.Gym_name}");
+                Console.WriteLine($"{gym.Gym_id}, {gym.Gym_name}, {gym.Streetaddress}");
             }
         }
 
@@ -123,6 +123,14 @@ namespace GymApp.View
             foreach (Suburb suburb in suburbs)
             {
                 Console.WriteLine($"{suburb.Suburb_id}, {suburb.Suburb_name}");
+            }
+        }
+
+        public void DisplayInstructors(List<Instructor> instructors)
+        {
+            foreach (Instructor instructor in instructors)
+            {
+                Console.WriteLine($"{instructor.Instructor_id}, {instructor.Instructor_name}");
             }
         }
 

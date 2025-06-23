@@ -48,6 +48,7 @@ namespace GymApp
                 {
                     while (reader.Read())
                     {
+                       
                         int gymid = Convert.ToInt32(reader["gymID"]);
                         string gymname = reader["gymname"].ToString();
                         string streetaddress = reader["streetaddress"].ToString();

@@ -1,0 +1,27 @@
+﻿DROP TABLE IF EXISTS Role.roles;
+
+DROP TABLE IF EXISTS Member.members;
+
+DROP TABLE IF EXISTS Location.country;
+
+DROP TABLE IF EXISTS Location.city;
+
+DROP TABLE IF EXISTS Location.suburb;
+
+DROP TABLE IF EXISTS Gym.gyms;
+
+DROP TABLE IF EXISTS Session.instructor;
+
+DROP TABLE IF EXISTS Session.classtype;
+
+DROP TABLE IF EXISTS Session.sessionbooking;
+
+DROP SCHEMA IF EXISTS Location;
+
+DROP SCHEMA IF EXISTS Session;
+
+DROP SCHEMA IF EXISTS Member;
+
+DROP SCHEMA IF EXISTS Gym;
+
+DROP SCHEMA IF EXISTS Role;
