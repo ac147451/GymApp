@@ -254,41 +254,41 @@ namespace GymApp
                 {
                     while (reader.Read())
                     {
-                        int suburbid = Convert.ToInt32(reader["suburbID"]);
-                        string suburbname = reader["suburbname"].ToString();
-                        suburbs.Add(new Suburb(suburbid, suburbname));
+                        int instructorid = Convert.ToInt32(reader["instructorID"]);
+                        string instructorname = reader["instructorname"].ToString();
+                        instructors.Add(new Instructor(instructorid, instructorname));
                     }
                 }
 
             }
-            return suburbs;
+            return instructors;
 
         }
 
-        public int UpdateSuburbName(int suburbID, string suburbname)
+        public int UpdateInstructorName(int instructorID, string instructorname)
         {
-            using (SqlCommand cmd = new SqlCommand($"UPDATE Location.suburb SET suburbname = @suburbname WHERE suburbID = @suburbID", conn))
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Session.instructor SET instructorname = @instructorname WHERE instructorID = @instructorID", conn))
             {
-                cmd.Parameters.AddWithValue("@suburbname", suburbname);
-                cmd.Parameters.AddWithValue("@suburbID", suburbID);
+                cmd.Parameters.AddWithValue("@instructorname", instructorname);
+                cmd.Parameters.AddWithValue("@instructorID", instructorID);
                 return cmd.ExecuteNonQuery();
             }
         }
 
-        public int InsertSuburb(Suburb suburbtemp)
+        public int InsertInstructor(Instructor instructortemp)
         {
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Location.suburb (suburbname) VALUES (@suburbname); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.instructor (instructorname) VALUES (@instructorname); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@suburbname", suburbtemp.Suburb_name);
+                cmd.Parameters.AddWithValue("@instructorname", instructortemp.Instructor_name);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
-        public int DeleteSuburbByName(string suburbname)
+        public int DeleteInstructorByName(string instructorname)
         {
-            using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.suburb WHERE suburbname = @suburbname", conn))
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.instructor WHERE instructorname = @instructorname", conn))
             {
-                cmd.Parameters.AddWithValue("@suburb", suburbname);
+                cmd.Parameters.AddWithValue("@instructor", instructorname);
                 return cmd.ExecuteNonQuery();
             }
         }

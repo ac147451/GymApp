@@ -199,6 +199,50 @@ namespace GymApp
                     }
                     break;
 
+                case "5": //Instructor Table
+                    {
+                        string choice1 = view.InstructorMenu();
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    List<Instructor> instructors = storageManager.GetAllInstructors();
+                                    view.DisplayInstructors(instructors);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
+                                }
+                                break;
+
+                            case "2":
+                                UpdateInstructorName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "3":
+                                InsertNewInstructor();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "4":
+                                DeleteInstructorByName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+                        }
+
+                    }
+                    break;
+
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
@@ -330,6 +374,36 @@ namespace GymApp
             view.DisplayMessage("Enter the suburb name to delete: ");
             string suburbname = view.GetInput();
             int rowsAffected = storageManager.DeleteSuburbByName(suburbname);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
+        private static void UpdateInstructorName()
+        {
+
+            view.DisplayMessage("Enter the instructorID to update: ");
+            int instructorID = view.GetIntInput();
+            view.DisplayMessage("Enter the new instructor name: ");
+            string instructorname = view.GetInput();
+            int rowsAffected = storageManager.UpdateInstructorName(instructorID, instructorname);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewInstructor()
+        {
+            view.DisplayMessage("Enter the new instructor name: ");
+            string instructorname = view.GetInput();
+            int instructorID = 0;
+            Instructor instructor1 = new Instructor(instructorID, instructorname);
+            int generatedID = storageManager.InsertInstructor(instructor1);
+            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
+
+        }
+
+        private static void DeleteInstructorByName()
+        {
+            view.DisplayMessage("Enter the instructor name to delete: ");
+            string instructorname = view.GetInput();
+            int rowsAffected = storageManager.DeleteInstructorByName(instructorname);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
