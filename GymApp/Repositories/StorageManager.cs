@@ -293,6 +293,56 @@ namespace GymApp
             }
         }
 
+        public List<ClassType> GetAllClasstypes()
+        {
+            List<ClassType> classtypes = new List<ClassType>();
+            string sqlString = "SELECT * FROM Session.classtype";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int classtypeid = Convert.ToInt32(reader["classtypeID"]);
+                        string classtype = reader["classtype"].ToString();
+                        int classprice = Convert.ToInt32(reader["classprice"]);
+                        classtypes.Add(new ClassType(classtypeid, classtype, classprice));
+                    }
+                }
+
+            }
+            return classtypes;
+
+        }
+
+        public int UpdateClasstypeName(int classtypeID, string classtype)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Session.classtype SET classtype = @classtype WHERE classtypeID = @classtypeID", conn))
+            {
+                cmd.Parameters.AddWithValue("@classtype", classtype);
+                cmd.Parameters.AddWithValue("@classtypeID", classtypeID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertClasstype(ClassType classtypetemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.classtype (classtype) VALUES (@classtype); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@classtype", classtypetemp.Classtype);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int DeleteClasstype(string classtype)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.classtype WHERE classtype = @classtype", conn))
+            {
+                cmd.Parameters.AddWithValue("@classtype", classtype);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

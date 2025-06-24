@@ -94,6 +94,19 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
+        public string ClasstypeMenu()
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all classtypes");
+            Console.WriteLine("2. Update a classtype by classtypeID");
+            Console.WriteLine("3. Insert a new classtype");
+            Console.WriteLine("4. Delete a classtype by the name of a classtype");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
         public void DisplayGyms(List<Gym> gyms)
         {
             foreach (Gym gym in gyms)
@@ -131,6 +144,14 @@ namespace GymApp.View
             foreach (Instructor instructor in instructors)
             {
                 Console.WriteLine($"{instructor.Instructor_id}, {instructor.Instructor_name}");
+            }
+        }
+
+        public void DisplayClasstypes(List<ClassType> classtypes)
+        {
+            foreach (ClassType classtype in classtypes)
+            {
+                Console.WriteLine($"{classtype.Classtype_id}, {classtype.Classtype}, {classtype.Classprice}");
             }
         }
 

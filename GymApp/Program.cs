@@ -243,6 +243,50 @@ namespace GymApp
                     }
                     break;
 
+                case "6": //Classtype Table
+                    {
+                        string choice1 = view.ClasstypeMenu();
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    List<ClassType> classtypes = storageManager.GetAllClasstypes();
+                                    view.DisplayClasstypes(classtypes);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
+                                }
+                                break;
+
+                            case "2":
+                                UpdateClasstypeName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "3":
+                                InsertNewClasstype();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "4":
+                                DeleteClasstype();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+                        }
+
+                    }
+                    break;
+
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
@@ -404,6 +448,38 @@ namespace GymApp
             view.DisplayMessage("Enter the instructor name to delete: ");
             string instructorname = view.GetInput();
             int rowsAffected = storageManager.DeleteInstructorByName(instructorname);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
+        private static void UpdateClasstypeName()
+        {
+
+            view.DisplayMessage("Enter the classtypeID to update: ");
+            int classtypeID = view.GetIntInput();
+            view.DisplayMessage("Enter the new classtype name: ");
+            string classtype = view.GetInput();
+            int rowsAffected = storageManager.UpdateClasstypeName(classtypeID, classtype);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewClasstype()
+        {
+            view.DisplayMessage("Enter the new classtype: ");
+            string classtype = view.GetInput();
+            view.DisplayMessage("Enter the price of the new classtype: ");
+            int classprice = view.GetIntInput();
+            int classtypeID = 0;
+            ClassType classtype1 = new ClassType(classtypeID, classtype, classprice);
+            int generatedID = storageManager.InsertClasstype(classtype1);
+            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
+
+        }
+
+        private static void DeleteClasstype()
+        {
+            view.DisplayMessage("Enter the classtype to delete: ");
+            string classtype = view.GetInput();
+            int rowsAffected = storageManager.DeleteClasstype(classtype);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
