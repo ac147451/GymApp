@@ -375,6 +375,50 @@ namespace GymApp
                     }
                     break;
 
+                case "9": //Sessionbooking Table
+                    {
+                        string choice1 = view.SessionbookingMenu();
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    List<Sessionbooking> sessionbookings = storageManager.GetAllSessions();
+                                    view.DisplaySessions(sessionbookings);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
+                                }
+                                break;
+
+                            case "2":
+                                UpdateSessionDate();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "3":
+                                InsertNewSession();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "4":
+                                DeleteSessionByID();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+                        }
+
+                    }
+                    break;
+
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
@@ -650,30 +694,30 @@ namespace GymApp
             view.DisplayMessage($"Rows affected: {rowsAffected}");
         }
 
-        private static void InsertNewGym()
+        private static void InsertNewSession()
         {
-            view.DisplayMessage("Enter the new gym name: ");
-            string gymname = view.GetInput();
-            view.DisplayMessage("Enter the street address: ");
-            string streetaddress = view.GetInput();
-            view.DisplayMessage("Enter the country ID: ");
-            int countryID = view.GetIntInput();
-            view.DisplayMessage("Enter the city ID: ");
-            int cityID = view.GetIntInput();
-            view.DisplayMessage("Enter the suburb ID: ");
-            int suburbID = view.GetIntInput();
-            int gymID = 0;
-            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID);
-            int generatedID = storageManager.InsertGym(gym1);
-            view.DisplayMessage($"New gym inserted with ID: {generatedID}");
+            view.DisplayMessage("Enter the instructor's ID: ");
+            int instructorID = view.GetIntInput();
+            view.DisplayMessage("Enter the classtype's ID: ");
+            int classtypeID = view.GetIntInput();
+            view.DisplayMessage("Enter the member's ID: ");
+            int memberID = view.GetIntInput();
+            view.DisplayMessage("Enter the gym's ID: ");
+            int gymID = view.GetIntInput();
+            view.DisplayMessage("Enter the sessiondate: ");
+            DateTime sessiondate = view.GetDateTimeInput();
+            int sessionID = 0;
+            Sessionbooking sessionbooking1 = new Sessionbooking(sessionID, instructorID, classtypeID, memberID, gymID, sessiondate);
+            int generatedID = storageManager.InsertSession(sessionbooking1);
+            view.DisplayMessage($"New session inserted with ID: {generatedID}");
 
         }
 
-        private static void DeleteGymByName()
+        private static void DeleteSessionByID()
         {
-            view.DisplayMessage("Enter the gym name to delete: ");
-            string gymname = view.GetInput();
-            int rowsAffected = storageManager.DeleteGymByName(gymname);
+            view.DisplayMessage("Enter the sessionID to delete: ");
+            int sessionID = view.GetIntInput();
+            int rowsAffected = storageManager.DeleteSessionByID(sessionID);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 

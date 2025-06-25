@@ -507,6 +507,60 @@ namespace GymApp
             }
         }
 
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+            string sqlString = "SELECT * FROM Login.users";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        int userid = Convert.ToInt32(reader["userID"]);
+                        string username = reader["username"].ToString();
+                        int password = Convert.ToInt32(reader["password"]);
+                        int roleid = Convert.ToInt32(reader["roleID"]);
+                        users.Add(new User(userid, username, password, roleid));
+                    }
+                }
+
+            }
+            return users;
+
+        }
+
+        public int UpdateUserName(int userID, string username)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Login.users SET username = @username WHERE userID = @userID", conn))
+            {
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@userID", userID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertUser(User usertemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Login.users (username, password, roleID) VALUES (@username, @password, @roleID); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@username", usertemp.User_name);
+                cmd.Parameters.AddWithValue("@password", usertemp.Password);
+                cmd.Parameters.AddWithValue("@roleID", usertemp.Role_id);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int DeleteUserByUserName(string username)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Login.users WHERE username = @username", conn))
+            {
+                cmd.Parameters.AddWithValue("@username", username);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

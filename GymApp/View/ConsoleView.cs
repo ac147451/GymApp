@@ -23,6 +23,7 @@ namespace GymApp.View
             Console.WriteLine("7. Member Table");
             Console.WriteLine("8. Role Table");
             Console.WriteLine("9. Sessionbooking Table");
+            Console.WriteLine("10. User Table");
             Console.WriteLine("Please choose a table to change: ");
 
 
@@ -146,6 +147,18 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
+        public string UserMenu() //Menu for User table
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all users");
+            Console.WriteLine("2. Update a user's username by userID");
+            Console.WriteLine("3. Insert a new user");
+            Console.WriteLine("4. Delete a user by username");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
         public void DisplayGyms(List<Gym> gyms)
         {
             foreach (Gym gym in gyms)
@@ -215,6 +228,14 @@ namespace GymApp.View
             foreach (Sessionbooking sessionbooking in sessionbookings)
             {
                 Console.WriteLine($"{sessionbooking.Session_id}, {sessionbooking.Sessiondate}");
+            }
+        }
+
+        public void DisplayUsers(List<User> users)
+        {
+            foreach (User user in users)
+            {
+                Console.WriteLine($"{user.User_id}, {user.User_name}, {user.Role_id}");
             }
         }
 
