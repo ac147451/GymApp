@@ -10,9 +10,53 @@ namespace GymApp.View
 {
     public class ConsoleView
     {
-        public string DisplayMenu() //Main Menu
+        public string MainMenu()
         {
-            Console.WriteLine("Welcome to my Gym");
+            Console.WriteLine("Welcome to my Database");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. Login: ");
+            Console.WriteLine("2. Register: ");
+            Console.WriteLine("Please choose one");
+
+            return Console.ReadLine();
+        }
+
+        public string LoginMenu()
+        {
+            Console.WriteLine("Please enter your username: ");
+            Console.ReadLine();
+            Console.WriteLine("Please enter your password: ");
+            Console.ReadLine();
+
+            return Console.ReadLine();
+        }
+
+        public string MemberMenu()
+        {
+            Console.WriteLine("Welcome Member");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View which sessions you are signed up for ");
+            Console.WriteLine("2. Book another session ");
+            Console.WriteLine("Please choose what you want to do: ");
+
+            return Console.ReadLine();
+        }
+
+        public string GymMenu()
+        {
+            Console.WriteLine("Welcome Gym");
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. Sessions");
+            Console.WriteLine("2. Members");
+            Console.WriteLine("3. Instructors");
+            Console.WriteLine("Choose a table to manage: ");
+
+            return Console.ReadLine();
+        }
+
+        public string DisplayAdminMenu() //Main Menu
+        {
+            Console.WriteLine("Welcome Admin");
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. Gym Table");
             Console.WriteLine("2. Country Table");
@@ -30,7 +74,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string GymMenu() //Menu for Gym table
+        public string GymTableMenu() //Menu for Gym table
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
@@ -108,7 +152,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string MemberMenu() // Menu for Member table
+        public string MemberTableMenu() // Menu for Member table
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
