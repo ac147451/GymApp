@@ -120,6 +120,19 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
+        public string RoleMenu() // Menu for Role table
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all roles");
+            Console.WriteLine("2. Update a role's name by roleID");
+            Console.WriteLine("3. Insert a role");
+            Console.WriteLine("4. Delete a role by the name of the role");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
         public void DisplayGyms(List<Gym> gyms)
         {
             foreach (Gym gym in gyms)
@@ -173,6 +186,14 @@ namespace GymApp.View
             foreach (Member member in members)
             {
                 Console.WriteLine($"{member.Member_id}, {member.Firstname}, {member.Lastname}, {member.Phonenumber}, {member.Emailaddress}");
+            }
+        }
+
+        public void DisplayRoles(List<Role> roles)
+        {
+            foreach (Role role in roles)
+            {
+                Console.WriteLine($"{role.Role_id}, {role.Rolename}");
             }
         }
 
