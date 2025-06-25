@@ -552,7 +552,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteUserByUserName(string username)
+        public int DeleteUserByName(string username)
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Login.users WHERE username = @username", conn))
             {
