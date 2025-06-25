@@ -25,7 +25,7 @@ go
 CREATE TABLE Login.users (
 	userID INT IDENTITY (1, +1) PRIMARY KEY,
 	username VARCHAR (255),
-	passwordd VARCHAR (8),
+	password VARCHAR (8),
 	roleID int,
 	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
 );
