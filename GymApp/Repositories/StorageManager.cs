@@ -448,6 +448,65 @@ namespace GymApp
             }
         }
 
+        public List<Sessionbooking> GetAllSessions()
+        {
+            List<Sessionbooking> sessionbookings = new List<Sessionbooking>();
+            string sqlString = "SELECT * FROM Session.sessionbooking";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        int sessionID = Convert.ToInt32(reader["sessionID"]);
+                        int instructorID = Convert.ToInt32(reader["instructorID"]);
+                        int classtypeID = Convert.ToInt32(reader["classtypeID"]);
+                        int memberID = Convert.ToInt32(reader["memberID"]);
+                        int gymID = Convert.ToInt32(reader["gymID"]);
+                        DateTime sessiondate = Convert.ToDateTime(reader["sessiondate"]);
+
+                        sessionbookings.Add(new Sessionbooking(sessionID, instructorID, classtypeID, memberID, gymID, sessiondate));
+                    }
+                }
+
+            }
+            return sessionbookings;
+
+        }
+
+        public int UpdateSessionDate(int sessionID, DateTime sessiondate)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Session.sessionbooking SET sessiondate = @sessiondate WHERE sessionID = @sessionID", conn))
+            {
+                cmd.Parameters.AddWithValue("@sessiondate", sessiondate);
+                cmd.Parameters.AddWithValue("@sessionID", sessionID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertSession(Sessionbooking sessionbookingtemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.sessionbooking (instructorID, classtypeID, memberID, gymID, sessiondate) VALUES (@instructorID, @classtypeID, @memberID, @gymID, @sessiondate); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@instructorID", sessionbookingtemp.Instructor_id);
+                cmd.Parameters.AddWithValue("@classtypeID", sessionbookingtemp.Classtype_id);
+                cmd.Parameters.AddWithValue("@memberID", sessionbookingtemp.Member_id);
+                cmd.Parameters.AddWithValue("@gymID", sessionbookingtemp.Gym_id);
+                cmd.Parameters.AddWithValue("@sessiondate", sessionbookingtemp.Sessiondate);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int DeleteSessionByID(int sessionID)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.sessionbooking WHERE sessionID = @sessionID", conn))
+            {
+                cmd.Parameters.AddWithValue("@sessionID", sessionID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

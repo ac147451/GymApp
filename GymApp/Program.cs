@@ -639,6 +639,44 @@ namespace GymApp
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
+        private static void UpdateSessionDate()
+        {
+
+            view.DisplayMessage("Enter the sessionID to update: ");
+            int sessionID = view.GetIntInput();
+            view.DisplayMessage("Enter the session date: ");
+            DateTime sessiondate = view.GetDateTimeInput();
+            int rowsAffected = storageManager.UpdateSessionDate(sessionID, sessiondate);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewGym()
+        {
+            view.DisplayMessage("Enter the new gym name: ");
+            string gymname = view.GetInput();
+            view.DisplayMessage("Enter the street address: ");
+            string streetaddress = view.GetInput();
+            view.DisplayMessage("Enter the country ID: ");
+            int countryID = view.GetIntInput();
+            view.DisplayMessage("Enter the city ID: ");
+            int cityID = view.GetIntInput();
+            view.DisplayMessage("Enter the suburb ID: ");
+            int suburbID = view.GetIntInput();
+            int gymID = 0;
+            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID);
+            int generatedID = storageManager.InsertGym(gym1);
+            view.DisplayMessage($"New gym inserted with ID: {generatedID}");
+
+        }
+
+        private static void DeleteGymByName()
+        {
+            view.DisplayMessage("Enter the gym name to delete: ");
+            string gymname = view.GetInput();
+            int rowsAffected = storageManager.DeleteGymByName(gymname);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
     }
 }
 

@@ -133,6 +133,19 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
+        public string SessionbookingMenu() //Menu for Sessionbooking table
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all sessions");
+            Console.WriteLine("2. Update a session's date by sessionID");
+            Console.WriteLine("3. Insert a new session");
+            Console.WriteLine("4. Delete a session by sessionID");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
         public void DisplayGyms(List<Gym> gyms)
         {
             foreach (Gym gym in gyms)
@@ -197,6 +210,14 @@ namespace GymApp.View
             }
         }
 
+        public void DisplaySessions(List<Sessionbooking> sessionbookings)
+        {
+            foreach (Sessionbooking sessionbooking in sessionbookings)
+            {
+                Console.WriteLine($"{sessionbooking.Session_id}, {sessionbooking.Sessiondate}");
+            }
+        }
+
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
@@ -210,6 +231,11 @@ namespace GymApp.View
         public int GetIntInput()
         {
             return int.Parse(Console.ReadLine());
+        }
+
+        public int GetDateTimeInput()
+        {
+            return DateTime.Parse(Console.ReadLine());
         }
 
     }
