@@ -13,9 +13,21 @@ go
 CREATE SCHEMA Role;
 go
 
+CREATE SCHEMA Login;
+go
+
 CREATE TABLE Role.roles (
 	roleID INT IDENTITY (1, +1) PRIMARY KEY,
 	rolename VARCHAR (255)
+);
+go
+
+CREATE TABLE Login.users (
+	userID INT IDENTITY (1, +1) PRIMARY KEY,
+	username VARCHAR (255),
+	passwordd VARCHAR (8),
+	roleID int,
+	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
 );
 go
 
