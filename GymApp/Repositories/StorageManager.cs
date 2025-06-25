@@ -343,6 +343,62 @@ namespace GymApp
             }
         }
 
+        public List<Member> GetAllMembers()
+        {
+            List<Member> members = new List<Member>();
+            string sqlString = "SELECT * FROM Member.members";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int memberID = Convert.ToInt32(reader["memberID"]);
+                        string firstname = reader["firstname"].ToString();
+                        string lastname = reader["lastname"].ToString();
+                        int phonenumber = Convert.ToInt32(reader["phonenumber"]);
+                        string emailaddress = reader["emailaddress"].ToString();
+                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress));
+                    }
+                }
+
+            }
+            return members;
+
+        }
+
+        public int UpdateMemberFirstName(int memberID, string firstname)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Member.members SET firstname = @firstname WHERE memberID = @memberID", conn))
+            {
+                cmd.Parameters.AddWithValue("@firstname", firstname);
+                cmd.Parameters.AddWithValue("@memberID", memberID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertMember(Member membertemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname, phonenumber, emailaddress) VALUES (@firstname, @lastname, @phonenumber, @emailaddress); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@firstname", membertemp.Firstname);
+                cmd.Parameters.AddWithValue("@lastname", membertemp.Lastname);
+                cmd.Parameters.AddWithValue("@phonenumber", membertemp.Phonenumber);
+                cmd.Parameters.AddWithValue("@emailaddress", membertemp.Emailaddress);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int DeleteMemberByName(string firstname, string lastname)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Member.members WHERE firstname = @firstname AND lastname = @lastname", conn))
+            {
+                cmd.Parameters.AddWithValue("@firstname", firstname);
+                cmd.Parameters.AddWithValue("@lastname", lastname);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

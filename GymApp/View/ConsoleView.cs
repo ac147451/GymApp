@@ -10,7 +10,7 @@ namespace GymApp.View
 {
     public class ConsoleView
     {
-        public string DisplayMenu()
+        public string DisplayMenu() //Main Menu
         {
             Console.WriteLine("Welcome to my Gym");
             Console.WriteLine("Menu: ");
@@ -29,7 +29,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string GymMenu()
+        public string GymMenu() //Menu for Gym table
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
@@ -42,7 +42,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string CountryMenu()
+        public string CountryMenu() //Menu for Country table
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
@@ -55,7 +55,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string CityMenu()
+        public string CityMenu() //Menu for City table
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
@@ -68,7 +68,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string SuburbMenu()
+        public string SuburbMenu() //Menu for Suburb table
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
@@ -81,7 +81,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string InstructorMenu()
+        public string InstructorMenu() //Menu for Instructor table
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
@@ -94,14 +94,27 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string ClasstypeMenu()
+        public string ClasstypeMenu() // Menu for Classtype table
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all classtypes");
             Console.WriteLine("2. Update a classtype by classtypeID");
             Console.WriteLine("3. Insert a new classtype");
-            Console.WriteLine("4. Delete a classtype by the name of a classtype");
+            Console.WriteLine("4. Delete a classtype by the name of the classtype");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
+        public string MemberMenu() // Menu for Member table
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all members");
+            Console.WriteLine("2. Update a member's name by memberID");
+            Console.WriteLine("3. Insert a new member");
+            Console.WriteLine("4. Delete a member by the name of the member");
             Console.WriteLine("Select an option: ");
 
             return Console.ReadLine();
@@ -152,6 +165,14 @@ namespace GymApp.View
             foreach (ClassType classtype in classtypes)
             {
                 Console.WriteLine($"{classtype.Classtype_id}, {classtype.Classtype}, {classtype.Classprice}");
+            }
+        }
+
+        public void DisplayMembers(List<Member> members)
+        {
+            foreach (Member member in members)
+            {
+                Console.WriteLine($"{member.Member_id}, {member.Firstname}, {member.Lastname}, {member.Phonenumber}, {member.Emailaddress}");
             }
         }
 

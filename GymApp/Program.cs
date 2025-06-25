@@ -287,6 +287,50 @@ namespace GymApp
                     }
                     break;
 
+                case "7": //Member Table
+                    {
+                        string choice1 = view.MemberMenu();
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    List<Member> members = storageManager.GetAllMembers();
+                                    view.DisplayMembers(members);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
+                                }
+                                break;
+
+                            case "2":
+                                UpdateMemberFirstName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "3":
+                                InsertNewMember();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "4":
+                                DeleteMember();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+                        }
+
+                    }
+                    break;
+
                 default:
                     Console.WriteLine("Invalid option. Please try again.");
                     break;
@@ -480,6 +524,44 @@ namespace GymApp
             view.DisplayMessage("Enter the classtype to delete: ");
             string classtype = view.GetInput();
             int rowsAffected = storageManager.DeleteClasstype(classtype);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
+        private static void UpdateMemberFirstName()
+        {
+
+            view.DisplayMessage("Enter the memberID to update: ");
+            int memberID = view.GetIntInput();
+            view.DisplayMessage("Enter the new member's first name: ");
+            string firstname = view.GetInput();
+            int rowsAffected = storageManager.UpdateMemberFirstName(memberID, firstname);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewMember()
+        {
+            view.DisplayMessage("Enter the new member's firstname: ");
+            string firstname = view.GetInput();
+            view.DisplayMessage("Enter the new member's lastname: ");
+            string lastname = view.GetInput();
+            view.DisplayMessage("Enter the new member's phonenumber: ");
+            int phonenumber = view.GetIntInput();
+            view.DisplayMessage("Enter the new member's emailaddress: ");
+            string emailaddress = view.GetInput();
+            int memberID = 0;
+            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress);
+            int generatedID = storageManager.InsertMember(member1);
+            view.DisplayMessage($"New member inserted with ID: {generatedID}");
+
+        }
+
+        private static void DeleteMember()
+        {
+            view.DisplayMessage("Enter the member's firstname: ");
+            string firstname = view.GetInput();
+            view.DisplayMessage("Enter the member's lastnamename: ");
+            string lastname = view.GetInput();
+            int rowsAffected = storageManager.DeleteMemberByName(firstname, lastname);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
