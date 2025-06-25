@@ -515,7 +515,7 @@ namespace GymApp
             int classtypeID = 0;
             ClassType classtype1 = new ClassType(classtypeID, classtype, classprice);
             int generatedID = storageManager.InsertClasstype(classtype1);
-            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
+            view.DisplayMessage($"New class type inserted with ID: {generatedID}");
 
         }
 
