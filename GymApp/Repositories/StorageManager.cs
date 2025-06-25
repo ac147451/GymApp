@@ -399,6 +399,55 @@ namespace GymApp
             }
         }
 
+        public List<Role> GetAllRoles()
+        {
+            List<Role> roles = new List<Role>();
+            string sqlString = "SELECT * FROM Role.roles";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int roleid = Convert.ToInt32(reader["roleID"]);
+                        string rolename = reader["rolename"].ToString();
+                        roles.Add(new Role(roleid, rolename));
+                    }
+                }
+
+            }
+            return roles;
+
+        }
+
+        public int UpdateRoleName(int roleID, string rolename)
+        {
+            using (SqlCommand cmd = new SqlCommand($"UPDATE Role.roles SET rolename = @rolesname WHERE roleID = @roleID", conn))
+            {
+                cmd.Parameters.AddWithValue("@rolename", rolename);
+                cmd.Parameters.AddWithValue("@roleID", roleID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+        public int InsertRole(Role roletemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Role.roles (rolename) VALUES (@rolename); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@rolename", roletemp.Rolename);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int DeleteRoleByName(string rolename)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Role.roles WHERE rolename = @rolename", conn))
+            {
+                cmd.Parameters.AddWithValue("@role", rolename);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

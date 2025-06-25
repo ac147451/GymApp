@@ -320,7 +320,51 @@ namespace GymApp
                                 break;
 
                             case "4":
-                                DeleteMember();
+                                DeleteMemberByName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+                        }
+
+                    }
+                    break;
+
+                case "8": //Role Table
+                    {
+                        string choice1 = view.RoleMenu();
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    List<Role> roles = storageManager.GetAllRoles();
+                                    view.DisplayRoles(roles);
+                                    view.DisplayMessage("Enter any button to go back to Main Menu");
+                                    Console.ReadLine();
+                                    Console.Clear();
+                                    view.DisplayMenu();
+                                }
+                                break;
+
+                            case "2":
+                                UpdateRoleName();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "3":
+                                InsertNewRole();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
+                                view.DisplayMenu();
+                                break;
+
+                            case "4":
+                                DeleteRoleByName();
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
@@ -555,13 +599,43 @@ namespace GymApp
 
         }
 
-        private static void DeleteMember()
+        private static void DeleteMemberByName()
         {
             view.DisplayMessage("Enter the member's firstname: ");
             string firstname = view.GetInput();
             view.DisplayMessage("Enter the member's lastnamename: ");
             string lastname = view.GetInput();
             int rowsAffected = storageManager.DeleteMemberByName(firstname, lastname);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
+        private static void UpdateRoleName()
+        {
+
+            view.DisplayMessage("Enter the roleID to update: ");
+            int roleID = view.GetIntInput();
+            view.DisplayMessage("Enter the new role name: ");
+            string rolename = view.GetInput();
+            int rowsAffected = storageManager.UpdateRoleName(roleID, rolename);
+            view.DisplayMessage($"Rows affected: {rowsAffected}");
+        }
+
+        private static void InsertNewRole()
+        {
+            view.DisplayMessage("Enter the new role name: ");
+            string rolename = view.GetInput();
+            int roleID = 0;
+            Role role1 = new Role(roleID, rolename);
+            int generatedID = storageManager.InsertRole(role1);
+            view.DisplayMessage($"New role inserted with ID: {generatedID}");
+
+        }
+
+        private static void DeleteRoleByName()
+        {
+            view.DisplayMessage("Enter the role name to delete: ");
+            string rolename = view.GetInput();
+            int rowsAffected = storageManager.DeleteRoleByName(rolename);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
