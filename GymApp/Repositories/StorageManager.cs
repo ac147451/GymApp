@@ -600,6 +600,164 @@ namespace GymApp
             return hasRows;
         }
 
+        public List<Member> GetAllMembers()
+        {
+            List<Member> members = new List<Member>();
+            string sqlString = "SELECT * FROM Member.members";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int memberID = Convert.ToInt32(reader["memberID"]);
+                        string firstname = reader["firstname"].ToString();
+                        string lastname = reader["lastname"].ToString();
+                        int phonenumber = Convert.ToInt32(reader["phonenumber"]);
+                        string emailaddress = reader["emailaddress"].ToString();
+                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress));
+                    }
+                }
+
+            }
+            return members;
+
+        }
+
+        public void Simple1QryMemberName()
+        {
+            string sqlstring = "Select memberID, firstname, lastname From Member.members";
+        }
+
+        public void Simple2QryClassTypes()
+        {
+            string sqlstring = "Select classtype, classprice From Session.classtype";
+        }
+
+        public void Simple3QryMemberContactDetails()
+        {
+            string sqlstring = "Select firstname, lastname, phonenumber, emailaddress From Member.members";
+        }
+
+        public void Simple4QryGymLocation()
+        {
+            string sqlstring = "Select " +
+                "Gym.gyms.gymname as Gym, " +
+                "Gym.gyms.streetaddress as Street, " +
+                "Location.suburb.suburbname as Suburb, " +
+                "Location.city.cityname as City," +
+                "Location.country.countryname as Country" +
+                "From Gym.gyms, Location.suburb, Location.city, Location.country" +
+                "Where Gym.gyms.suburbID = Location.suburb.suburbID" +
+                "And Gym.gyms.cityID = Location.city.cityID" +
+                "And Gym.gyms.countryID = Location.country.countryID";
+        }
+
+        public void Simple5QrySessionDetails()
+        {
+            string sqlstring = "Select " +
+                "Member.members.firstname as Firstname," +
+                "Member.members.lastname as Lastname," +
+                "Gym.gyms.gymname as Gym," +
+                "Session.instructor.instructorname as Instructor," +
+                "Session.classtype.classtype as Class," +
+                "Session.classtype.classprice as Price," +
+                "Session.sessionbooking.sessiondate as Bookingtime" +
+                "From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms" +
+                "Where Session.sessionbooking.instructorID = Session.instructor.instructorID" +
+                "And Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
+                "And Session.sessionbooking.memberID = Member.members.memberID" +
+                "And Session.sessionbooking.gymID = Gym.gyms.gymID";
+        }
+
+        public void Advanced1QryClassesUnder31()
+        {
+            string sqlstring = "Select DISTINCT classtype, classprice" +
+                "From Session.classtype" +
+                "Where classprice <= '30'" +
+                "Order By classprice ASC";
+        }
+
+        public void Advanced2QryInstructorsStartingWithA()
+        {
+            string sqlstring = "Select DISTINCT si.instructorname" +
+                "From Session.instructor as si, Session.classtype as sc, Session.sessionbooking as ss" +
+                "Where si.instructorID = ss.instructorID " +
+                "And si.instructorname LIKE 'a%'";
+        }
+
+        public void Advanced3QryTop5MostExpensiveClasses()
+        {
+            string sqlstring = "Select Top 5 classtype as Class, classprice as Price " +
+                "From Session.classtype" +
+                "Order By classprice DESC";
+        }
+
+        public void Advanced4QryMembersWithGmailOrOutlook()
+        {
+            string sqlstring = "Select firstname, lastname, emailaddress" +
+                "From Member.members" +
+                "Where emailaddress LIKE '%gmail%'" +
+                "OR emailaddress LIKE '%outlook%'";
+        }
+
+        public void Advanced5QrySessionsAfter27April()
+        {
+            string sqlstring = "Select sessionID, sessiondate" +
+                "From Session.sessionbooking" +
+                "Where sessiondate > '2025-04-27 14:00:00.123'" +
+                "Order By sessionID";
+        }
+
+        public void Complex1QryInstructorsWithSessions()
+        {
+            string sqlstring = "Select" +
+                "Session.instructor.instructorname as instructor, " +
+                "COUNT(sessionID) as sessioncount" +
+                "From Session.sessionbooking, Session.instructor" +
+                "WHERE Session.sessionbooking.instructorID = Session.instructor.instructorID" +
+                "Group By Session.instructor.instructorname";
+        }
+
+        public void Complex2QryRevenuePerClassType()
+        {
+            string sqlstring = "Select" +
+                "Session.classtype.classtype," +
+                "SUM(Session.classtype.classprice) as totalrevenue," +
+                "AVG(Session.classtype.classprice) as averagerevenue" +
+                "From Session.sessionbooking, Session.classtype" +
+                "Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
+                "Group By Session.classtype.classtype";
+        }
+
+        public void Complex3QrySessionsUnder30()
+        {
+            string sqlstring = "Select COUNT(Session.sessionbooking.sessionID) as sessionsunder30dollars" +
+                "From Session.sessionbooking, Session.classtype" +
+                "Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
+                "And Session.classtype.classprice < '30'";
+        }
+
+        public void Complex4QryGymRevenue()
+        {
+            string sqlstring = "Select" +
+                "Gym.gyms.gymname as Gym," +
+                "SUM(Session.classtype.classprice) as totalrevenue," +
+                "AVG(Session.classtype.classprice) as averagerevenuepersession" +
+                "From Session.sessionbooking, Session.classtype, Gym.gyms" +
+                "Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
+                "And Session.sessionbooking.gymID = Gym.gyms.gymID" +
+                "Group By Gym.gyms.gymname";
+        }
+
+        public void Complex5QryMemberSessionBooked()
+        {
+            string sqlstring = "Select Member.members.firstname as membername, Member.members.emailaddress as emailaddress, COUNT(sessionID) as sessionsbooked" +
+                "From Session.sessionbooking, Member.members" +
+                "Where Session.sessionbooking.memberID = Member.members.memberID" +
+                "Group By Member.members.emailaddress, Member.members.firstname";
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

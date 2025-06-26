@@ -25,8 +25,12 @@ namespace GymApp
             {
                 case "1":
                     {
+                        /*
                         (string username, int password) = view.LoginMenu();
                         Console.WriteLine(username + password);
+                        */
+                        IsUserValid();
+
                         switch (choice)
                         {
                             case "1":
@@ -865,6 +869,13 @@ namespace GymApp
             string username = view.GetInput();
             int rowsAffected = storageManager.DeleteUserByName(username);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
+        }
+
+        private static void IsUserValid()
+        {
+            (string username, int password) = view.LoginMenu();
+            Console.WriteLine(username + password);
+            storageManager.IsUserValid(username, password);
         }
 
 
