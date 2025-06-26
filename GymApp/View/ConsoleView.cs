@@ -30,6 +30,7 @@ namespace GymApp.View
             int password = Convert.ToInt32(Console.ReadLine());
 
             return (username, password);
+            
         }
 
         public string MemberMenu()

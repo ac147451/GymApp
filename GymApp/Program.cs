@@ -867,6 +867,7 @@ namespace GymApp
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
+
     }
 }
 

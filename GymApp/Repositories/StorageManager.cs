@@ -561,6 +561,7 @@ namespace GymApp
             }
         }
 
+        /*
         public Boolean ValidateLogin(string username, int password)
         {
             User user;
@@ -578,6 +579,25 @@ namespace GymApp
                 }
             }
             return user;
+        }
+        */
+
+        public bool IsUserValid(string username, int password)
+        {
+            var query = "SELECT * FROM User WHERE username = @username AND password = @password";
+            var command = new SqlCommand(query, conn);
+
+            command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@password", password);
+
+            bool hasRows;
+
+            using (var reader = command.ExecuteReader())
+            {
+                hasRows = reader.HasRows;
+            }
+
+            return hasRows;
         }
 
         public void CloseConnection()
