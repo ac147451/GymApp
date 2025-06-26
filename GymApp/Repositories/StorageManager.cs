@@ -561,6 +561,25 @@ namespace GymApp
             }
         }
 
+        public Boolean ValidateLogin(string username, int password)
+        {
+            User user;
+            string sqlstring = "Select * From user WHERE username = @username AND password = @password";
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        user = new User(reader["username"]);
+                    }
+                }
+            }
+            return user;
+        }
+
         public void CloseConnection()
         {
             if (conn != null && conn.State == ConnectionState.Open)

@@ -25,8 +25,9 @@ namespace GymApp
             {
                 case "1":
                     {
-                        string choice3 = view.LoginMenu();
-                        switch (choice3)
+                        (string username, int password) = view.LoginMenu();
+                        Console.WriteLine(username + password);
+                        switch (choice)
                         {
                             case "1":
                                 {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using Azure.Identity;
 using GymApp.DBFile.Model;
 
 namespace GymApp.View
@@ -21,14 +22,14 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string LoginMenu()
+        public (string username, int password) LoginMenu()
         {
             Console.WriteLine("Please enter your username: ");
-            Console.ReadLine();
+            string username = Console.ReadLine();
             Console.WriteLine("Please enter your password: ");
-            Console.ReadLine();
+            int password = Convert.ToInt32(Console.ReadLine());
 
-            return Console.ReadLine();
+            return (username, password);
         }
 
         public string MemberMenu()
@@ -298,7 +299,7 @@ namespace GymApp.View
             return int.Parse(Console.ReadLine());
         }
 
-        public int GetDateTimeInput()
+        public DateTime GetDateTimeInput()
         {
             return DateTime.Parse(Console.ReadLine());
         }
