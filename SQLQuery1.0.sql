@@ -13,9 +13,6 @@ go
 CREATE SCHEMA Role;
 go
 
-CREATE SCHEMA Login;
-go
-
 CREATE TABLE Role.roles (
 	roleID INT IDENTITY (1, +1) PRIMARY KEY,
 	rolename VARCHAR (255)
