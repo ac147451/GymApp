@@ -15,7 +15,7 @@ namespace GymApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\svkai\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymDatabase.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=True";
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\svkai\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymDatabase.mdf\";Integrated Security=True;Connect Timeout=30";
 
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();

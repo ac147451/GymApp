@@ -10,7 +10,7 @@ go
 INSERT INTO Member.members (firstname, lastname, phonenumber, emailaddress, username, password, roleID)
 VALUES
 	( 'John','Bridge', '024 867 9816', 'JohnBridge@gmail.com' , 'twink', '1234', '1'),
-	( 'Alice', 'Johnson', '031 556 7890', 'alice.johnson@example.com', 'alicejo', '6036', '1'),
+	( 'Alice', 'Johnson', '031 556 7890', 'alice.johnson@example.com', 'alicejo', '6036', '3'),
 	( 'Bob', 'Smith', '045 978 3124', 'bob.smith@yahoo.com', 'bobsm', '5446', '1'),
 	( 'Catherine', 'Williams', '022 446 2235', 'catherine.w@outlook.com', 'catherinewi', '3706', '1'),
 	( 'David', 'Brown', '078 334 5567', 'david.brown@aol.com', 'davidbr', '6851', '1'),
