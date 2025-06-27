@@ -15,7 +15,7 @@ namespace GymApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\ac147451\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymDatabase.mdf\";Integrated Security=True;Connect Timeout=30";
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\svkai\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymDatabase.mdf\";Integrated Security=True;Connect Timeout=30;Encrypt=True";
 
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
@@ -768,8 +768,12 @@ namespace GymApp
             int phonenumber = view.GetIntInput();
             view.DisplayMessage("Enter the new member's emailaddress: ");
             string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter the new member's username: ");
+            string username = view.GetInput();
+            view.DisplayMessage("Enter the new member's password pin: ");
+            int password = view.GetIntInput();
             int memberID = 0;
-            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, user_name, password, 1);
+            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, 1);
             int generatedID = storageManager.InsertMember(member1);
             view.DisplayMessage($"New member inserted with ID: {generatedID}");
 
@@ -898,7 +902,6 @@ namespace GymApp
             do
             {
                 (string username, int password) = view.LoginMenu();
-                Console.WriteLine(username + password);
                 valid = storageManager.IsUserValid(username, password);
                 
 

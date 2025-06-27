@@ -359,7 +359,10 @@ namespace GymApp
                         string lastname = reader["lastname"].ToString();
                         int phonenumber = Convert.ToInt32(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
-                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress));
+                        string username = reader["username"].ToString();
+                        int password = Convert.ToInt32(reader["password"]);
+                        int roleID = Convert.ToInt32(reader["role_id"]);
+                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID));
                     }
                 }
 
