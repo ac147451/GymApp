@@ -14,13 +14,20 @@ namespace GymApp.DBFile.Model
         public int Phonenumber { get; set; }
         public string Emailaddress { get; set; }
 
-        public Member(int member_id, string firstname, string lastname, int phonenumber, string emailaddress)
+        public string User_name { get; set; }
+        public int Password { get; set; }
+        public int Role_id { get; set; }
+
+        public Member(int member_id, string firstname, string lastname, int phonenumber, string emailaddress, string username, int password, int role_id)
         {
             Member_id = member_id;
             Firstname = firstname;
             Lastname = lastname;
             Phonenumber = phonenumber;
             Emailaddress = emailaddress;
+            User_name = username;
+            Password = password;
+            Role_id = role_id;
         }//Member Class
     }
 }

@@ -15,7 +15,7 @@ namespace GymApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\ac147451\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymApp Database.mdf\";Integrated Security=True;Connect Timeout=30";
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\ac147451\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymDatabase.mdf\";Integrated Security=True;Connect Timeout=30";
 
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
@@ -25,11 +25,8 @@ namespace GymApp
             {
                 case "1":
                     {
-                        /*
-                        (string username, int password) = view.LoginMenu();
-                        Console.WriteLine(username + password);
-                        */
-                        IsUserValid();
+
+                        login();
 
                         switch (choice)
                         {
@@ -515,6 +512,25 @@ namespace GymApp
                                             }
                                             break;
 
+                                        case "11": //Queries
+                                            {
+                                                string choice1 = view.QueryMenu();
+                                                switch (choice1)
+                                                {
+                                                    case "1":
+                                                        {
+                                                            Simple1QryMemberName();
+                                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                            Console.ReadLine();
+                                                            Console.Clear();
+                                                            view.DisplayAdminMenu();
+                                                        }
+                                                        break;
+                                                }
+
+                                            }
+                                            break;
+
                                         default:
                                             Console.WriteLine("Invalid option. Please try again.");
                                             break;
@@ -753,7 +769,7 @@ namespace GymApp
             view.DisplayMessage("Enter the new member's emailaddress: ");
             string emailaddress = view.GetInput();
             int memberID = 0;
-            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress);
+            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, user_name, password, 1);
             int generatedID = storageManager.InsertMember(member1);
             view.DisplayMessage($"New member inserted with ID: {generatedID}");
 
@@ -871,11 +887,24 @@ namespace GymApp
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
-        private static void IsUserValid()
+        private static void Simple1QryMemberName()
         {
-            (string username, int password) = view.LoginMenu();
-            Console.WriteLine(username + password);
-            storageManager.IsUserValid(username, password);
+            storageManager.Simple1QryMemberName();
+        }
+
+        private static void login()
+        {
+            bool valid = false;
+            do
+            {
+                (string username, int password) = view.LoginMenu();
+                Console.WriteLine(username + password);
+                valid = storageManager.IsUserValid(username, password);
+                
+
+            } while (!valid);
+            
+            
         }
 
 

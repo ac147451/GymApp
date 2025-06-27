@@ -22,14 +22,6 @@ CREATE TABLE Role.roles (
 );
 go
 
-CREATE TABLE Login.users (
-	userID INT IDENTITY (1, +1) PRIMARY KEY,
-	username VARCHAR (255),
-	password VARCHAR (8),
-	roleID int,
-	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
-);
-go
 
 CREATE TABLE Member.members (
 	memberID INT IDENTITY (1, +1) PRIMARY KEY,
@@ -37,6 +29,10 @@ CREATE TABLE Member.members (
 	lastname VARCHAR (255),
 	phonenumber VARCHAR(15),
 	emailaddress VARCHAR (255),
+	username VARCHAR (255),
+	password VARCHAR (8),
+	roleID int,
+	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
 );
 go
 

@@ -7,9 +7,11 @@ VALUES
 go
 
 
-INSERT INTO Member.members (firstname, lastname, phonenumber, emailaddress)
+
+
+INSERT INTO Member.members (firstname, lastname, phonenumber, emailaddress, username, password, roleID)
 VALUES
-	( 'John','Bridge', '024 867 9816', 'JohnBridge@gmail.com' ),
+	( 'John','Bridge', '024 867 9816', 'JohnBridge@gmail.com' , 'twink', '1234', '1'),
 	( 'Alice', 'Johnson', '031 556 7890', 'alice.johnson@example.com' ),
 	( 'Bob', 'Smith', '045 978 3124', 'bob.smith@yahoo.com' ),
 	( 'Catherine', 'Williams', '022 446 2235', 'catherine.w@outlook.com' ),

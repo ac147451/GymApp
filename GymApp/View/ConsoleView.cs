@@ -11,7 +11,7 @@ namespace GymApp.View
 {
     public class ConsoleView
     {
-        public string MainMenu()
+        public string MainMenu() // Login / Register Menu
         {
             Console.WriteLine("Welcome to my Database");
             Console.WriteLine("Menu: ");
@@ -22,7 +22,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public (string username, int password) LoginMenu()
+        public (string username, int password) LoginMenu() //Menu to Login
         {
             Console.WriteLine("Please enter your username: ");
             string username = Console.ReadLine();
@@ -33,7 +33,7 @@ namespace GymApp.View
             
         }
 
-        public string MemberMenu()
+        public string MemberMenu() //Menu for Members
         {
             Console.WriteLine("Welcome Member");
             Console.WriteLine("Menu: ");
@@ -44,7 +44,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string GymMenu()
+        public string GymMenu() //Menu For Gyms
         {
             Console.WriteLine("Welcome Gym");
             Console.WriteLine("Menu: ");
@@ -56,7 +56,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string DisplayAdminMenu() //Main Menu
+        public string DisplayAdminMenu() //Menu For Admins
         {
             Console.WriteLine("Welcome Admin");
             Console.WriteLine("Menu: ");
@@ -70,7 +70,8 @@ namespace GymApp.View
             Console.WriteLine("8. Role Table");
             Console.WriteLine("9. Sessionbooking Table");
             Console.WriteLine("10. User Table");
-            Console.WriteLine("Please choose a table to change: ");
+            Console.WriteLine("11. Queries");
+            Console.WriteLine("Please choose a table or query: ");
 
 
             return Console.ReadLine();
@@ -202,6 +203,29 @@ namespace GymApp.View
             Console.WriteLine("3. Insert a new user");
             Console.WriteLine("4. Delete a user by username");
             Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
+        public string QueryMenu() //Menu for Query table
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. Simple1");
+            Console.WriteLine("2. Simple2");
+            Console.WriteLine("3. Simple3");
+            Console.WriteLine("4. Simple4");
+            Console.WriteLine("5. Simple5");
+            Console.WriteLine("6. Advanced1");
+            Console.WriteLine("7. Advanced2");
+            Console.WriteLine("8. Advanced3");
+            Console.WriteLine("9. Advanced4");
+            Console.WriteLine("10. Advanced5");
+            Console.WriteLine("11. Complex1");
+            Console.WriteLine("12. Complex2");
+            Console.WriteLine("13. Complex3");
+            Console.WriteLine("14. Complex4");
+            Console.WriteLine("15. Complex5");
 
             return Console.ReadLine();
         }

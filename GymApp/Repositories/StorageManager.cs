@@ -1,13 +1,14 @@
-﻿using System;
+﻿using GymApp.DBFile.Model;
+using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlTypes;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
-using GymApp.DBFile.Model;
-using Microsoft.Identity.Client;
-using System.Data;
 
 namespace GymApp
 {
@@ -561,50 +562,46 @@ namespace GymApp
             }
         }
 
-        /*
-        public Boolean ValidateLogin(string username, int password)
-        {
-            User user;
-            string sqlstring = "Select * From user WHERE username = @username AND password = @password";
-            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
-            {
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        user = new User(reader["username"]);
-                    }
-                }
-            }
-            return user;
-        }
-        */
-
         public bool IsUserValid(string username, int password)
         {
-            var query = "SELECT * FROM User WHERE username = @username AND password = @password";
+            var query = "SELECT * FROM Member.members WHERE username = @username AND password = @password";
             var command = new SqlCommand(query, conn);
 
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
 
-            bool hasRows;
-
-            using (var reader = command.ExecuteReader())
+            bool hasRows=false;
+            try
             {
-                hasRows = reader.HasRows;
+                using (var reader = command.ExecuteReader())
+                {
+                    hasRows = reader.HasRows;
+                }
+
+                return hasRows;
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("sql error\n");
+                Console.WriteLine(e.Message);
+                return hasRows;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occured\n");
+                Console.WriteLine(ex.Message);
+                return hasRows;
             }
 
-            return hasRows;
         }
 
-        public List<Member> GetAllMembers()
+        
+
+        public void Simple1QryMemberName()
         {
-            List<Member> members = new List<Member>();
-            string sqlString = "SELECT * FROM Member.members";
-            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            string sqlstring = "Select memberID, firstname, lastname From Member.members";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -615,28 +612,50 @@ namespace GymApp
                         string lastname = reader["lastname"].ToString();
                         int phonenumber = Convert.ToInt32(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
-                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress));
+                        
                     }
                 }
 
             }
-            return members;
-
-        }
-
-        public void Simple1QryMemberName()
-        {
-            string sqlstring = "Select memberID, firstname, lastname From Member.members";
         }
 
         public void Simple2QryClassTypes()
         {
             string sqlstring = "Select classtype, classprice From Session.classtype";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string classtype = reader["classtype"].ToString();
+                        int classprice = Convert.ToInt32(reader["classprice"]);
+                    }
+                }
+
+            }
         }
 
         public void Simple3QryMemberContactDetails()
         {
             string sqlstring = "Select firstname, lastname, phonenumber, emailaddress From Member.members";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string firstname = reader["firstname"].ToString();
+                        string lastname = reader["lastname"].ToString();
+                        int phonenumber = Convert.ToInt32(reader["phonenumber"]);
+                        string emailaddress = reader["emailaddress"].ToString();
+
+                    }
+                }
+
+            }
         }
 
         public void Simple4QryGymLocation()
@@ -651,6 +670,23 @@ namespace GymApp
                 "Where Gym.gyms.suburbID = Location.suburb.suburbID" +
                 "And Gym.gyms.cityID = Location.city.cityID" +
                 "And Gym.gyms.countryID = Location.country.countryID";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string gymname = reader["gymname"].ToString();
+                        string streetaddress = reader["streetaddress"].ToString();
+                        string suburbname = reader["suburbname"].ToString();
+                        string cityname = reader["cityname"].ToString();
+                        string countryname = reader["countryname"].ToString();
+
+                    }
+                }
+
+            }
         }
 
         public void Simple5QrySessionDetails()
@@ -668,6 +704,23 @@ namespace GymApp
                 "And Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
                 "And Session.sessionbooking.memberID = Member.members.memberID" +
                 "And Session.sessionbooking.gymID = Gym.gyms.gymID";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string firstname = reader["firstname"].ToString();
+                        string lastname = reader["lastname"].ToString();
+                        string gymnamename = reader["gymname"].ToString();
+                        int phonenumber = Convert.ToInt32(reader["phonenumber"]);
+
+                    }
+                }
+
+            }
+            
         }
 
         public void Advanced1QryClassesUnder31()
