@@ -620,7 +620,22 @@ namespace GymApp
                 }
             }
         }
-        
+
+        public int RegisterMember(Member membertemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname,phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@firstname", membertemp.Firstname);
+                cmd.Parameters.AddWithValue("@lastname", membertemp.Lastname);
+                cmd.Parameters.AddWithValue("@phonenumber", membertemp.Phonenumber);
+                cmd.Parameters.AddWithValue("@emailaddress", membertemp.Emailaddress);
+                cmd.Parameters.AddWithValue("@username", membertemp.User_name);
+                cmd.Parameters.AddWithValue("@password", membertemp.Password);
+                cmd.Parameters.AddWithValue("@1", membertemp.Role_id);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
 
         public void Simple1QryMemberName()
         {

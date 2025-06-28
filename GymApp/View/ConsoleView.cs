@@ -33,6 +33,17 @@ namespace GymApp.View
             
         }
 
+        public string RegisterMenu() //Menu to Register
+        {
+            Console.WriteLine("Who are you?");
+            Console.WriteLine("1. A Member of a gym");
+            Console.WriteLine("2. Staff for a gym");
+            Console.WriteLine("3. Admin");
+            Console.WriteLine("Please choose one of the above: ");
+
+            return Console.ReadLine();
+        }
+
         public string MemberMenu() //Menu for Members
         {
             Console.WriteLine("Welcome Member");
@@ -322,6 +333,11 @@ namespace GymApp.View
         public int GetIntInput()
         {
             return int.Parse(Console.ReadLine());
+        }
+
+        public Int64 GetInt64Input()
+        {
+            return Int64.Parse(Console.ReadLine());
         }
 
         public DateTime GetDateTimeInput()
