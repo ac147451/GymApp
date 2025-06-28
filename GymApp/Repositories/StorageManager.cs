@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlTypes;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -573,6 +574,7 @@ namespace GymApp
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
 
+
             bool hasRows=false;
             try
             {
@@ -598,6 +600,26 @@ namespace GymApp
 
         }
 
+        public int GetUserRole(string username, int password)
+        {
+            var query = "SELECT roleID FROM Member.members WHERE username = @username AND password = @password";
+            using (var command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["roleID"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
         
 
         public void Simple1QryMemberName()

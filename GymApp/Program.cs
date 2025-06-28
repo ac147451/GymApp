@@ -24,9 +24,521 @@ namespace GymApp
             switch (choice)
             {
                 case "1":
+                    int roleID = login();
+                    if(roleID == 1)
+                    {
+                        string choice2 = view.MemberMenu();
+                        switch (choice2)
+                        {
+                            case "1":
+                                {
+
+                                    break;
+                                }
+
+                            case "2":
+                                {
+                                    break;
+                                }
+                        }
+                        break;
+                    }
+                    else if (roleID == 2)
+                    {
+                        string choice2 = view.GymMenu();
+                        switch (choice2)
+                        {
+                            case "1":
+                                {
+
+                                    break;
+                                }
+
+                            case "2":
+                                {
+                                    break;
+                                }
+                        }
+                        break;
+                    }
+                    else if (roleID == 3)
+                    {
+                        string choice2 = view.DisplayAdminMenu();
+                        switch (choice2)
+                        {
+                            case "1": //Gym Table
+                                {
+                                    string choice1 = view.GymTableMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<Gym> gyms = storageManager.GetAllGyms();
+                                                view.DisplayGyms(gyms);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateGymName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewGym();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteGymByName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "2": //Country Table
+                                {
+                                    string choice1 = view.CountryMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<Country> countries = storageManager.GetAllCountries();
+                                                view.DisplayCountries(countries);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateCountryName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewCountry();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteCountryByName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "3": //City Table
+                                {
+                                    string choice1 = view.CityMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<City> cities = storageManager.GetAllCities();
+                                                view.DisplayCities(cities);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateCityName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewCity();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteCityByName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "4": //Suburb Table
+                                {
+                                    string choice1 = view.SuburbMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<Suburb> suburbs = storageManager.GetAllSuburbs();
+                                                view.DisplaySuburbs(suburbs);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateSuburbName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewSuburb();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteSuburbByName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "5": //Instructor Table
+                                {
+                                    string choice1 = view.InstructorMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<Instructor> instructors = storageManager.GetAllInstructors();
+                                                view.DisplayInstructors(instructors);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateInstructorName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewInstructor();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteInstructorByName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "6": //Classtype Table
+                                {
+                                    string choice1 = view.ClasstypeMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<ClassType> classtypes = storageManager.GetAllClasstypes();
+                                                view.DisplayClasstypes(classtypes);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateClasstypeName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewClasstype();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteClasstype();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "7": //Member Table
+                                {
+                                    string choice1 = view.MemberTableMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<Member> members = storageManager.GetAllMembers();
+                                                view.DisplayMembers(members);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateMemberFirstName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewMember();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteMemberByName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "8": //Role Table
+                                {
+                                    string choice1 = view.RoleMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<Role> roles = storageManager.GetAllRoles();
+                                                view.DisplayRoles(roles);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateRoleName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewRole();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteRoleByName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "9": //Sessionbooking Table
+                                {
+                                    string choice1 = view.SessionbookingMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<Sessionbooking> sessionbookings = storageManager.GetAllSessions();
+                                                view.DisplaySessions(sessionbookings);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateSessionDate();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewSession();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteSessionByID();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "10": //User Table
+                                {
+                                    string choice1 = view.UserMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                List<User> users = storageManager.GetAllUsers();
+                                                view.DisplayUsers(users);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+
+                                        case "2":
+                                            UpdateUserName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "3":
+                                            InsertNewUser();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+
+                                        case "4":
+                                            DeleteUserByName();
+                                            view.DisplayMessage("Enter any button to go back to Main Menu");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            view.DisplayAdminMenu();
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            case "11": //Queries
+                                {
+                                    string choice1 = view.QueryMenu();
+                                    switch (choice1)
+                                    {
+                                        case "1":
+                                            {
+                                                Simple1QryMemberName();
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
+                                    }
+
+                                }
+                                break;
+
+                            default:
+                                Console.WriteLine("Invalid option. Please try again.");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unknown role. Please try again");
+                    }
+                    break;
                     {
 
                         login();
+
 
                         switch (choice)
                         {
@@ -896,6 +1408,7 @@ namespace GymApp
             storageManager.Simple1QryMemberName();
         }
 
+        /*
         private static void login()
         {
             bool valid = false;
@@ -906,11 +1419,27 @@ namespace GymApp
                 
 
             } while (!valid);
-            
-            
+
+        }
+        */
+        
+        
+        private static int login()
+        {
+            int roleID;
+            do
+            {
+                (string username, int password) = view.LoginMenu();
+                roleID = storageManager.GetUserRole(username, password);
+                if (roleID == 0)
+                {
+                    Console.WriteLine("Invalid username or password. Please try again.");
+                }
+            } while (roleID == 0);
+            return roleID;
         }
 
-
+        
     }
 }
 
