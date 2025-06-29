@@ -547,6 +547,7 @@ namespace GymApp
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
+                                Console.WriteLine("Now please log in: ");
                                 login();
                                 break;
 
@@ -556,7 +557,8 @@ namespace GymApp
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
-                                view.DisplayAdminMenu();
+                                Console.WriteLine("Now please log in: ");
+                                login();
                                 break;
 
                             case "3":
@@ -564,7 +566,8 @@ namespace GymApp
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
-                                view.DisplayAdminMenu();
+                                Console.WriteLine("Now please log in: ");
+                                login();
                                 break;
 
                             case "4":
@@ -572,7 +575,8 @@ namespace GymApp
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
-                                view.DisplayAdminMenu();
+                                Console.WriteLine("Now please log in: ");
+                                login();
                                 break;
                         }
 
