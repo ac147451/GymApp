@@ -609,8 +609,15 @@ namespace GymApp
             int cityID = view.GetIntInput();
             view.DisplayMessage("Enter the suburb ID: ");
             int suburbID = view.GetIntInput();
+            view.DisplayMessage("Enter the phonenumber: ");
+            Int64 phonenumber = view.GetInt64Input();
+            view.DisplayMessage("Enter the emailaddress: ");
+            string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter the gym's pin (4-8 digits): ");
+            int password = view.GetIntInput();
+            int roleID = 2;
             int gymID = 0;
-            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID);
+            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, password, roleID);
             int generatedID = storageManager.InsertGym(gym1);
             view.DisplayMessage($"New gym inserted with ID: {generatedID}");
 

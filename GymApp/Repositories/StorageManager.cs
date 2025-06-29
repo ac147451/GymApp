@@ -57,8 +57,12 @@ namespace GymApp
                         int countryid = Convert.ToInt32(reader["countryID"]);
                         int cityid = Convert.ToInt32(reader["cityID"]);
                         int suburbid = Convert.ToInt32(reader["suburbID"]);
+                        int phonenumber = Convert.ToInt32(reader["phonenumber"]);
+                        string emailaddress = reader["emailaddress"].ToString();
+                        int password = Convert.ToInt32(reader["password"]);
+                        int role_id = Convert.ToInt32(reader["roleID"]);
 
-                        gyms.Add(new Gym(gymid, gymname, streetaddress, countryid, cityid, suburbid));
+                        gyms.Add(new Gym(gymid, gymname, streetaddress, countryid, cityid, suburbid, phonenumber, emailaddress, password, role_id));
                     }
                 }
 
