@@ -244,7 +244,7 @@ namespace GymApp
 
                             case "5": //Instructor Table
                                 {
-                                    string choice1 = view.InstructorMenu();
+                                    string choice1 = view.InstructorTableMenu();
                                     switch (choice1)
                                     {
                                         case "1":
@@ -559,7 +559,7 @@ namespace GymApp
                                 break;
 
                             case "3":
-                                InsertNewUser();
+                                RegisterAdmin();
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
@@ -567,7 +567,7 @@ namespace GymApp
                                 break;
 
                             case "4":
-                                DeleteUserByName();
+                                RegisterInstructor();
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
@@ -941,21 +941,6 @@ namespace GymApp
         {
             storageManager.Simple1QryMemberName();
         }
-
-        /*
-        private static void login()
-        {
-            bool valid = false;
-            do
-            {
-                (string username, int password) = view.LoginMenu();
-                valid = storageManager.IsUserValid(username, password);
-                
-
-            } while (!valid);
-
-        }
-        */
         
         
         private static int login()
@@ -1018,6 +1003,49 @@ namespace GymApp
             int generatedID = storageManager.RegisterGym(gym1);
             view.DisplayMessage($"New gym inserted with ID: {generatedID}");
         }
+        private static void RegisterAdmin()
+        {
+            view.DisplayMessage("Enter your firstname: ");
+            string firstname = view.GetInput();
+            view.DisplayMessage("Enter your lastname: ");
+            string lastname = view.GetInput();
+            view.DisplayMessage("Enter your phonenumber: ");
+            Int64 phonenumber = view.GetInt64Input();
+            view.DisplayMessage("Enter your emailaddress: ");
+            string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter your user name: ");
+            string username = view.GetInput();
+            view.DisplayMessage("Enter your pin (4-8 digits): ");
+            int password = view.GetIntInput();
+            int roleID = 3;
+            int memberID = 0;
+            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID);
+            int generatedID = storageManager.RegisterAdmin(member1);
+            view.DisplayMessage($"New admin inserted with ID: {generatedID}");
+        }
+
+        private static void RegisterInstructor()
+        {
+            view.DisplayMessage("Enter your name: ");
+            string instructorname = view.GetInput();
+            view.DisplayMessage("Enter the gymID of the gym you work for: ");
+            int gymID = view.GetIntInput();
+            view.DisplayMessage("Enter your phonenumber: ");
+            Int64 phonenumber = view.GetInt64Input();
+            view.DisplayMessage("Enter your emailaddress: ");
+            string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter your user name: ");
+            string username = view.GetInput();
+            view.DisplayMessage("Enter your pin (4-8 digits): ");
+            int password = view.GetIntInput();
+            int roleID = 4;
+            int instructorID = 0;
+            Instructor instructor1 = new Instructor(instructorID, instructorname, gymID, phonenumber, emailaddress, username, password, roleID);
+            int generatedID = storageManager.RegisterInstructor(instructor1);
+            view.DisplayMessage($"New member inserted with ID: {generatedID}");
+        }
+
+
 
 
     }
@@ -1033,3 +1061,18 @@ namespace GymApp
                     exit = true;
                     break;
 */
+
+/*
+        private static void login()
+        {
+            bool valid = false;
+            do
+            {
+                (string username, int password) = view.LoginMenu();
+                valid = storageManager.IsUserValid(username, password);
+                
+
+            } while (!valid);
+
+        }
+        */

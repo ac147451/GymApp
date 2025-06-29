@@ -664,6 +664,36 @@ namespace GymApp
             }
         }
 
+        public int RegisterAdmin(Member membertemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname,phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @3); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@firstname", membertemp.Firstname);
+                cmd.Parameters.AddWithValue("@lastname", membertemp.Lastname);
+                cmd.Parameters.AddWithValue("@phonenumber", membertemp.Phonenumber);
+                cmd.Parameters.AddWithValue("@emailaddress", membertemp.Emailaddress);
+                cmd.Parameters.AddWithValue("@username", membertemp.User_name);
+                cmd.Parameters.AddWithValue("@password", membertemp.Password);
+                cmd.Parameters.AddWithValue("@3", membertemp.Role_id);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public int RegisterInstructor(Instructor instructortemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.instructor (instructorname, gymID, phonenumber, emailaddress, username, password, roleID) VALUES (@instructorname, @gymID, @phonenumber, @emailaddress, @username, @password, @4); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@instructor", instructortemp.Instructor_name);
+                cmd.Parameters.AddWithValue("@gymID", instructortemp.Gym_id);
+                cmd.Parameters.AddWithValue("@phonenumber", instructortemp.Phonenumber);
+                cmd.Parameters.AddWithValue("@emailaddress", instructortemp.Emailaddress);
+                cmd.Parameters.AddWithValue("@username", instructortemp.User_name);
+                cmd.Parameters.AddWithValue("@password", instructortemp.Password);
+                cmd.Parameters.AddWithValue("@4", instructortemp.Role_id);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
 
         public void Simple1QryMemberName()
         {
