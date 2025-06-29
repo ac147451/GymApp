@@ -51,11 +51,7 @@ CREATE TABLE Location.suburb (
 );
 go
 
-CREATE TABLE Session.instructor ( 
-	instructorID INT IDENTITY (1, +1) PRIMARY KEY,
-	instructorname VARCHAR (255),
-);
-go
+
 
 CREATE TABLE Session.classtype ( 
 	classtypeID INT IDENTITY (1, +1) PRIMARY KEY,
@@ -78,7 +74,22 @@ CREATE TABLE Gym.gyms (
 	FOREIGN KEY (countryID) REFERENCES Location.country(countryID),
 	FOREIGN KEY (cityID) REFERENCES Location.city(cityID),
 	FOREIGN KEY (suburbID) REFERENCES Location.suburb(suburbID),
+	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
 
+);
+go
+
+CREATE TABLE Session.instructor ( 
+	instructorID INT IDENTITY (1, +1) PRIMARY KEY,
+	instructorname VARCHAR (255),
+	gymID int,
+	phonenumber VARCHAR(15),
+	emailaddress VARCHAR (255),
+	username VARCHAR (255),
+	password VARCHAR (8),
+	roleID int,
+	FOREIGN KEY (gymID) REFERENCES Gym.gyms(gymID),
+	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
 );
 go
 	
