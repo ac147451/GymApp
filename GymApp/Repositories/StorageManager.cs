@@ -638,15 +638,18 @@ namespace GymApp
 
         public int RegisterGym(Gym gymtemp)
         {
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, lastname, phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, password, roleID) " +
+                "VALUES (@gymname, @streetaddress, @countryID, @cityID, @suburbID, @phonenumber, @emailaddress, @password, @2); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@firstname", membertemp.Firstname);
-                cmd.Parameters.AddWithValue("@lastname", membertemp.Lastname);
-                cmd.Parameters.AddWithValue("@phonenumber", membertemp.Phonenumber);
-                cmd.Parameters.AddWithValue("@emailaddress", membertemp.Emailaddress);
-                cmd.Parameters.AddWithValue("@username", membertemp.User_name);
-                cmd.Parameters.AddWithValue("@password", membertemp.Password);
-                cmd.Parameters.AddWithValue("@1", membertemp.Role_id);
+                cmd.Parameters.AddWithValue("@gymname", gymtemp.Gym_name);
+                cmd.Parameters.AddWithValue("@streetaddress", gymtemp.Streetaddress);
+                cmd.Parameters.AddWithValue("@countryID", gymtemp.Country_id);
+                cmd.Parameters.AddWithValue("@cityID", gymtemp.City_id);
+                cmd.Parameters.AddWithValue("@suburbID", gymtemp.Suburb_id);
+                cmd.Parameters.AddWithValue("@phonenumber", gymtemp.Phonenumber);
+                cmd.Parameters.AddWithValue("@emailaddress", gymtemp.Emailaddress);
+                cmd.Parameters.AddWithValue("@password", gymtemp.Password);
+                cmd.Parameters.AddWithValue("@2", gymtemp.Role_id);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
