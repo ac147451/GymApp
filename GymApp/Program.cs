@@ -735,8 +735,19 @@ namespace GymApp
         {
             view.DisplayMessage("Enter the new instructor name: ");
             string instructorname = view.GetInput();
+            view.DisplayMessage("Enter the gym ID that the instructor is with: ");
+            int gymID = view.GetIntInput();
+            view.DisplayMessage("Enter the new instructor's phonenumber: ");
+            int phonenumber = view.GetIntInput();
+            view.DisplayMessage("Enter the new instructor's emailaddress: ");
+            string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter the new instructor's username: ");
+            string username = view.GetInput();
+            view.DisplayMessage("Enter the new instructors's password pin: ");
+            int password = view.GetIntInput();
+            int roleID = 4;
             int instructorID = 0;
-            Instructor instructor1 = new Instructor(instructorID, instructorname);
+            Instructor instructor1 = new Instructor(instructorID, instructorname, gymID, phonenumber, emailaddress, username, password, roleID);
             int generatedID = storageManager.InsertInstructor(instructor1);
             view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
 
