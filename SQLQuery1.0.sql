@@ -71,6 +71,8 @@ CREATE TABLE Gym.gyms (
 	countryID int, 
 	cityID int, 
 	suburbID int,
+	phonenumber VARCHAR(15),
+	emailaddress VARCHAR (255),
 	password VARCHAR (8),
 	roleID int,
 	FOREIGN KEY (countryID) REFERENCES Location.country(countryID),

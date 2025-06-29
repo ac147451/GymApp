@@ -638,7 +638,7 @@ namespace GymApp
 
         public int RegisterGym(Gym gymtemp)
         {
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, lastname,phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, lastname, phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@firstname", membertemp.Firstname);
                 cmd.Parameters.AddWithValue("@lastname", membertemp.Lastname);
