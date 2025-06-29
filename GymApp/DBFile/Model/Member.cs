@@ -13,7 +13,6 @@ namespace GymApp.DBFile.Model
         public string Lastname { get; set; }
         public Int64 Phonenumber { get; set; }
         public string Emailaddress { get; set; }
-
         public string User_name { get; set; }
         public int Password { get; set; }
         public int Role_id { get; set; }
