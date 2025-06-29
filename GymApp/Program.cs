@@ -542,17 +542,16 @@ namespace GymApp
                         switch (choice1)
                         {
                             case "1":
-                                {
-                                    RegisterMember();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
-                                    Console.Clear();
-                                    break;
-                                }
+                                
+                                RegisterMember();
+                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                Console.ReadLine();
+                                Console.Clear();
                                 break;
 
                             case "2":
-                                UpdateUserName();
+
+                                RegisterGym();
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
@@ -984,7 +983,32 @@ namespace GymApp
             view.DisplayMessage($"New member inserted with ID: {generatedID}");
         }
 
-        
+        private static void RegisterGym()
+        {
+            view.DisplayMessage("Enter your gym's name: ");
+            string gymname = view.GetInput();
+            view.DisplayMessage("Enter your gym's street address: ");
+            string streetaddress = view.GetInput();
+            view.DisplayMessage("Enter the country ID where your gym is located: ");
+            int countryID = view.GetIntInput();
+            view.DisplayMessage("Enter the city ID where your gym is located: ");
+            int cityID = view.GetIntInput();
+            view.DisplayMessage("Enter the suburb ID where your gym is located: ");
+            int suburbID = view.GetIntInput();
+            view.DisplayMessage("Enter your phonenumber: ");
+            Int64 phonenumber = view.GetInt64Input();
+            view.DisplayMessage("Enter your emailaddress: ");
+            string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter your pin (4-8 digits): ");
+            int password = view.GetIntInput();
+            int roleID = 2;
+            int gymID = 0;
+            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, password, roleID);
+            int generatedID = storageManager.RegisterGym(gym1);
+            view.DisplayMessage($"New gym inserted with ID: {generatedID}");
+        }
+
+
     }
 }
 
