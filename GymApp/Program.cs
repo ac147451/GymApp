@@ -547,6 +547,7 @@ namespace GymApp
                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                 Console.ReadLine();
                                 Console.Clear();
+                                login();
                                 break;
 
                             case "2":
@@ -964,7 +965,7 @@ namespace GymApp
             string firstname = view.GetInput();
             view.DisplayMessage("Enter your lastname: ");
             string lastname = view.GetInput();
-            view.DisplayMessage("Enter your phonenumber: ");
+            view.DisplayMessage("Enter your phonenumber (no spaces in between): ");
             Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter your emailaddress: ");
             string emailaddress = view.GetInput();
@@ -991,7 +992,7 @@ namespace GymApp
             int cityID = view.GetIntInput();
             view.DisplayMessage("Enter the suburb ID where your gym is located: ");
             int suburbID = view.GetIntInput();
-            view.DisplayMessage("Enter your phonenumber: ");
+            view.DisplayMessage("Enter your phonenumber (no spaces in between): ");
             Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter your emailaddress: ");
             string emailaddress = view.GetInput();
@@ -1009,7 +1010,7 @@ namespace GymApp
             string firstname = view.GetInput();
             view.DisplayMessage("Enter your lastname: ");
             string lastname = view.GetInput();
-            view.DisplayMessage("Enter your phonenumber: ");
+            view.DisplayMessage("Enter your phonenumber (no spaces in between): ");
             Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter your emailaddress: ");
             string emailaddress = view.GetInput();
@@ -1030,7 +1031,7 @@ namespace GymApp
             string instructorname = view.GetInput();
             view.DisplayMessage("Enter the gymID of the gym you work for: ");
             int gymID = view.GetIntInput();
-            view.DisplayMessage("Enter your phonenumber: ");
+            view.DisplayMessage("Enter your phonenumber (no spaces in between): ");
             Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter your emailaddress: ");
             string emailaddress = view.GetInput();
@@ -1042,7 +1043,7 @@ namespace GymApp
             int instructorID = 0;
             Instructor instructor1 = new Instructor(instructorID, instructorname, gymID, phonenumber, emailaddress, username, password, roleID);
             int generatedID = storageManager.RegisterInstructor(instructor1);
-            view.DisplayMessage($"New member inserted with ID: {generatedID}");
+            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
         }
 
 
@@ -1075,4 +1076,4 @@ namespace GymApp
             } while (!valid);
 
         }
-        */
+*/
