@@ -373,7 +373,7 @@ namespace GymApp
                         string emailaddress = reader["emailaddress"].ToString();
                         string username = reader["username"].ToString();
                         int password = Convert.ToInt32(reader["password"]);
-                        int roleID = Convert.ToInt32(reader["role_id"]);
+                        int roleID = Convert.ToInt32(reader["roleID"]);
                         members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID));
                     }
                 }
@@ -701,7 +701,7 @@ namespace GymApp
         public List<Member> Simple1QryMemberName()
         {
             List<Member> members = new List<Member>();
-            string sqlstring = "Select memberID, firstname, lastname From Member.members";
+            string sqlstring = "SELECT * FROM Member.members";
             using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -715,7 +715,7 @@ namespace GymApp
                         string emailaddress = reader["emailaddress"].ToString();
                         string username = reader["username"].ToString();
                         int password = Convert.ToInt32(reader["password"]);
-                        int roleID = Convert.ToInt32(reader["role_id"]);
+                        int roleID = Convert.ToInt32(reader["roleID"]);
                         members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID));
                     }
                 }
