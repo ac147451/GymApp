@@ -39,7 +39,7 @@ namespace GymApp.View
             Console.WriteLine("1. A Member of a gym");
             Console.WriteLine("2. Staff for a gym");
             Console.WriteLine("3. Admin");
-            Console.WriteLine("4. Instructor of a class for a gym");
+            Console.WriteLine("4. Class Instructor for a gym");
             Console.WriteLine("Please choose one of the above: ");
 
             return Console.ReadLine();
@@ -60,9 +60,9 @@ namespace GymApp.View
         {
             Console.WriteLine("Welcome Gym");
             Console.WriteLine("Menu: ");
-            Console.WriteLine("1. Sessions");
-            Console.WriteLine("2. Members");
-            Console.WriteLine("3. Instructors");
+            Console.WriteLine("1. Manage Sessions");
+            Console.WriteLine("2. Manage Members");
+            Console.WriteLine("3. Manage Instructors");
             Console.WriteLine("Choose a table to manage: ");
 
             return Console.ReadLine();
@@ -81,14 +81,13 @@ namespace GymApp.View
             Console.WriteLine("7. Member Table");
             Console.WriteLine("8. Role Table");
             Console.WriteLine("9. Sessionbooking Table");
-            Console.WriteLine("10. User Table");
-            Console.WriteLine("11. Queries");
-            Console.WriteLine("Please choose a table or query: ");
+            Console.WriteLine("10. Queries");
+            Console.WriteLine("Please choose a table to manage or query: ");
 
 
             return Console.ReadLine();
         }
-
+        
         public string InstructorMenu() //Menu for Instructors
         {
             Console.WriteLine("Welcome Instructor");

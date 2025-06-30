@@ -38,6 +38,7 @@ namespace GymApp
 
                             case "2":
                                 {
+
                                     break;
                                 }
                         }
@@ -462,51 +463,8 @@ namespace GymApp
                                 }
                                 break;
 
-                            case "10": //User Table
-                                {
-                                    string choice1 = view.UserMenu();
-                                    switch (choice1)
-                                    {
-                                        case "1":
-                                            {
-                                                List<User> users = storageManager.GetAllUsers();
-                                                view.DisplayUsers(users);
-                                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                                Console.ReadLine();
-                                                Console.Clear();
-                                                view.DisplayAdminMenu();
-                                            }
-                                            break;
 
-                                        case "2":
-                                            UpdateUserName();
-                                            view.DisplayMessage("Enter any button to go back to Main Menu");
-                                            Console.ReadLine();
-                                            Console.Clear();
-                                            view.DisplayAdminMenu();
-                                            break;
-
-                                        case "3":
-                                            InsertNewUser();
-                                            view.DisplayMessage("Enter any button to go back to Main Menu");
-                                            Console.ReadLine();
-                                            Console.Clear();
-                                            view.DisplayAdminMenu();
-                                            break;
-
-                                        case "4":
-                                            DeleteUserByName();
-                                            view.DisplayMessage("Enter any button to go back to Main Menu");
-                                            Console.ReadLine();
-                                            Console.Clear();
-                                            view.DisplayAdminMenu();
-                                            break;
-                                    }
-
-                                }
-                                break;
-
-                            case "11": //Queries
+                            case "10": //Queries
                                 {
                                     string choice1 = view.QueryMenu();
                                     switch (choice1)
