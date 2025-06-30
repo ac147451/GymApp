@@ -471,7 +471,8 @@ namespace GymApp
                                     {
                                         case "1":
                                             {
-                                                Simple1QryMemberName();
+                                                List<Member> members = storageManager.Simple1QryMemberName();
+                                                view.Simple1QryMemberName(members);
                                                 view.DisplayMessage("Enter any button to go back to Main Menu");
                                                 Console.ReadLine();
                                                 Console.Clear();
@@ -899,12 +900,13 @@ namespace GymApp
             int rowsAffected = storageManager.DeleteUserByName(username);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
-
+        /*
         private static void Simple1QryMemberName()
         {
-            storageManager.Simple1QryMemberName();
+            List<Member> members = storageManager.Simple1QryMemberName();
+            view.DisplayMembers(members);
         }
-        
+        */
         
         private static int login()
         {
@@ -920,7 +922,7 @@ namespace GymApp
             } while (roleID == 0);
             return roleID;
         }
-
+        
         private static void RegisterMember()
         {
             view.DisplayMessage("Enter your firstname: ");
@@ -941,7 +943,7 @@ namespace GymApp
             int generatedID = storageManager.RegisterMember(member1);
             view.DisplayMessage($"New member inserted with ID: {generatedID}");
         }
-
+        
         private static void RegisterGym()
         {
             view.DisplayMessage("Enter your gym's name: ");
@@ -966,6 +968,7 @@ namespace GymApp
             int generatedID = storageManager.RegisterGym(gym1);
             view.DisplayMessage($"New gym inserted with ID: {generatedID}");
         }
+        
         private static void RegisterAdmin()
         {
             view.DisplayMessage("Enter your firstname: ");
@@ -986,7 +989,7 @@ namespace GymApp
             int generatedID = storageManager.RegisterAdmin(member1);
             view.DisplayMessage($"New admin inserted with ID: {generatedID}");
         }
-
+        
         private static void RegisterInstructor()
         {
             view.DisplayMessage("Enter your name: ");

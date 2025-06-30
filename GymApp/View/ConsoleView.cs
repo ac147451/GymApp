@@ -26,7 +26,7 @@ namespace GymApp.View
         {
             Console.WriteLine("Please enter your username: ");
             string username = Console.ReadLine();
-            Console.WriteLine("Please enter your password: ");
+            Console.WriteLine("Please enter your pin: ");
             int password = Convert.ToInt32(Console.ReadLine());
 
             return (username, password);
@@ -304,6 +304,14 @@ namespace GymApp.View
             foreach (Member member in members)
             {
                 Console.WriteLine($"{member.Member_id}, {member.Firstname}, {member.Lastname}, {member.Phonenumber}, {member.Emailaddress}");
+            }
+        }
+
+        public void Simple1QryMemberName(List<Member> members)
+        {
+            foreach (Member member in members)
+            {
+                Console.WriteLine($"{member.Member_id}, {member.Firstname}, {member.Lastname}");
             }
         }
 
