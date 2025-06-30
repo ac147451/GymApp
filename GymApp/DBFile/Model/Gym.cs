@@ -16,10 +16,11 @@ namespace GymApp.DBFile.Model
         public int Suburb_id { get; set; }
         public Int64 Phonenumber { get; set; }
         public string Emailaddress { get; set; }
+        public string User_name { get; set; }
         public int Password { get; set; }
         public int Role_id { get; set; }
 
-        public Gym(int gym_id, string gymName, string streetaddress, int country_id, int city_id, int suburb_id, Int64 phonenumber, string emailaddress, int password, int role_id)
+        public Gym(int gym_id, string gymName, string streetaddress, int country_id, int city_id, int suburb_id, Int64 phonenumber, string emailaddress, string username, int password, int role_id)
         {
             Gym_id = gym_id;
             Gym_name = gymName;
@@ -29,6 +30,7 @@ namespace GymApp.DBFile.Model
             Suburb_id = suburb_id;
             Phonenumber = phonenumber;
             Emailaddress = emailaddress;
+            User_name = username;
             Password = password;
             Role_id = role_id;
         }//Gym Class

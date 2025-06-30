@@ -51,8 +51,6 @@ CREATE TABLE Location.suburb (
 );
 go
 
-
-
 CREATE TABLE Session.classtype ( 
 	classtypeID INT IDENTITY (1, +1) PRIMARY KEY,
 	classtype VARCHAR (255),
@@ -69,6 +67,7 @@ CREATE TABLE Gym.gyms (
 	suburbID int,
 	phonenumber VARCHAR(15),
 	emailaddress VARCHAR (255),
+	username VARCHAR (255),
 	password VARCHAR (8),
 	roleID int,
 	FOREIGN KEY (countryID) REFERENCES Location.country(countryID),

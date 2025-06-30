@@ -489,6 +489,24 @@ namespace GymApp
                                 break;
                         }
                     }
+                    else if (roleID == 4)
+                    {
+                        string choice2 = view.InstructorMenu();
+                        switch (choice2)
+                        {
+                            case "1":
+                                {
+
+                                    break;
+                                }
+
+                            case "2":
+                                {
+                                    break;
+                                }
+                        }
+                        break;
+                    }
                     else
                     {
                         Console.WriteLine("Unknown role. Please try again");
@@ -576,11 +594,13 @@ namespace GymApp
             Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter the emailaddress: ");
             string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter your username: ");
+            string username = view.GetInput();
             view.DisplayMessage("Enter the gym's pin (4-8 digits): ");
             int password = view.GetIntInput();
             int roleID = 2;
             int gymID = 0;
-            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, password, roleID);
+            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, username, password, roleID);
             int generatedID = storageManager.InsertGym(gym1);
             view.DisplayMessage($"New gym inserted with ID: {generatedID}");
 
@@ -900,13 +920,6 @@ namespace GymApp
             int rowsAffected = storageManager.DeleteUserByName(username);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
-        /*
-        private static void Simple1QryMemberName()
-        {
-            List<Member> members = storageManager.Simple1QryMemberName();
-            view.DisplayMembers(members);
-        }
-        */
         
         private static int login()
         {
@@ -960,11 +973,13 @@ namespace GymApp
             Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter your emailaddress: ");
             string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter your gym's username: ");
+            string username = view.GetInput();
             view.DisplayMessage("Enter your pin (4-8 digits): ");
             int password = view.GetIntInput();
             int roleID = 2;
             int gymID = 0;
-            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, password, roleID);
+            Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, username, password, roleID);
             int generatedID = storageManager.RegisterGym(gym1);
             view.DisplayMessage($"New gym inserted with ID: {generatedID}");
         }

@@ -59,10 +59,11 @@ namespace GymApp
                         int suburbid = Convert.ToInt32(reader["suburbID"]);
                         int phonenumber = Convert.ToInt32(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
+                        string username = reader["username"].ToString();
                         int password = Convert.ToInt32(reader["password"]);
                         int role_id = Convert.ToInt32(reader["roleID"]);
 
-                        gyms.Add(new Gym(gymid, gymname, streetaddress, countryid, cityid, suburbid, phonenumber, emailaddress, password, role_id));
+                        gyms.Add(new Gym(gymid, gymname, streetaddress, countryid, cityid, suburbid, phonenumber, emailaddress, username, password, role_id));
                     }
                 }
 
@@ -612,7 +613,10 @@ namespace GymApp
 
         public int GetUserRole(string username, int password)
         {
-            var query = "SELECT roleID FROM Member.members WHERE username = @username AND password = @password";
+            var query = "SELECT roleID FROM Member.members WHERE username = @username AND password = @password UNION " +
+                "SELECT roleID FROM Gym.gyms WHERE username = @username AND password = @password UNION " +
+                "SELECT roleID FROM Session.instructor WHERE username = @username AND password = @password";
+
             using (var command = new SqlCommand(query, conn))
             {
                 command.Parameters.AddWithValue("@username", username);
