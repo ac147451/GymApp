@@ -847,10 +847,22 @@ namespace GymApp
 
         public void Advanced2QryInstructorsStartingWithA()
         {
-            string sqlstring = "Select DISTINCT si.instructorname" +
-                "From Session.instructor as si, Session.classtype as sc, Session.sessionbooking as ss" +
-                "Where si.instructorID = ss.instructorID " +
-                "And si.instructorname LIKE 'a%'";
+            string sqlstring = "Select DISTINCT si.instructorname From Session.instructor as si, Session.classtype as sc, Session.sessionbooking as ss Where si.instructorID = ss.instructorID And si.instructorname LIKE 'a%';";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string instructorname = reader["instructorname"].ToString();
+                        Console.WriteLine();
+                        Console.WriteLine($"{instructorname}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Advanced3QryTop5MostExpensiveClasses()
