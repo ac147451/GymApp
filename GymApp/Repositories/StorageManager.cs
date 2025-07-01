@@ -724,22 +724,25 @@ namespace GymApp
             return members;
         }
 
-        public void Simple2QryClassTypes()
+        public List<ClassType> Simple2QryClassTypes()
         {
-            string sqlstring = "Select classtype, classprice From Session.classtype";
-
+            List<ClassType> classtypes = new List<ClassType>();
+            string sqlstring = "Select * From Session.classtype";
             using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
+                        int classtypeID = Convert.ToInt32(reader["classtypeID"]);
                         string classtype = reader["classtype"].ToString();
                         int classprice = Convert.ToInt32(reader["classprice"]);
+                        classtypes.Add(new ClassType(classtypeID, classtype, classprice));
                     }
                 }
 
             }
+            return classtypes;
         }
 
         public void Simple3QryMemberContactDetails()

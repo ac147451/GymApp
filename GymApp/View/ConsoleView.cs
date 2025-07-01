@@ -315,6 +315,14 @@ namespace GymApp.View
             }
         }
 
+        public void Simple2QryClassTypes(List<ClassType> classtypes)
+        {
+            foreach (ClassType classtype in classtypes)
+            {
+                Console.WriteLine($"{classtype.Classtype}, {classtype.Classprice}");
+            }
+        }
+
         public void DisplayRoles(List<Role> roles)
         {
             foreach (Role role in roles)
