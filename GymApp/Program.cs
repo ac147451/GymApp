@@ -1,11 +1,12 @@
 ﻿using GymApp;
 using GymApp.DBFile.Model;
 using GymApp.View;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
+using System.Threading.Channels;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using System;
-using System.Threading.Channels;
-using System.Diagnostics.CodeAnalysis;
 
 namespace GymApp
 {
@@ -20,7 +21,6 @@ namespace GymApp
 
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
-            //string choice = view.MainMenu();
 
             while (true)
             {
@@ -200,24 +200,58 @@ namespace GymApp
                                 break;
 
                             case "2":
-                                UpdateGymName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateGymName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
                                 break;
+                                
 
                             case "3":
-                                InsertNewGym();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewGym();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
                                 break;
 
                             case "4":
-                                DeleteGymByName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteGymByName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }                              
                                 break;
                         }
 
@@ -227,6 +261,7 @@ namespace GymApp
 
                 case "2": //Country Table
                     {
+                        char close;
                         string choice1 = view.CountryMenu();
                         switch (choice1)
                         {
@@ -234,31 +269,76 @@ namespace GymApp
                                 {
                                     List<Country> countries = storageManager.GetAllCountries();
                                     view.DisplayCountries(countries);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "2":
-                                UpdateCountryName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateCountryName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                
                                 break;
 
                             case "3":
-                                InsertNewCountry();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewCountry();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                
                                 break;
 
                             case "4":
-                                DeleteCountryByName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteCountryByName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                
                                 break;
                         }
 
@@ -267,6 +347,7 @@ namespace GymApp
 
                 case "3": //City Table
                     {
+                        char close;
                         string choice1 = view.CityMenu();
                         switch (choice1)
                         {
@@ -274,31 +355,76 @@ namespace GymApp
                                 {
                                     List<City> cities = storageManager.GetAllCities();
                                     view.DisplayCities(cities);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "2":
-                                UpdateCityName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateCityName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "3":
-                                InsertNewCity();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewCity();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "4":
-                                DeleteCityByName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteCityByName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
                         }
 
@@ -307,6 +433,7 @@ namespace GymApp
 
                 case "4": //Suburb Table
                     {
+                        char close;
                         string choice1 = view.SuburbMenu();
                         switch (choice1)
                         {
@@ -314,31 +441,76 @@ namespace GymApp
                                 {
                                     List<Suburb> suburbs = storageManager.GetAllSuburbs();
                                     view.DisplaySuburbs(suburbs);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "2":
-                                UpdateSuburbName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateSuburbName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "3":
-                                InsertNewSuburb();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewSuburb();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "4":
-                                DeleteSuburbByName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteSuburbByName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
                         }
 
@@ -347,6 +519,7 @@ namespace GymApp
 
                 case "5": //Instructor Table
                     {
+                        char close;
                         string choice1 = view.InstructorTableMenu();
                         switch (choice1)
                         {
@@ -354,31 +527,76 @@ namespace GymApp
                                 {
                                     List<Instructor> instructors = storageManager.GetAllInstructors();
                                     view.DisplayInstructors(instructors);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "2":
-                                UpdateInstructorName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateInstructorName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                
                                 break;
 
                             case "3":
-                                InsertNewInstructor();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewInstructor();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "4":
-                                DeleteInstructorByName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteInstructorByName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
                         }
 
@@ -387,6 +605,7 @@ namespace GymApp
 
                 case "6": //Classtype Table
                     {
+                        char close;
                         string choice1 = view.ClasstypeMenu();
                         switch (choice1)
                         {
@@ -394,31 +613,76 @@ namespace GymApp
                                 {
                                     List<ClassType> classtypes = storageManager.GetAllClasstypes();
                                     view.DisplayClasstypes(classtypes);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "2":
-                                UpdateClasstypeName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateClasstypeName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "3":
-                                InsertNewClasstype();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewClasstype();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "4":
-                                DeleteClasstype();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteClasstype();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
                         }
 
@@ -427,6 +691,7 @@ namespace GymApp
 
                 case "7": //Member Table
                     {
+                        char close;
                         string choice1 = view.MemberTableMenu();
                         switch (choice1)
                         {
@@ -434,31 +699,76 @@ namespace GymApp
                                 {
                                     List<Member> members = storageManager.GetAllMembers();
                                     view.DisplayMembers(members);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "2":
-                                UpdateMemberFirstName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateMemberFirstName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "3":
-                                InsertNewMember();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewMember();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "4":
-                                DeleteMemberByName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteMemberByName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
                         }
 
@@ -467,38 +777,83 @@ namespace GymApp
 
                 case "8": //Role Table
                     {
+                        char close;
                         string choice1 = view.RoleMenu();
                         switch (choice1)
                         {
                             case "1":
                                 {
                                     List<Role> roles = storageManager.GetAllRoles();
-                                    view.DisplayRoles(roles);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "2":
-                                UpdateRoleName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateRoleName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "3":
-                                InsertNewRole();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewRole();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "4":
-                                DeleteRoleByName();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteRoleByName();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
                         }
 
@@ -507,6 +862,7 @@ namespace GymApp
 
                 case "9": //Sessionbooking Table
                     {
+                        char close;
                         string choice1 = view.SessionbookingMenu();
                         switch (choice1)
                         {
@@ -514,31 +870,76 @@ namespace GymApp
                                 {
                                     List<Sessionbooking> sessionbookings = storageManager.GetAllSessions();
                                     view.DisplaySessions(sessionbookings);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "2":
-                                UpdateSessionDate();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    UpdateSessionDate();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "3":
-                                InsertNewSession();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    InsertNewSession();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
 
                             case "4":
-                                DeleteSessionByID();
-                                view.DisplayMessage("Enter any button to go back to Main Menu");
-                                Console.ReadLine();
-                                Console.Clear();
+                                {
+                                    DeleteSessionByID();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
                                 break;
                         }
 
@@ -548,6 +949,7 @@ namespace GymApp
 
                 case "10": //Queries
                     {
+                        char close;
                         string choice1 = view.QueryMenu();
                         switch (choice1)
                         {
@@ -555,9 +957,18 @@ namespace GymApp
                                 {
                                     List<Member> members = storageManager.Simple1QryMemberName();
                                     view.Simple1QryMemberName(members);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
@@ -565,9 +976,18 @@ namespace GymApp
                                 {
                                     List<ClassType> classtypes = storageManager.Simple2QryClassTypes();
                                     view.Simple2QryClassTypes(classtypes);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
@@ -575,117 +995,234 @@ namespace GymApp
                                 {
                                     List<Member> members = storageManager.Simple3QryMemberContactDetails();
                                     view.Simple3QryMemberContactDetails(members);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "4":
                                 {
                                     storageManager.Simple4QryGymLocation();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "5":
                                 {
                                     storageManager.Simple5QrySessionDetails();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "6":
                                 {
                                     storageManager.Advanced1QryClassesUnder31();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "7":
                                 {
                                     storageManager.Advanced2QryInstructorsStartingWithA();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "8":
                                 {
                                     storageManager.Advanced3QryTop5MostExpensiveClasses();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "9":
                                 {
                                     storageManager.Advanced4QryMembersWithGmailOrOutlook();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "10":
                                 {
                                     storageManager.Advanced5QrySessionsAfter27April();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "11":
                                 {
                                     storageManager.Complex1QryInstructorsWithSessions();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "12":
                                 {
                                     storageManager.Complex2QryRevenuePerClassType();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "13":
                                 {
                                     storageManager.Complex3QrySessionsUnder30();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "14":
                                 {
                                     storageManager.Complex4QryGymRevenue();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
                             case "15":
                                 {
                                     storageManager.Complex5QryMemberSessionBooked();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
