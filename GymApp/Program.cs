@@ -20,7 +20,12 @@ namespace GymApp
 
             storageManager = new StorageManager(connectionString);
             view = new ConsoleView();
-            string choice = view.MainMenu();
+            //string choice = view.MainMenu();
+
+            while (true)
+            {
+
+                string choice = view.MainMenu();
 
                 switch (choice)
                 {
@@ -69,11 +74,6 @@ namespace GymApp
                                 case "1":
 
                                     RegisterMember();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
-                                    Console.Clear();
-                                    Console.WriteLine("Now please log in: ");
-                                    login();
                                     break;
 
                                 case "2":
@@ -103,8 +103,14 @@ namespace GymApp
                                     Console.WriteLine("Now please log in: ");
                                     login();
                                     break;
+                                default:
+                                    Console.WriteLine("Invalid Registration choice");
+                                    break;
                             }
-
+                            Console.WriteLine("Registration complete. Please login now");
+                            Console.WriteLine("Press any Key to continue: ");
+                            Console.ReadKey();
+                            Console.Clear();
                             break;
                         }
 
@@ -113,7 +119,8 @@ namespace GymApp
                         break;
                 }
 
-                storageManager.CloseConnection();
+                //storageManager.CloseConnection();
+            }
         }
 
         static void MemberMenu()
