@@ -706,6 +706,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("MemberID: Firstname: Lastname: ");
                     while (reader.Read())
                     {
                         int memberID = Convert.ToInt32(reader["memberID"]);
@@ -732,6 +734,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("ClassType:  ClassPrice: ");
                     while (reader.Read())
                     {
                         int classtypeID = Convert.ToInt32(reader["classtypeID"]);
@@ -753,6 +757,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("MemberID: Firstname: Lastname: Phonenumber: Emailaddress: ");
                     while (reader.Read())
                     {
                         int memberID = Convert.ToInt32(reader["memberID"]);
@@ -781,6 +787,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("Gym: StreetAddress: Suburb: City: Country: ");
                     while (reader.Read())
                     {
                         string gymname = reader["gymname"].ToString();
@@ -805,6 +813,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("Firstname:  Lastname:  Gym:  Instructor:  ClassType:  ClassPrice:  Sessiondate: ");
                     while (reader.Read())
                     {
                         string firstname = reader["firstname"].ToString();
@@ -832,6 +842,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("ClassType:  ClassPrice: ");
                     while (reader.Read())
                     {
                         string classtype = reader["classtype"].ToString();
@@ -853,6 +865,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("Instructors: ");
                     while (reader.Read())
                     {
                         string instructorname = reader["instructorname"].ToString();
@@ -873,6 +887,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("ClassType:  ClassPrice: ");
                     while (reader.Read())
                     {
                         string classtype = reader["classtype"].ToString();
@@ -894,6 +910,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("Firstname:  Lastname:  Emailaddress: ");
                     while (reader.Read())
                     {
                         string firstname = reader["firstname"].ToString();
@@ -916,6 +934,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("SessionID:  SessionDate: ");
                     while (reader.Read())
                     {
                         int sessionID = Convert.ToInt32(reader["sessionID"]);
@@ -937,6 +957,8 @@ namespace GymApp
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("Instructorname:  sessioncount: ");
                     while (reader.Read())
                     {
                         string instructorname = reader["instructorname"].ToString();
@@ -959,7 +981,7 @@ namespace GymApp
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Class type, Total Revenue, Average Revenue");
+                    Console.WriteLine("Class type: Total Revenue: Average Revenue: ");
                     while (reader.Read())
                     {
                         string classtype = reader["classtype"].ToString();
@@ -1005,7 +1027,7 @@ namespace GymApp
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Gym:  Total Revenue:  Average Revenue Per Session ");
+                    Console.WriteLine("Gym:  Total Revenue:  Average Revenue Per Session: ");
                     while (reader.Read())
                     {
                         string Gym = reader["Gym"].ToString();
