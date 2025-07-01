@@ -323,6 +323,14 @@ namespace GymApp.View
             }
         }
 
+        public void Simple3QryMemberContactDetails(List<Member> members)
+        {
+            foreach (Member member in members)
+            {
+                Console.WriteLine($"{member.Member_id}, {member.Firstname}, {member.Lastname}, {member.Phonenumber}, {member.Emailaddress}");
+            }
+        }
+
         public void DisplayRoles(List<Role> roles)
         {
             foreach (Role role in roles)

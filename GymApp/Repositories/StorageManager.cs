@@ -745,25 +745,30 @@ namespace GymApp
             return classtypes;
         }
 
-        public void Simple3QryMemberContactDetails()
+        public List<Member> Simple3QryMemberContactDetails()
         {
-            string sqlstring = "Select firstname, lastname, phonenumber, emailaddress From Member.members";
-
+            List<Member> members = new List<Member>();
+            string sqlstring = "SELECT * FROM Member.members";
             using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
+                        int memberID = Convert.ToInt32(reader["memberID"]);
                         string firstname = reader["firstname"].ToString();
                         string lastname = reader["lastname"].ToString();
                         int phonenumber = Convert.ToInt32(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
-
+                        string username = reader["username"].ToString();
+                        int password = Convert.ToInt32(reader["password"]);
+                        int roleID = Convert.ToInt32(reader["roleID"]);
+                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID));
                     }
                 }
 
             }
+            return members;
         }
 
         public void Simple4QryGymLocation()

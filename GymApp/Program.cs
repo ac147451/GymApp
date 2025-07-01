@@ -490,6 +490,17 @@ namespace GymApp
                                                 view.DisplayAdminMenu();
                                             }
                                             break;
+
+                                        case "3":
+                                            {
+                                                List<Member> members = storageManager.Simple3QryMemberContactDetails();
+                                                view.Simple3QryMemberContactDetails(members);
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
                                     }
 
                                 }
