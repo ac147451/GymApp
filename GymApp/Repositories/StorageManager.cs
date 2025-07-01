@@ -798,19 +798,8 @@ namespace GymApp
 
         public void Simple5QrySessionDetails()
         {
-            string sqlstring = "Select " +
-                "Member.members.firstname as Firstname," +
-                "Member.members.lastname as Lastname," +
-                "Gym.gyms.gymname as Gym," +
-                "Session.instructor.instructorname as Instructor," +
-                "Session.classtype.classtype as Class," +
-                "Session.classtype.classprice as Price," +
-                "Session.sessionbooking.sessiondate as Bookingtime" +
-                "From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms" +
-                "Where Session.sessionbooking.instructorID = Session.instructor.instructorID" +
-                "And Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
-                "And Session.sessionbooking.memberID = Member.members.memberID" +
-                "And Session.sessionbooking.gymID = Gym.gyms.gymID";
+
+            string sqlstring = "Select Member.members.firstname, Member.members.lastname, Gym.gyms.gymname, Session.instructor.instructorname, Session.classtype.classtype, Session.classtype.classprice, Session.sessionbooking.sessiondate From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID;";
 
             using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
             {
@@ -820,9 +809,14 @@ namespace GymApp
                     {
                         string firstname = reader["firstname"].ToString();
                         string lastname = reader["lastname"].ToString();
-                        string gymnamename = reader["gymname"].ToString();
-                        int phonenumber = Convert.ToInt32(reader["phonenumber"]);
-
+                        string gymname = reader["gymname"].ToString();
+                        string instructorname = reader["instructorname"].ToString();
+                        string classtype = reader["classtype"].ToString();
+                        int classprice = Convert.ToInt32(reader["classprice"]);
+                        DateTime sessiondate = Convert.ToDateTime(reader["sessiondate"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{firstname}, {lastname}, {gymname}, {instructorname}, {classtype}, {classprice}, {sessiondate}");
+                        Console.WriteLine();
                     }
                 }
 
