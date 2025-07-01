@@ -771,19 +771,12 @@ namespace GymApp
             return members;
         }
 
+
         public void Simple4QryGymLocation()
         {
-            string sqlstring = "Select " +
-                "Gym.gyms.gymname as Gym, " +
-                "Gym.gyms.streetaddress as Street, " +
-                "Location.suburb.suburbname as Suburb, " +
-                "Location.city.cityname as City," +
-                "Location.country.countryname as Country" +
-                "From Gym.gyms, Location.suburb, Location.city, Location.country" +
-                "Where Gym.gyms.suburbID = Location.suburb.suburbID" +
-                "And Gym.gyms.cityID = Location.city.cityID" +
-                "And Gym.gyms.countryID = Location.country.countryID";
-
+            
+            string sqlstring = "Select Gym.gyms.gymname, Gym.gyms.streetaddress, Location.suburb.suburbname, Location.city.cityname, Location.country.countryname From Gym.gyms, Location.suburb, Location.city, Location.country Where Gym.gyms.suburbID = Location.suburb.suburbID And Gym.gyms.cityID = Location.city.cityID And Gym.gyms.countryID = Location.country.countryID;";
+            
             using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -795,10 +788,11 @@ namespace GymApp
                         string suburbname = reader["suburbname"].ToString();
                         string cityname = reader["cityname"].ToString();
                         string countryname = reader["countryname"].ToString();
-
+                        Console.WriteLine();
+                        Console.WriteLine($"{gymname}, {streetaddress}, {suburbname}, {cityname}, {countryname}");
+                        Console.WriteLine();
                     }
                 }
-
             }
         }
 
