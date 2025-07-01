@@ -40,6 +40,8 @@ namespace GymApp
             }
         }
 
+        
+
         public List<Gym> GetAllGyms()
         {
             List<Gym> gyms = new List<Gym>();
@@ -633,6 +635,55 @@ namespace GymApp
                     }
                 }
             }
+        }
+
+        public int GetMemberID(string username, int password)
+        {
+            var query = "SELECT memberID FROM Member.members WHERE username = @username AND password = @password";
+
+            using (var command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["memberID"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        public List<Sessionbooking> ViewAllSessions()
+        {
+            List<Sessionbooking> sessionbookings = new List<Sessionbooking>();
+            string sqlString = "SELECT * FROM Session.sessionbooking";
+            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        int sessionID = Convert.ToInt32(reader["sessionID"]);
+                        int instructorID = Convert.ToInt32(reader["instructorID"]);
+                        int classtypeID = Convert.ToInt32(reader["classtypeID"]);
+                        int memberID = Convert.ToInt32(reader["memberID"]);
+                        int gymID = Convert.ToInt32(reader["gymID"]);
+                        DateTime sessiondate = Convert.ToDateTime(reader["sessiondate"]);
+
+                        sessionbookings.Add(new Sessionbooking(sessionID, instructorID, classtypeID, memberID, gymID, sessiondate));
+                    }
+                }
+
+            }
+            return sessionbookings;
+
         }
 
         public int RegisterMember(Member membertemp)
