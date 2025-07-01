@@ -35,7 +35,7 @@ namespace GymApp
                         {
                         while (roleID == 1)
                         {
-                            MemberMenu();
+                            MemberMenu(); // Calling the Member Menu Method if their role is a member
                         }
                         }
                         else if (roleID == 2)
@@ -79,29 +79,14 @@ namespace GymApp
                                 case "2":
 
                                     RegisterGym();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
-                                    Console.Clear();
-                                    Console.WriteLine("Now please log in: ");
-                                    login();
                                     break;
 
                                 case "3":
                                     RegisterAdmin();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
-                                    Console.Clear();
-                                    Console.WriteLine("Now please log in: ");
-                                    login();
                                     break;
 
                                 case "4":
                                     RegisterInstructor();
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
-                                    Console.Clear();
-                                    Console.WriteLine("Now please log in: ");
-                                    login();
                                     break;
                                 default:
                                     Console.WriteLine("Invalid Registration choice");
@@ -189,6 +174,7 @@ namespace GymApp
             {
                 case "1": //Gym Table
                     {
+                        char close;
                         string choice1 = view.GymTableMenu();
 
                         switch (choice1)
@@ -198,9 +184,18 @@ namespace GymApp
 
                                     List<Gym> gyms = storageManager.GetAllGyms();
                                     view.DisplayGyms(gyms);
-                                    view.DisplayMessage("Enter any button to go back to Main Menu");
-                                    Console.ReadLine();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
                                 break;
 
