@@ -521,6 +521,16 @@ namespace GymApp
                                                 view.DisplayAdminMenu();
                                             }
                                             break;
+
+                                        case "6":
+                                            {
+                                                storageManager.Advanced1QryClassesUnder31();
+                                                view.DisplayMessage("Enter any button to go back to Main Menu");
+                                                Console.ReadLine();
+                                                Console.Clear();
+                                                view.DisplayAdminMenu();
+                                            }
+                                            break;
                                     }
 
                                 }

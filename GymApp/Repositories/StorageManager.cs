@@ -826,10 +826,23 @@ namespace GymApp
 
         public void Advanced1QryClassesUnder31()
         {
-            string sqlstring = "Select DISTINCT classtype, classprice" +
-                "From Session.classtype" +
-                "Where classprice <= '30'" +
-                "Order By classprice ASC";
+            string sqlstring = "Select DISTINCT classtype, classprice From Session.classtype Where classprice <= '30' Order By classprice ASC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string classtype = reader["classtype"].ToString();
+                        int classprice = Convert.ToInt32(reader["classprice"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{classtype}, {classprice}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Advanced2QryInstructorsStartingWithA()
