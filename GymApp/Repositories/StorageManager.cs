@@ -57,7 +57,7 @@ namespace GymApp
                         int countryid = Convert.ToInt32(reader["countryID"]);
                         int cityid = Convert.ToInt32(reader["cityID"]);
                         int suburbid = Convert.ToInt32(reader["suburbID"]);
-                        int phonenumber = Convert.ToInt32(reader["phonenumber"]);
+                        Int64 phonenumber = Convert.ToInt64(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
                         string username = reader["username"].ToString();
                         int password = Convert.ToInt32(reader["password"]);
@@ -867,74 +867,181 @@ namespace GymApp
 
         public void Advanced3QryTop5MostExpensiveClasses()
         {
-            string sqlstring = "Select Top 5 classtype as Class, classprice as Price " +
-                "From Session.classtype" +
-                "Order By classprice DESC";
+            string sqlstring = "Select Top 5 classtype, classprice From Session.classtype Order By classprice DESC;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string classtype = reader["classtype"].ToString();
+                        int classprice = Convert.ToInt32(reader["classprice"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{classtype}, {classprice}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Advanced4QryMembersWithGmailOrOutlook()
         {
-            string sqlstring = "Select firstname, lastname, emailaddress" +
-                "From Member.members" +
-                "Where emailaddress LIKE '%gmail%'" +
-                "OR emailaddress LIKE '%outlook%'";
+            string sqlstring = "Select firstname, lastname, emailaddress From Member.members Where emailaddress LIKE '%gmail%' OR emailaddress LIKE '%outlook%';";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string firstname = reader["firstname"].ToString();
+                        string lastname = reader["lastname"].ToString();
+                        string emailaddress = reader["emailaddress"].ToString();
+                        Console.WriteLine();
+                        Console.WriteLine($"{firstname}, {lastname}, {emailaddress}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Advanced5QrySessionsAfter27April()
         {
-            string sqlstring = "Select sessionID, sessiondate" +
-                "From Session.sessionbooking" +
-                "Where sessiondate > '2025-04-27 14:00:00.123'" +
-                "Order By sessionID";
+            string sqlstring = "Select sessionID, sessiondate From Session.sessionbooking Where sessiondate > '2025-04-27 14:00:00.123' Order By sessionID;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int sessionID = Convert.ToInt32(reader["sessionID"]);
+                        DateTime sessiondate = Convert.ToDateTime(reader["sessiondate"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{sessionID}, {sessiondate}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Complex1QryInstructorsWithSessions()
         {
-            string sqlstring = "Select" +
-                "Session.instructor.instructorname as instructor, " +
-                "COUNT(sessionID) as sessioncount" +
-                "From Session.sessionbooking, Session.instructor" +
-                "WHERE Session.sessionbooking.instructorID = Session.instructor.instructorID" +
-                "Group By Session.instructor.instructorname";
+            string sqlstring = "Select Session.instructor.instructorname, COUNT(sessionID) as sessioncount From Session.sessionbooking, Session.instructor WHERE Session.sessionbooking.instructorID = Session.instructor.instructorID Group By Session.instructor.instructorname;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string instructorname = reader["instructorname"].ToString();
+                        int sessioncount = Convert.ToInt32(reader["sessioncount"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{instructorname}, {sessioncount}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Complex2QryRevenuePerClassType()
         {
-            string sqlstring = "Select" +
-                "Session.classtype.classtype," +
-                "SUM(Session.classtype.classprice) as totalrevenue," +
-                "AVG(Session.classtype.classprice) as averagerevenue" +
-                "From Session.sessionbooking, Session.classtype" +
-                "Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
-                "Group By Session.classtype.classtype";
+            string sqlstring = "Select Session.classtype.classtype, SUM(Session.classtype.classprice) as totalrevenue, AVG(Session.classtype.classprice) as averagerevenue From Session.sessionbooking, Session.classtype Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID Group By Session.classtype.classtype;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Class type, Total Revenue, Average Revenue");
+                    while (reader.Read())
+                    {
+                        string classtype = reader["classtype"].ToString();
+                        int totalrevenue = Convert.ToInt32(reader["totalrevenue"]);
+                        int averagerevenue = Convert.ToInt32(reader["averagerevenue"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{classtype}, {totalrevenue}, {averagerevenue}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Complex3QrySessionsUnder30()
         {
-            string sqlstring = "Select COUNT(Session.sessionbooking.sessionID) as sessionsunder30dollars" +
-                "From Session.sessionbooking, Session.classtype" +
-                "Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
-                "And Session.classtype.classprice < '30'";
+            string sqlstring = "Select COUNT(Session.sessionbooking.sessionID) as sessionsunder30dollars From Session.sessionbooking, Session.classtype Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.classtype.classprice < '30';";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Sessions Under $30: ");
+                    while (reader.Read())
+                    {
+                        int sessionsunder30dollars = Convert.ToInt32(reader["sessionsunder30dollars"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{sessionsunder30dollars}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Complex4QryGymRevenue()
         {
-            string sqlstring = "Select" +
-                "Gym.gyms.gymname as Gym," +
-                "SUM(Session.classtype.classprice) as totalrevenue," +
-                "AVG(Session.classtype.classprice) as averagerevenuepersession" +
-                "From Session.sessionbooking, Session.classtype, Gym.gyms" +
-                "Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID" +
-                "And Session.sessionbooking.gymID = Gym.gyms.gymID" +
-                "Group By Gym.gyms.gymname";
+            string sqlstring = "Select Gym.gyms.gymname as Gym, SUM(Session.classtype.classprice) as totalrevenue, AVG(Session.classtype.classprice) as averagerevenuepersession From Session.sessionbooking, Session.classtype, Gym.gyms Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.gymID = Gym.gyms.gymID Group By Gym.gyms.gymname;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Gym:  Total Revenue:  Average Revenue Per Session ");
+                    while (reader.Read())
+                    {
+                        string Gym = reader["Gym"].ToString();
+                        int totalrevenue = Convert.ToInt32(reader["totalrevenue"]);
+                        int averagerevenuepersession = Convert.ToInt32(reader["averagerevenuepersession"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{Gym}, {totalrevenue}, {averagerevenuepersession}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void Complex5QryMemberSessionBooked()
         {
-            string sqlstring = "Select Member.members.firstname as membername, Member.members.emailaddress as emailaddress, COUNT(sessionID) as sessionsbooked" +
-                "From Session.sessionbooking, Member.members" +
-                "Where Session.sessionbooking.memberID = Member.members.memberID" +
-                "Group By Member.members.emailaddress, Member.members.firstname";
+            string sqlstring = "Select Member.members.firstname as membername, Member.members.emailaddress as emailaddress, COUNT(sessionID) as sessionsbooked From Session.sessionbooking, Member.members Where Session.sessionbooking.memberID = Member.members.memberID Group By Member.members.emailaddress, Member.members.firstname;";
+
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Membername:  Emailaddress:  Sessionsbooked: ");
+                    while (reader.Read())
+                    {
+                        string membername = reader["membername"].ToString();
+                        string emailaddress = reader["emailaddress"].ToString();
+                        int sessionsbooked = Convert.ToInt32(reader["sessionsbooked"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{membername}, {emailaddress}, {sessionsbooked}");
+                        Console.WriteLine();
+                    }
+                }
+
+            }
         }
 
         public void CloseConnection()
