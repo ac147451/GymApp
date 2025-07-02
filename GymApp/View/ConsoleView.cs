@@ -68,6 +68,41 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
+        public string GymSessionsMenu()
+        {
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View All Sessions");
+            Console.WriteLine("2. Insert a new session");
+            Console.WriteLine("3. Delete a session by sessionID");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
+        public string GymMembersMenu()
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all members");
+            Console.WriteLine("2. Insert a new member");
+            Console.WriteLine("3. Delete a member by the name of the member");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
+        public string GymInstructorsMenu()
+        {
+            //Console.Clear();
+            Console.WriteLine("Menu: ");
+            Console.WriteLine("1. View all Instructors");
+            Console.WriteLine("2. Insert a new instructor");
+            Console.WriteLine("3. Delete an instructor by instructorname");
+            Console.WriteLine("Select an option: ");
+
+            return Console.ReadLine();
+        }
+
         public string DisplayAdminMenu() //Menu For Admins
         {
             Console.WriteLine("Welcome Admin");
