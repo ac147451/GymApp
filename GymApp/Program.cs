@@ -117,7 +117,7 @@ namespace GymApp
                 case "1":
                     {
                         ViewSessions();
-                        view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                        view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                         close = char.Parse(Console.ReadLine().ToUpper());
                         Console.Clear();
                         if (close == 'N')
@@ -200,7 +200,7 @@ namespace GymApp
 
                                     List<Gym> gyms = storageManager.GetAllGyms();
                                     view.DisplayGyms(gyms);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -218,7 +218,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateGymName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -237,7 +237,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewGym();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -255,7 +255,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteGymByName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -285,7 +285,7 @@ namespace GymApp
                                 {
                                     List<Country> countries = storageManager.GetAllCountries();
                                     view.DisplayCountries(countries);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -303,7 +303,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateCountryName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -322,7 +322,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewCountry();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -341,7 +341,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteCountryByName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -371,7 +371,7 @@ namespace GymApp
                                 {
                                     List<City> cities = storageManager.GetAllCities();
                                     view.DisplayCities(cities);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -389,7 +389,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateCityName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -408,7 +408,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewCity();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -427,7 +427,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteCityByName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -457,7 +457,7 @@ namespace GymApp
                                 {
                                     List<Suburb> suburbs = storageManager.GetAllSuburbs();
                                     view.DisplaySuburbs(suburbs);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -475,7 +475,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateSuburbName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -494,7 +494,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewSuburb();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -513,7 +513,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteSuburbByName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -543,7 +543,7 @@ namespace GymApp
                                 {
                                     List<Instructor> instructors = storageManager.GetAllInstructors();
                                     view.DisplayInstructors(instructors);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -561,7 +561,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateInstructorName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -580,7 +580,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewInstructor();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -599,7 +599,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteInstructorByName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -629,7 +629,7 @@ namespace GymApp
                                 {
                                     List<ClassType> classtypes = storageManager.GetAllClasstypes();
                                     view.DisplayClasstypes(classtypes);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -647,7 +647,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateClasstypeName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -666,7 +666,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewClasstype();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -685,7 +685,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteClasstype();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -715,7 +715,7 @@ namespace GymApp
                                 {
                                     List<Member> members = storageManager.GetAllMembers();
                                     view.DisplayMembers(members);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -733,7 +733,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateMemberFirstName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -752,7 +752,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewMember();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -771,7 +771,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteMemberByName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -800,7 +800,7 @@ namespace GymApp
                             case "1":
                                 {
                                     List<Role> roles = storageManager.GetAllRoles();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -818,7 +818,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateRoleName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -837,7 +837,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewRole();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -856,7 +856,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteRoleByName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -886,7 +886,7 @@ namespace GymApp
                                 {
                                     List<Sessionbooking> sessionbookings = storageManager.GetAllSessions();
                                     view.DisplaySessions(sessionbookings);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -904,7 +904,7 @@ namespace GymApp
                             case "2":
                                 {
                                     UpdateSessionDate();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -923,7 +923,7 @@ namespace GymApp
                             case "3":
                                 {
                                     InsertNewSession();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -942,7 +942,7 @@ namespace GymApp
                             case "4":
                                 {
                                     DeleteSessionByID();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -973,7 +973,7 @@ namespace GymApp
                                 {
                                     List<Member> members = storageManager.Simple1QryMemberName();
                                     view.Simple1QryMemberName(members);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -992,7 +992,7 @@ namespace GymApp
                                 {
                                     List<ClassType> classtypes = storageManager.Simple2QryClassTypes();
                                     view.Simple2QryClassTypes(classtypes);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1011,7 +1011,7 @@ namespace GymApp
                                 {
                                     List<Member> members = storageManager.Simple3QryMemberContactDetails();
                                     view.Simple3QryMemberContactDetails(members);
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1029,7 +1029,7 @@ namespace GymApp
                             case "4":
                                 {
                                     storageManager.Simple4QryGymLocation();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1047,7 +1047,7 @@ namespace GymApp
                             case "5":
                                 {
                                     storageManager.Simple5QrySessionDetails();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1065,7 +1065,7 @@ namespace GymApp
                             case "6":
                                 {
                                     storageManager.Advanced1QryClassesUnder31();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1083,7 +1083,7 @@ namespace GymApp
                             case "7":
                                 {
                                     storageManager.Advanced2QryInstructorsStartingWithA();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1101,7 +1101,7 @@ namespace GymApp
                             case "8":
                                 {
                                     storageManager.Advanced3QryTop5MostExpensiveClasses();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1119,7 +1119,7 @@ namespace GymApp
                             case "9":
                                 {
                                     storageManager.Advanced4QryMembersWithGmailOrOutlook();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1137,7 +1137,7 @@ namespace GymApp
                             case "10":
                                 {
                                     storageManager.Advanced5QrySessionsAfter27April();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1155,7 +1155,7 @@ namespace GymApp
                             case "11":
                                 {
                                     storageManager.Complex1QryInstructorsWithSessions();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1173,7 +1173,7 @@ namespace GymApp
                             case "12":
                                 {
                                     storageManager.Complex2QryRevenuePerClassType();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1191,7 +1191,7 @@ namespace GymApp
                             case "13":
                                 {
                                     storageManager.Complex3QrySessionsUnder30();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1209,7 +1209,7 @@ namespace GymApp
                             case "14":
                                 {
                                     storageManager.Complex4QryGymRevenue();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
@@ -1227,7 +1227,7 @@ namespace GymApp
                             case "15":
                                 {
                                     storageManager.Complex5QryMemberSessionBooked();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
                                     if (close == 'N')
