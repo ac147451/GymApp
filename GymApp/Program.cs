@@ -1,4 +1,5 @@
-﻿using GymApp;
+﻿using Azure.Identity;
+using GymApp;
 using GymApp.DBFile.Model;
 using GymApp.View;
 using System;
@@ -104,19 +105,30 @@ namespace GymApp
                         break;
                 }
 
-                //storageManager.CloseConnection();
             }
         }
 
         static void MemberMenu()
         {
+            char close;
             string choice2 = view.MemberMenu();
             switch (choice2)
             {
                 case "1":
                     {
-
-
+                        ViewSessions();
+                        view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to log out");
+                        close = char.Parse(Console.ReadLine().ToUpper());
+                        Console.Clear();
+                        if (close == 'N')
+                        {
+                            storageManager.CloseConnection();
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            break;
+                        }
                         break;
                     }
 
@@ -141,6 +153,10 @@ namespace GymApp
                     }
 
                 case "2":
+                    {
+                        break;
+                    }
+                case "3":
                     {
                         break;
                     }
@@ -1590,22 +1606,54 @@ namespace GymApp
             int rowsAffected = storageManager.DeleteUserByName(username);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
-        
+
+        private static (string username, int password) UsernamePassword()
+        {
+            (string username, int password) = view.LoginMenu();
+
+            return (username, password);
+        }
+
         private static int login()
         {
             int roleID;
+            
             do
             {
-                (string username, int password) = view.LoginMenu();
+                (string username, int password) = UsernamePassword();
                 roleID = storageManager.GetUserRole(username, password);
+                
                 if (roleID == 0)
                 {
                     Console.WriteLine("Invalid username or password. Please try again.");
                 }
             } while (roleID == 0);
-            return roleID;
+            return (roleID);
+        }
+
+        private static void ViewSessions()
+        {
+            int memberID;
+
+            do
+            {
+                (string username, int password) = UsernamePassword();
+                memberID = storageManager.GetMemberID(username, password);
+                storageManager.ViewAllSessions(memberID);
+
+                if (memberID == 0)
+                {
+                    Console.WriteLine("Invalid username or password. Please try again.");
+                }
+
+            } while (memberID == 0);
+            //return (memberID);
+           
         }
         
+        
+        
+
         private static void RegisterMember()
         {
             view.DisplayMessage("Enter your firstname: ");
@@ -1726,8 +1774,4 @@ namespace GymApp
             } while (!valid);
 
         }
-*/
-/*
-view.DisplayMessage("Enter 'Y' to go back to Main Menu, or Type 'N' if you would like to log out");
-restart = char.Parse(Console.ReadLine().ToUpper());
 */
