@@ -285,7 +285,7 @@ namespace GymApp
 
                             case "2":
                                 {
-                                    InsertNewGymMember();
+                                    InsertNewGymInstructor();
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -303,7 +303,7 @@ namespace GymApp
 
                             case "3":
                                 {
-                                    DeleteGymMember();
+                                    DeleteGymInstructor();
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -319,7 +319,6 @@ namespace GymApp
                                 }
                                 break;
                         }
-                        break;
                         break;
                     }
             }
@@ -1932,8 +1931,43 @@ namespace GymApp
 
         }
 
+        private static void InsertNewGymInstructor()
+        {
+            view.DisplayMessage("Enter the new instructor name: ");
+            string instructorname = view.GetInput();
+            view.DisplayMessage("Enter the new instructor's phonenumber: ");
+            int phonenumber = view.GetIntInput();
+            view.DisplayMessage("Enter the new instructor's emailaddress: ");
+            string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter the new instructor's username: ");
+            string username = view.GetInput();
+            view.DisplayMessage("Enter the new instructors's password pin: ");
+            int password = view.GetIntInput();
+            int roleID = 4;
+            int gymID = storageManager.GetGymID(username, password);
+            int instructorID = 0;
+            Instructor instructor1 = new Instructor(instructorID, instructorname, gymID, phonenumber, emailaddress, username, password, roleID);
+            int generatedID = storageManager.InsertInstructor(instructor1);
+            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
 
+        }
 
+        private static void DeleteGymInstructor()
+        {
+            (string username, int password) = UsernamePassword();
+            view.DisplayMessage("Enter the instructor name to delete: ");
+            string instructorname = view.GetInput();
+            int gymID = storageManager.GetGymID(username, password);
+            int rowsAffected = storageManager.DeleteGymInstructor(instructorname, gymID);
+            if (rowsAffected == 0)
+            {
+                view.DisplayMessage("Invalid member, please log back in after closing this app and retry");
+            }
+            else
+            {
+                view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            }
+        }
 
 
         private static void RegisterMember()
