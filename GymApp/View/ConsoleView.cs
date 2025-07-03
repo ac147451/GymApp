@@ -96,7 +96,7 @@ namespace GymApp.View
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all Instructors");
             Console.WriteLine("2. Insert a new instructor");
-            Console.WriteLine("3. Delete an instructor by instructorname");
+            Console.WriteLine("3. Delete an instructor of your gym");
             Console.WriteLine("Select an option: ");
 
             return Console.ReadLine();

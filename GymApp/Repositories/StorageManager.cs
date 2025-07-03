@@ -807,6 +807,32 @@ namespace GymApp
             }
         }
 
+        public void ViewGymInstructors(int gymID)
+        {
+            string sqlstring = "Select Session.instructor.instructorname From Session.instructor Where gymID = @gymID";
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+
+                cmd.Parameters.AddWithValue("@gymID", gymID);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        string firstname = reader["instructorname"].ToString();
+                        Console.WriteLine();
+                        Console.WriteLine($"{firstname}");
+                        Console.WriteLine();
+
+
+                    }
+
+                }
+
+            }
+        }
+
         public int RegisterMember(Member membertemp)
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname,phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
