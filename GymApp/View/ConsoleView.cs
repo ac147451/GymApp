@@ -73,7 +73,6 @@ namespace GymApp.View
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View All Sessions");
             Console.WriteLine("2. Insert a new session");
-            Console.WriteLine("3. Delete a session by sessionID");
             Console.WriteLine("Select an option: ");
 
             return Console.ReadLine();

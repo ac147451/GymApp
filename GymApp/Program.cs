@@ -155,9 +155,7 @@ namespace GymApp
                         {
                             case "1":
                                 {
-
-                                    List<Sessionbooking> sessionbookings = storageManager.GetAllSessions();
-                                    view.DisplaySessions(sessionbookings);
+                                    ViewGymSessions();
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -175,7 +173,7 @@ namespace GymApp
 
                             case "2":
                                 {
-                                    InsertNewGym();
+                                    InsertNewGymSession();
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -191,30 +189,55 @@ namespace GymApp
                                 }
                                 break;
 
-
-                            case "3":
-                                {
-                                    DeleteGymByName();
-                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
-                                    close = char.Parse(Console.ReadLine().ToUpper());
-                                    Console.Clear();
-                                    if (close == 'N')
-                                    {
-                                        storageManager.CloseConnection();
-                                        Environment.Exit(0);
-                                    }
-                                    else
-                                    {
-                                        break;
-                                    }
-                                }
-                                break;
                         }
                         break;
                     }
 
                 case "2":
                     {
+                        char close;
+                        string choice1 = view.GymMembersMenu();
+
+                        switch (choice1)
+                        {
+                            case "1":
+                                {
+                                    ViewGymSessions();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                break;
+
+                            case "2":
+                                {
+                                    InsertNewGymSession();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                break;
+
+                        }
+                        break;
                         break;
                     }
                 case "3":
@@ -1678,12 +1701,12 @@ namespace GymApp
         private static int login()
         {
             int roleID;
-            
+
             do
             {
                 (string username, int password) = UsernamePassword();
                 roleID = storageManager.GetUserRole(username, password);
-                
+
                 if (roleID == 0)
                 {
                     Console.WriteLine("Invalid username or password. Please try again.");
@@ -1708,10 +1731,9 @@ namespace GymApp
                 }
 
             } while (memberID == 0);
-            //return (memberID);
            
         }
-
+        
         private static void ViewGymSessions()
         {
             int gymID;
@@ -1719,8 +1741,8 @@ namespace GymApp
             do
             {
                 (string username, int password) = UsernamePassword();
-                gymID = storageManager.GetMemberID(username, password);
-                storageManager.ViewAllSessions(gymID);
+                gymID = storageManager.GetGymID(username, password);
+                storageManager.ViewGymSessions(gymID);
 
                 if (gymID == 0)
                 {
@@ -1728,10 +1750,27 @@ namespace GymApp
                 }
 
             } while (gymID == 0);
-            //return (memberID);
 
         }
 
+        private static void InsertNewGymSession()
+        {
+            (string username, int password) = UsernamePassword();
+            view.DisplayMessage("Enter the instructor's ID: ");
+            int instructorID = view.GetIntInput();
+            view.DisplayMessage("Enter the classtype's ID: ");
+            int classtypeID = view.GetIntInput();
+            view.DisplayMessage("Enter the member's ID: ");
+            int memberID = view.GetIntInput();
+            view.DisplayMessage("Enter the sessiondate: Year - Month - Day Hour:Minute:Second.123");
+            DateTime sessiondate = view.GetDateTimeInput();
+            int gymID = storageManager.GetGymID(username, password);
+            int sessionID = 0;
+            Sessionbooking sessionbooking1 = new Sessionbooking(sessionID, instructorID, classtypeID, memberID, gymID, sessiondate);
+            int generatedID = storageManager.InsertGymSession(sessionbooking1);
+            view.DisplayMessage($"New session inserted with ID: {generatedID}");
+
+        }
 
         private static void RegisterMember()
         {
@@ -1853,4 +1892,14 @@ namespace GymApp
             } while (!valid);
 
         }
+*/
+/*
+private static (string username, int password, int roleID) login()
+{
+
+    (string username, int password) = UsernamePassword();
+    int roleID = getrole();
+
+    return (username, password, roleID);
+}
 */

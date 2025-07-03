@@ -662,6 +662,31 @@ namespace GymApp
             
         }
 
+        public int GetGymID(string username, int password)
+        {
+            var query = "SELECT gymID FROM Gym.gyms WHERE username = @username AND password = @password";
+
+            using (var command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["gymID"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+
+            }
+
+        }
+
         public void ViewMemberSessions(int memberID)
         {
 
@@ -694,6 +719,53 @@ namespace GymApp
 
             }
 
+        }
+
+        public void ViewGymSessions(int gymID)
+        {
+
+            string sqlstring = "Select Member.members.firstname, Member.members.lastname, Gym.gyms.gymname, Session.instructor.instructorname, Session.classtype.classtype, Session.classtype.classprice, Session.sessionbooking.sessiondate From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID And Gym.gyms.gymID = @gymID;";
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+
+                cmd.Parameters.AddWithValue("@gymID", gymID);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        string firstname = reader["firstname"].ToString();
+                        string lastname = reader["lastname"].ToString();
+                        string gymname = reader["gymname"].ToString();
+                        string instructorname = reader["instructorname"].ToString();
+                        string classtype = reader["classtype"].ToString();
+                        int classprice = Convert.ToInt32(reader["classprice"]);
+                        DateTime sessiondate = Convert.ToDateTime(reader["sessiondate"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{firstname}, {lastname}, {gymname}, {instructorname}, {classtype}, {classprice}, {sessiondate}");
+                        Console.WriteLine();
+
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        public int InsertGymSession(Sessionbooking sessionbookingtemp)
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.sessionbooking (instructorID, classtypeID, memberID, gymID, sessiondate) VALUES (@instructorID, @classtypeID, @memberID, @gymID, @sessiondate); SELECT SCOPE_IDENTITY();", conn))
+            {
+                cmd.Parameters.AddWithValue("@instructorID", sessionbookingtemp.Instructor_id);
+                cmd.Parameters.AddWithValue("@classtypeID", sessionbookingtemp.Classtype_id);
+                cmd.Parameters.AddWithValue("@memberID", sessionbookingtemp.Member_id);
+                cmd.Parameters.AddWithValue("@gymID", sessionbookingtemp.Gym_id);
+                cmd.Parameters.AddWithValue("@sessiondate", sessionbookingtemp.Sessiondate);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
         }
 
         public int RegisterMember(Member membertemp)
