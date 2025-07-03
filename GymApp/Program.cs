@@ -1776,20 +1776,20 @@ namespace GymApp
 
         private static void ViewGymMembers()
         {
-            int memberID;
+            int gymID;
 
             do
             {
                 (string username, int password) = UsernamePassword();
-                memberID = storageManager.GetMemberID(username, password);
-                storageManager.ViewMemberSessions(memberID);
+                gymID = storageManager.GetGymID(username, password);
+                storageManager.ViewGymMembers(gymID);
 
-                if (memberID == 0)
+                if (gymID == 0)
                 {
                     Console.WriteLine("Invalid username or password. Please try again.");
                 }
 
-            } while (memberID == 0);
+            } while (gymID == 0);
 
         }
 

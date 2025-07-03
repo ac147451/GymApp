@@ -771,7 +771,7 @@ namespace GymApp
 
         public void ViewGymMembers(int gymID)
         {
-            string sqlstring = "Select Member.members.firstname, Member.members.lastname From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID And Member.members.memberID = @memberID;";
+            string sqlstring = "Select Member.members.firstname, Member.members.lastname From Member.members Where gymID = @gymID";
             using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
             {
 
@@ -784,13 +784,8 @@ namespace GymApp
                     {
                         string firstname = reader["firstname"].ToString();
                         string lastname = reader["lastname"].ToString();
-                        string gymname = reader["gymname"].ToString();
-                        string instructorname = reader["instructorname"].ToString();
-                        string classtype = reader["classtype"].ToString();
-                        int classprice = Convert.ToInt32(reader["classprice"]);
-                        DateTime sessiondate = Convert.ToDateTime(reader["sessiondate"]);
                         Console.WriteLine();
-                        Console.WriteLine($"{firstname}, {lastname}, {gymname}, {instructorname}, {classtype}, {classprice}, {sessiondate}");
+                        Console.WriteLine($"{firstname}, {lastname}");
                         Console.WriteLine();
 
 
