@@ -1839,7 +1839,7 @@ namespace GymApp
             (string username, int password) = UsernamePassword();
             view.DisplayMessage("Enter the member's firstname: ");
             string firstname = view.GetInput();
-            view.DisplayMessage("Enter the member's lastnamename: ");
+            view.DisplayMessage("Enter the member's lastname: ");
             string lastname = view.GetInput();
             int gymID = storageManager.GetGymID(username, password);
             int rowsAffected = storageManager.DeleteGymMember(firstname, lastname, gymID);
