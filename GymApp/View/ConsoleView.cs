@@ -84,7 +84,7 @@ namespace GymApp.View
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all members");
             Console.WriteLine("2. Insert a new member");
-            Console.WriteLine("3. Delete a member by the name of the member");
+            Console.WriteLine("3. Delete a member of your gym");
             Console.WriteLine("Select an option: ");
 
             return Console.ReadLine();

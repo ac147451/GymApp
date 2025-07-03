@@ -189,6 +189,8 @@ namespace GymApp
                                 }
                                 break;
 
+                            
+
                         }
                         break;
                     }
@@ -220,7 +222,7 @@ namespace GymApp
 
                             case "2":
                                 {
-                                    InsertNewGymSession();
+                                    InsertNewGymMember();
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -236,9 +238,26 @@ namespace GymApp
                                 }
                                 break;
 
+                            case "3":
+                                {
+                                    DeleteGymMember();
+                                    view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
+                                    close = char.Parse(Console.ReadLine().ToUpper());
+                                    Console.Clear();
+                                    if (close == 'N')
+                                    {
+                                        storageManager.CloseConnection();
+                                        Environment.Exit(0);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                break;
                         }
                         break;
-                        break;
+                        
                     }
                 case "3":
                     {
@@ -1791,6 +1810,40 @@ namespace GymApp
 
             } while (gymID == 0);
 
+        }
+
+        private static void InsertNewGymMember()
+        {
+            view.DisplayMessage("Enter the new member's firstname: ");
+            string firstname = view.GetInput();
+            view.DisplayMessage("Enter the new member's lastname: ");
+            string lastname = view.GetInput();
+            view.DisplayMessage("Enter the new member's phonenumber: ");
+            Int64 phonenumber = view.GetInt64Input();
+            view.DisplayMessage("Enter the new member's emailaddress: ");
+            string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter the new member's username: ");
+            string username = view.GetInput();
+            view.DisplayMessage("Enter the new member's password pin: ");
+            int password = view.GetIntInput();
+            int memberID = 0;
+            int gymID = storageManager.GetGymID(username, password);
+            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, 1);
+            int generatedID = storageManager.InsertMember(member1);
+            view.DisplayMessage($"New member inserted with ID: {generatedID}");
+
+        }
+
+        private static void DeleteGymMember()
+        {
+            (string username, int password) = UsernamePassword();
+            view.DisplayMessage("Enter the member's firstname: ");
+            string firstname = view.GetInput();
+            view.DisplayMessage("Enter the member's lastnamename: ");
+            string lastname = view.GetInput();
+            int gymID = storageManager.GetGymID(username, password);
+            int rowsAffected = storageManager.DeleteGymMember(firstname, lastname, gymID);
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
         private static void RegisterMember()

@@ -796,6 +796,17 @@ namespace GymApp
             }
         }
 
+        public int DeleteGymMember(string firstname, string lastname, int gymID)
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Member.members WHERE firstname = @firstname AND lastname = @lastname And gymID = @gymID", conn))
+            {
+                cmd.Parameters.AddWithValue("@firstname", firstname);
+                cmd.Parameters.AddWithValue("@lastname", lastname);
+                cmd.Parameters.AddWithValue("@gymID", gymID);
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
         public int RegisterMember(Member membertemp)
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname,phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
