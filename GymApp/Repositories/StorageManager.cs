@@ -688,6 +688,31 @@ namespace GymApp
 
         }
 
+        public int GetInstructorID(string username, int password)
+        {
+            var query = "SELECT instructorID FROM Session.instructor WHERE username = @username AND password = @password";
+
+            using (var command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["instructorID"]);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+
+
+            }
+
+        }
+
         public void ViewMemberSessions(int memberID)
         {
 
@@ -841,6 +866,40 @@ namespace GymApp
                 cmd.Parameters.AddWithValue("@gymID", gymID);
                 return cmd.ExecuteNonQuery();
             }
+        }
+
+        public void ViewInstructorSessions(int instructorID)
+        {
+
+            string sqlstring = "Select Member.members.firstname, Member.members.lastname, Gym.gyms.gymname, Session.instructor.instructorname, Session.classtype.classtype, Session.classtype.classprice, Session.sessionbooking.sessiondate From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID And Session.instructor.instructorID = @instructorID;";
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+
+                cmd.Parameters.AddWithValue("@instructorID", instructorID);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        string firstname = reader["firstname"].ToString();
+                        string lastname = reader["lastname"].ToString();
+                        string gymname = reader["gymname"].ToString();
+                        string instructorname = reader["instructorname"].ToString();
+                        string classtype = reader["classtype"].ToString();
+                        int classprice = Convert.ToInt32(reader["classprice"]);
+                        DateTime sessiondate = Convert.ToDateTime(reader["sessiondate"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{firstname}, {lastname}, {gymname}, {instructorname}, {classtype}, {classprice}, {sessiondate}");
+                        Console.WriteLine();
+
+
+                    }
+
+                }
+
+            }
+
         }
 
         public int RegisterMember(Member membertemp)

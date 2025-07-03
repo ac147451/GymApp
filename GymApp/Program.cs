@@ -327,12 +327,25 @@ namespace GymApp
 
         static void InstructorMenu()
         {
+            char close;
             string choice2 = view.InstructorMenu();
             switch (choice2)
             {
                 case "1":
                     {
-
+                        ViewInstructorSessions();
+                        view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
+                        close = char.Parse(Console.ReadLine().ToUpper());
+                        Console.Clear();
+                        if (close == 'N')
+                        {
+                            storageManager.CloseConnection();
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            break;
+                        }
                         break;
                     }
 
@@ -1967,6 +1980,25 @@ namespace GymApp
             {
                 view.DisplayMessage($"Rows Affected: {rowsAffected}");
             }
+        }
+
+        private static void ViewInstructorSessions()
+        {
+            int instructorID;
+
+            do
+            {
+                (string username, int password) = UsernamePassword();
+                instructorID = storageManager.GetInstructorID(username, password);
+                storageManager.ViewInstructorSessions(instructorID);
+
+                if (instructorID == 0)
+                {
+                    Console.WriteLine("Invalid username or password. Please try again.");
+                }
+
+            } while (instructorID == 0);
+
         }
 
 
