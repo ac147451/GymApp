@@ -202,7 +202,7 @@ namespace GymApp
                         {
                             case "1":
                                 {
-                                    ViewGymSessions();
+                                    ViewGymMembers();
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1568,12 +1568,14 @@ namespace GymApp
             int phonenumber = view.GetIntInput();
             view.DisplayMessage("Enter the new member's emailaddress: ");
             string emailaddress = view.GetInput();
-            view.DisplayMessage("Enter the new member's username: ");
+            view.DisplayMessage("Enter the member's gym ID: ");
+            int gymID = view.GetIntInput();
+            view.DisplayMessage("Enter the new member's username: ");         
             string username = view.GetInput();
             view.DisplayMessage("Enter the new member's password pin: ");
             int password = view.GetIntInput();
             int memberID = 0;
-            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, 1);
+            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, 1);
             int generatedID = storageManager.InsertMember(member1);
             view.DisplayMessage($"New member inserted with ID: {generatedID}");
 
@@ -1772,6 +1774,25 @@ namespace GymApp
 
         }
 
+        private static void ViewGymMembers()
+        {
+            int memberID;
+
+            do
+            {
+                (string username, int password) = UsernamePassword();
+                memberID = storageManager.GetMemberID(username, password);
+                storageManager.ViewMemberSessions(memberID);
+
+                if (memberID == 0)
+                {
+                    Console.WriteLine("Invalid username or password. Please try again.");
+                }
+
+            } while (memberID == 0);
+
+        }
+
         private static void RegisterMember()
         {
             view.DisplayMessage("Enter your firstname: ");
@@ -1782,13 +1803,15 @@ namespace GymApp
             Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter your emailaddress: ");
             string emailaddress = view.GetInput();
+            view.DisplayMessage("Enter your gym's ID: ");
+            int gymID = view.GetIntInput();
             view.DisplayMessage("Enter your user name: ");
             string username = view.GetInput();
             view.DisplayMessage("Enter your pin (4-8 digits): ");
             int password = view.GetIntInput();
             int roleID = 1;
             int memberID = 0;
-            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID);
+            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, roleID);
             int generatedID = storageManager.RegisterMember(member1);
             view.DisplayMessage($"New member inserted with ID: {generatedID}");
         }
@@ -1836,7 +1859,8 @@ namespace GymApp
             int password = view.GetIntInput();
             int roleID = 3;
             int memberID = 0;
-            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID);
+            int gymID = 1;
+            Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, roleID);
             int generatedID = storageManager.RegisterAdmin(member1);
             view.DisplayMessage($"New admin inserted with ID: {generatedID}");
         }

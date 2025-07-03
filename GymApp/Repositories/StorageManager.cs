@@ -373,10 +373,11 @@ namespace GymApp
                         string lastname = reader["lastname"].ToString();
                         int phonenumber = Convert.ToInt32(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
+                        int gymID = Convert.ToInt32(reader["gymID"]);
                         string username = reader["username"].ToString();
                         int password = Convert.ToInt32(reader["password"]);
                         int roleID = Convert.ToInt32(reader["roleID"]);
-                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID));
+                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, roleID));
                     }
                 }
 
@@ -768,6 +769,38 @@ namespace GymApp
             }
         }
 
+        public void ViewGymMembers(int gymID)
+        {
+            string sqlstring = "Select Member.members.firstname, Member.members.lastname From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID And Member.members.memberID = @memberID;";
+            using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
+            {
+
+                cmd.Parameters.AddWithValue("@gymID", gymID);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        string firstname = reader["firstname"].ToString();
+                        string lastname = reader["lastname"].ToString();
+                        string gymname = reader["gymname"].ToString();
+                        string instructorname = reader["instructorname"].ToString();
+                        string classtype = reader["classtype"].ToString();
+                        int classprice = Convert.ToInt32(reader["classprice"]);
+                        DateTime sessiondate = Convert.ToDateTime(reader["sessiondate"]);
+                        Console.WriteLine();
+                        Console.WriteLine($"{firstname}, {lastname}, {gymname}, {instructorname}, {classtype}, {classprice}, {sessiondate}");
+                        Console.WriteLine();
+
+
+                    }
+
+                }
+
+            }
+        }
+
         public int RegisterMember(Member membertemp)
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname,phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
@@ -848,10 +881,11 @@ namespace GymApp
                         string lastname = reader["lastname"].ToString();
                         int phonenumber = Convert.ToInt32(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
+                        int gymID = Convert.ToInt32(reader["gymID"]);
                         string username = reader["username"].ToString();
                         int password = Convert.ToInt32(reader["password"]);
                         int roleID = Convert.ToInt32(reader["roleID"]);
-                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID));
+                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, roleID));
                     }
                 }
 
@@ -899,10 +933,11 @@ namespace GymApp
                         string lastname = reader["lastname"].ToString();
                         int phonenumber = Convert.ToInt32(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
+                        int gymID = Convert.ToInt32(reader["gymID"]);
                         string username = reader["username"].ToString();
                         int password = Convert.ToInt32(reader["password"]);
                         int roleID = Convert.ToInt32(reader["roleID"]);
-                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, username, password, roleID));
+                        members.Add(new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, roleID));
                     }
                 }
 

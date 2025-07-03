@@ -13,17 +13,19 @@ namespace GymApp.DBFile.Model
         public string Lastname { get; set; }
         public Int64 Phonenumber { get; set; }
         public string Emailaddress { get; set; }
+        public int Gym_id { get; set; }
         public string User_name { get; set; }
         public int Password { get; set; }
         public int Role_id { get; set; }
 
-        public Member(int member_id, string firstname, string lastname, Int64 phonenumber, string emailaddress, string username, int password, int role_id)
+        public Member(int member_id, string firstname, string lastname, Int64 phonenumber, string emailaddress, int gym_id, string username, int password, int role_id)
         {
             Member_id = member_id;
             Firstname = firstname;
             Lastname = lastname;
             Phonenumber = phonenumber;
             Emailaddress = emailaddress;
+            Gym_id = gym_id;
             User_name = username;
             Password = password;
             Role_id = role_id;

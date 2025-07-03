@@ -20,18 +20,7 @@ CREATE TABLE Role.roles (
 go
 
 
-CREATE TABLE Member.members (
-	memberID INT IDENTITY (1, +1) PRIMARY KEY,
-	firstname VARCHAR (255),
-	lastname VARCHAR (255),
-	phonenumber VARCHAR(15),
-	emailaddress VARCHAR (255),
-	username VARCHAR (255),
-	password VARCHAR (8),
-	roleID int,
-	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
-);
-go
+
 
 
 CREATE TABLE Location.country ( 
@@ -75,6 +64,21 @@ CREATE TABLE Gym.gyms (
 	FOREIGN KEY (suburbID) REFERENCES Location.suburb(suburbID),
 	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
 
+);
+go
+
+CREATE TABLE Member.members (
+	memberID INT IDENTITY (1, +1) PRIMARY KEY,
+	firstname VARCHAR (255),
+	lastname VARCHAR (255),
+	phonenumber VARCHAR(15),
+	emailaddress VARCHAR (255),
+	gymID int ,
+	username VARCHAR (255),
+	password VARCHAR (8),
+	roleID int,
+	FOREIGN KEY (gymID) REFERENCES Gym.gyms(gymID),
+	FOREIGN KEY (roleID) REFERENCES Role.roles(roleID),
 );
 go
 
