@@ -266,11 +266,11 @@ namespace GymApp
                         int instructorid = Convert.ToInt32(reader["instructorID"]);
                         string instructorname = reader["instructorname"].ToString();
                         int gymID = Convert.ToInt32(reader["gymID"]);
-                        int phonenumber = Convert.ToInt32(reader["phonenumber"]);
+                        Int64 phonenumber = Convert.ToInt64(reader["phonenumber"]);
                         string emailaddress = reader["emailaddress"].ToString();
                         string username = reader["username"].ToString();
                         int password = Convert.ToInt32(reader["password"]);
-                        int roleID = Convert.ToInt32(reader["role_id"]);
+                        int roleID = Convert.ToInt32(reader["roleID"]);
                         instructors.Add(new Instructor(instructorid, instructorname, gymID, phonenumber, emailaddress, username, password, roleID));
                     }
                 }
