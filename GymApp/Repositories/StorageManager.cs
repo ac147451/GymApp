@@ -307,7 +307,7 @@ namespace GymApp
                 return cmd.ExecuteNonQuery();
             }
         }
-
+       
         public List<ClassType> GetAllClasstypes()
         {
             List<ClassType> classtypes = new List<ClassType>();

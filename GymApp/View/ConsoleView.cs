@@ -216,7 +216,7 @@ namespace GymApp.View
             //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all members");
-            Console.WriteLine("2. Update a member's name by memberID");
+            Console.WriteLine("2. Update a member's first name by memberID");
             Console.WriteLine("3. Insert a new member");
             Console.WriteLine("4. Delete a member by the name of the member");
             Console.WriteLine("Select an option: ");
