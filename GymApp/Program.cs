@@ -1675,7 +1675,7 @@ namespace GymApp
         {
             view.DisplayMessage("Enter the member's firstname: ");
             string firstname = view.GetInput();
-            view.DisplayMessage("Enter the member's lastnamename: ");
+            view.DisplayMessage("Enter the member's lastname: ");
             string lastname = view.GetInput();
             int rowsAffected = storageManager.DeleteMemberByName(firstname, lastname);
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
