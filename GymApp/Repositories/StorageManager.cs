@@ -303,7 +303,7 @@ namespace GymApp
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.instructor WHERE instructorname = @instructorname", conn))
             {
-                cmd.Parameters.AddWithValue("@instructor", instructorname);
+                cmd.Parameters.AddWithValue("@instructorname", instructorname);
                 return cmd.ExecuteNonQuery();
             }
         }
