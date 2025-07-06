@@ -132,11 +132,6 @@ namespace GymApp
                         break;
                     }
 
-                case "2":
-                    {
-
-                        break;
-                    }
             }
             
         }
@@ -346,11 +341,6 @@ namespace GymApp
                         {
                             break;
                         }
-                        break;
-                    }
-
-                case "2":
-                    {
                         break;
                     }
             }
@@ -1950,7 +1940,7 @@ namespace GymApp
             view.DisplayMessage("Enter the new instructor name: ");
             string instructorname = view.GetInput();
             view.DisplayMessage("Enter the new instructor's phonenumber: ");
-            int phonenumber = view.GetIntInput();
+            Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter the new instructor's emailaddress: ");
             string emailaddress = view.GetInput();
             view.DisplayMessage("Enter the new instructor's username: ");

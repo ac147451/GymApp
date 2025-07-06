@@ -50,7 +50,6 @@ namespace GymApp.View
             Console.WriteLine("Welcome Member");
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View which sessions you are signed up for ");
-            Console.WriteLine("2. Book another session ");
             Console.WriteLine("Please choose what you want to do: ");
 
             return Console.ReadLine();
@@ -127,7 +126,6 @@ namespace GymApp.View
             Console.WriteLine("Welcome Instructor");
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View which sessions you are instructing ");
-            Console.WriteLine("2. Host another session ");
             Console.WriteLine("Please choose what you want to do: ");
 
             return Console.ReadLine();

@@ -292,9 +292,15 @@ namespace GymApp
 
         public int InsertInstructor(Instructor instructortemp)
         {
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.instructor (instructorname) VALUES (@instructorname); SELECT SCOPE_IDENTITY();", conn))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.instructor (instructorname, gymID, phonenumber, emailaddress, username, password, roleID) VALUES (@instructorname, @gymID, @phonenumber, @emailaddress, @username, @password, @4); SELECT SCOPE_IDENTITY();", conn))
             {
                 cmd.Parameters.AddWithValue("@instructorname", instructortemp.Instructor_name);
+                cmd.Parameters.AddWithValue("@gymID", instructortemp.Gym_id);
+                cmd.Parameters.AddWithValue("@phonenumber", instructortemp.Phonenumber);
+                cmd.Parameters.AddWithValue("@emailaddress", instructortemp.Emailaddress);
+                cmd.Parameters.AddWithValue("@username", instructortemp.User_name);
+                cmd.Parameters.AddWithValue("@password", instructortemp.Password);
+                cmd.Parameters.AddWithValue("@4", instructortemp.Role_id);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -862,7 +868,7 @@ namespace GymApp
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.instructor WHERE instructorname = @instructorname And gymID = @gymID", conn))
             {
-                cmd.Parameters.AddWithValue("@instructor", instructorname);
+                cmd.Parameters.AddWithValue("@instructorname", instructorname);
                 cmd.Parameters.AddWithValue("@gymID", gymID);
                 return cmd.ExecuteNonQuery();
             }
