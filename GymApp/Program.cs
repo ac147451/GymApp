@@ -1582,7 +1582,7 @@ namespace GymApp
             view.DisplayMessage("Enter the gym ID that the instructor is with: ");
             int gymID = view.GetIntInput();
             view.DisplayMessage("Enter the new instructor's phonenumber: ");
-            int phonenumber = view.GetIntInput();
+            Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter the new instructor's emailaddress: ");
             string emailaddress = view.GetInput();
             view.DisplayMessage("Enter the new instructor's username: ");
