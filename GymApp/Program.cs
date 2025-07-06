@@ -1655,7 +1655,7 @@ namespace GymApp
             view.DisplayMessage("Enter the new member's lastname: ");
             string lastname = view.GetInput();
             view.DisplayMessage("Enter the new member's phonenumber: ");
-            int phonenumber = view.GetIntInput();
+            Int64 phonenumber = view.GetInt64Input();
             view.DisplayMessage("Enter the new member's emailaddress: ");
             string emailaddress = view.GetInput();
             view.DisplayMessage("Enter the member's gym ID: ");
