@@ -462,7 +462,7 @@ namespace GymApp
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Role.roles WHERE rolename = @rolename", conn))
             {
-                cmd.Parameters.AddWithValue("@role", rolename);
+                cmd.Parameters.AddWithValue("@rolename", rolename);
                 return cmd.ExecuteNonQuery();
             }
         }

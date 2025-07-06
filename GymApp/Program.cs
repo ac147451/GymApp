@@ -974,6 +974,7 @@ namespace GymApp
                             case "1":
                                 {
                                     List<Role> roles = storageManager.GetAllRoles();
+                                    view.DisplayRoles(roles);
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
