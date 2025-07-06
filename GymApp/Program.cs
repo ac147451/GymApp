@@ -1876,6 +1876,7 @@ namespace GymApp
 
         private static void InsertNewGymMember()
         {
+            (string username1, int password1) = UsernamePassword();
             view.DisplayMessage("Enter the new member's firstname: ");
             string firstname = view.GetInput();
             view.DisplayMessage("Enter the new member's lastname: ");
@@ -1889,7 +1890,7 @@ namespace GymApp
             view.DisplayMessage("Enter the new member's password pin: ");
             int password = view.GetIntInput();
             int memberID = 0;
-            int gymID = storageManager.GetGymID(username, password);
+            int gymID = storageManager.GetGymID(username1, password1);
             Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, 1);
             int generatedID = storageManager.InsertMember(member1);
             view.DisplayMessage($"New member inserted with ID: {generatedID}");
@@ -1937,6 +1938,7 @@ namespace GymApp
 
         private static void InsertNewGymInstructor()
         {
+            (string username1, int password1) = UsernamePassword();
             view.DisplayMessage("Enter the new instructor name: ");
             string instructorname = view.GetInput();
             view.DisplayMessage("Enter the new instructor's phonenumber: ");
@@ -1948,7 +1950,7 @@ namespace GymApp
             view.DisplayMessage("Enter the new instructors's password pin: ");
             int password = view.GetIntInput();
             int roleID = 4;
-            int gymID = storageManager.GetGymID(username, password);
+            int gymID = storageManager.GetGymID(username1, password1);
             int instructorID = 0;
             Instructor instructor1 = new Instructor(instructorID, instructorname, gymID, phonenumber, emailaddress, username, password, roleID);
             int generatedID = storageManager.InsertInstructor(instructor1);
