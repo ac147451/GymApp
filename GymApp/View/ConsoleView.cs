@@ -265,21 +265,21 @@ namespace GymApp.View
         {
             //Console.Clear();
             Console.WriteLine("Menu: ");
-            Console.WriteLine("1. Simple1");
-            Console.WriteLine("2. Simple2");
-            Console.WriteLine("3. Simple3");
-            Console.WriteLine("4. Simple4");
-            Console.WriteLine("5. Simple5");
-            Console.WriteLine("6. Advanced1");
-            Console.WriteLine("7. Advanced2");
-            Console.WriteLine("8. Advanced3");
-            Console.WriteLine("9. Advanced4");
-            Console.WriteLine("10. Advanced5");
-            Console.WriteLine("11. Complex1");
-            Console.WriteLine("12. Complex2");
-            Console.WriteLine("13. Complex3");
-            Console.WriteLine("14. Complex4");
-            Console.WriteLine("15. Complex5");
+            Console.WriteLine("1. QryMemberNames");
+            Console.WriteLine("2. QryClassTypes");
+            Console.WriteLine("3. QryMemberContactDetails");
+            Console.WriteLine("4. QryGymLocations");
+            Console.WriteLine("5. QrySessionDetails");
+            Console.WriteLine("6. QryClassesUnder$31");
+            Console.WriteLine("7. QryInstructorsStartingWithTheLetter'A'");
+            Console.WriteLine("8. QryTop5MostExpensiveClasses");
+            Console.WriteLine("9. QryMembersWithGmailOrOutlook");
+            Console.WriteLine("10. QrySessionsAfter27April");
+            Console.WriteLine("11. QryInstructorsWithSessions");
+            Console.WriteLine("12. QryRevenuePerClassType");
+            Console.WriteLine("13. QryAmountOfSessionsUnder$30");
+            Console.WriteLine("14. QryGymRevenue");
+            Console.WriteLine("15. QryMemberSessionsBooked");
 
             return Console.ReadLine();
         }
