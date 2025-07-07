@@ -67,7 +67,7 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string GymSessionsMenu()
+        public string GymSessionsMenu() //Menu for Gyms to manage their sessions
         {
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View All Sessions");
@@ -77,9 +77,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string GymMembersMenu()
+        public string GymMembersMenu() // Menu for Gyms to manage their members
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all members");
             Console.WriteLine("2. Insert a new member");
@@ -89,9 +88,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string GymInstructorsMenu()
+        public string GymInstructorsMenu() //Menu for Gyms to manage their instructors
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all Instructors");
             Console.WriteLine("2. Insert a new instructor");
@@ -131,9 +129,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string GymTableMenu() //Menu for Gym table
+        public string GymTableMenu() //Menu for Admin to manage the Gym table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all records in Gym");
             Console.WriteLine("2. Update a gym's name by gymID");
@@ -144,9 +141,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string CountryMenu() //Menu for Country table
+        public string CountryMenu() //Menu for Admin to manage the Country table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all records in Country");
             Console.WriteLine("2. Update a countries name by countryID");
@@ -157,9 +153,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string CityMenu() //Menu for City table
+        public string CityMenu() //Menu for Admin to manage the City table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all records in City");
             Console.WriteLine("2. Update a cities name by cityID");
@@ -170,9 +165,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string SuburbMenu() //Menu for Suburb table
+        public string SuburbMenu() //Menu for Admin to manage the Suburb table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all records in Suburb");
             Console.WriteLine("2. Update a suburbs name by suburbID");
@@ -183,9 +177,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string InstructorTableMenu() //Menu for Instructor table
+        public string InstructorTableMenu() //Menu for Admin to manage the Instructor table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all records in Instructor");
             Console.WriteLine("2. Update an instructors name by instructorID");
@@ -196,9 +189,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string ClasstypeMenu() // Menu for Classtype table
+        public string ClasstypeMenu() //Menu for Admin to manage the Classtype table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all classtypes");
             Console.WriteLine("2. Update a classtype by classtypeID");
@@ -209,9 +201,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string MemberTableMenu() // Menu for Member table
+        public string MemberTableMenu() //Menu for Admin to manage the Member table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all members");
             Console.WriteLine("2. Update a member's first name by memberID");
@@ -222,9 +213,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string RoleMenu() // Menu for Role table
+        public string RoleMenu() //Menu for Admin to manage the Role table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all roles");
             Console.WriteLine("2. Update a role's name by roleID");
@@ -235,9 +225,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string SessionbookingMenu() //Menu for Sessionbooking table
+        public string SessionbookingMenu() //Menu for Admin to manage the Sessionbooking table
         {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. View all sessions");
             Console.WriteLine("2. Update a session's date by sessionID");
@@ -248,22 +237,8 @@ namespace GymApp.View
             return Console.ReadLine();
         }
 
-        public string UserMenu() //Menu for User table
+        public string QueryMenu() //Menu for Admin to manage the Queries
         {
-            //Console.Clear();
-            Console.WriteLine("Menu: ");
-            Console.WriteLine("1. View all users");
-            Console.WriteLine("2. Update a user's username by userID");
-            Console.WriteLine("3. Insert a new user");
-            Console.WriteLine("4. Delete a user by username");
-            Console.WriteLine("Select an option: ");
-
-            return Console.ReadLine();
-        }
-
-        public string QueryMenu() //Menu for Query table
-        {
-            //Console.Clear();
             Console.WriteLine("Menu: ");
             Console.WriteLine("1. QryMemberNames");
             Console.WriteLine("2. QryClassTypes");
@@ -283,7 +258,7 @@ namespace GymApp.View
 
             return Console.ReadLine();
         }
-        public void DisplayGyms(List<Gym> gyms)
+        public void DisplayGyms(List<Gym> gyms) //Used to Display Gyms
         {
             foreach (Gym gym in gyms)
             {
@@ -291,7 +266,7 @@ namespace GymApp.View
             }
         }
 
-        public void DisplayCountries(List<Country> countries)
+        public void DisplayCountries(List<Country> countries)//Used to Display Countries
         {
             foreach (Country country in countries)
             {
@@ -299,7 +274,7 @@ namespace GymApp.View
             }
         }
 
-        public void DisplayCities(List<City> cities)
+        public void DisplayCities(List<City> cities)//Used to Display Cities
         {
             foreach (City city in cities)
             {
@@ -307,7 +282,7 @@ namespace GymApp.View
             }
         }
 
-        public void DisplaySuburbs(List<Suburb> suburbs)
+        public void DisplaySuburbs(List<Suburb> suburbs)//Used to Display Suburbs
         {
             foreach (Suburb suburb in suburbs)
             {
@@ -315,7 +290,7 @@ namespace GymApp.View
             }
         }
 
-        public void DisplayInstructors(List<Instructor> instructors)
+        public void DisplayInstructors(List<Instructor> instructors)//Used to Display Instructors
         {
             foreach (Instructor instructor in instructors)
             {
@@ -323,7 +298,7 @@ namespace GymApp.View
             }
         }
 
-        public void DisplayClasstypes(List<ClassType> classtypes)
+        public void DisplayClasstypes(List<ClassType> classtypes)//Used to Display Classtypes
         {
             foreach (ClassType classtype in classtypes)
             {
@@ -331,7 +306,7 @@ namespace GymApp.View
             }
         }
 
-        public void DisplayMembers(List<Member> members)
+        public void DisplayMembers(List<Member> members)//Used to Display Members
         {
             foreach (Member member in members)
             {
@@ -339,7 +314,7 @@ namespace GymApp.View
             }
         }
 
-        public void Simple1QryMemberName(List<Member> members)
+        public void Simple1QryMemberName(List<Member> members)//Used to Display SimpleQry1
         {
             foreach (Member member in members)
             {
@@ -347,7 +322,7 @@ namespace GymApp.View
             }
         }
 
-        public void Simple2QryClassTypes(List<ClassType> classtypes)
+        public void Simple2QryClassTypes(List<ClassType> classtypes)//Used to Display SimpleQry2
         {
             foreach (ClassType classtype in classtypes)
             {
@@ -355,7 +330,7 @@ namespace GymApp.View
             }
         }
 
-        public void Simple3QryMemberContactDetails(List<Member> members)
+        public void Simple3QryMemberContactDetails(List<Member> members)//Used to Display SimpleQry3
         {
             foreach (Member member in members)
             {
@@ -363,7 +338,7 @@ namespace GymApp.View
             }
         }
 
-        public void DisplayRoles(List<Role> roles)
+        public void DisplayRoles(List<Role> roles)//Used to Display Roles
         {
             foreach (Role role in roles)
             {
@@ -371,7 +346,7 @@ namespace GymApp.View
             }
         }
 
-        public void DisplaySessions(List<Sessionbooking> sessionbookings)
+        public void DisplaySessions(List<Sessionbooking> sessionbookings)//Used to Display Sessions
         {
             foreach (Sessionbooking sessionbooking in sessionbookings)
             {
@@ -379,35 +354,27 @@ namespace GymApp.View
             }
         }
 
-        public void DisplayUsers(List<User> users)
-        {
-            foreach (User user in users)
-            {
-                Console.WriteLine($"{user.User_id}, {user.User_name}, {user.Role_id}");
-            }
-        }
-
-        public void DisplayMessage(string message)
+        public void DisplayMessage(string message)//Used to display messages
         {
             Console.WriteLine(message);
         }
 
-        public string GetInput()
+        public string GetInput()//Used to gather input
         {
             return Console.ReadLine();
         }
 
-        public int GetIntInput()
+        public int GetIntInput()//Used to gather int inputs
         {
             return int.Parse(Console.ReadLine());
         }
 
-        public Int64 GetInt64Input()
+        public Int64 GetInt64Input()//Used to gather phonenumbers
         {
             return Int64.Parse(Console.ReadLine());
         }
 
-        public DateTime GetDateTimeInput()
+        public DateTime GetDateTimeInput()//Used to gather datetime fields
         {
             return DateTime.Parse(Console.ReadLine());
         }

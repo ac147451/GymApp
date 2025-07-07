@@ -13,32 +13,31 @@ namespace GymApp
 {
     public class Program
     {
-        private static StorageManager storageManager;
-        private static ConsoleView view;
+        private static StorageManager storageManager;//declaring this vairable to connect to storagemanager.cs
+        private static ConsoleView view;//declaring this vairable to connect to storagemanager.cs
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\samka\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymDatabase.mdf\";Integrated Security=True;Connect Timeout=30";
-
-            storageManager = new StorageManager(connectionString);
-            view = new ConsoleView();
+            //connecting to my sql database
+            storageManager = new StorageManager(connectionString); //declaring this vairable to connect to storagemanager.cs
+            view = new ConsoleView(); //declaring this vairable to connect to storagemanager.cs
 
             while (true)
             {
 
-                string choice = view.MainMenu();
+                string choice = view.MainMenu(); //declaring the variable 'choice' to call the main menu from console view
 
-                switch (choice)
+                switch (choice)//Calling the main menu / login or register menu
                 {
                     case "1":
                         Console.Clear();
-                        int roleID = login();
+                        int roleID = login(); //Calling the login menu to gather the user's roleID
                         if (roleID == 1)
                         {
                         while (roleID == 1)
                         {
                                 Console.Clear();
-                                MemberMenu(); // Calling the Member Menu Method if their role is a member
+                                MemberMenu(); // Calling the Member Menu Method if their role is 1
                         }
                         }
                         else if (roleID == 2)
@@ -46,16 +45,16 @@ namespace GymApp
                         while (roleID == 2)
                         {
                                 Console.Clear();
-                                GymMenu();
-                        }
+                                GymMenu();// Calling the Gym Menu Method if their role is 2
+                            }
                         }
                         else if (roleID == 3)
                         {
                         while (roleID == 3)
                         {
                                 Console.Clear();
-                            AdminMenu();
-                        }
+                            AdminMenu();// Calling the Admin Menu Method if their role is 3
+                            }
 
                         }
                         else if (roleID == 4)
@@ -63,70 +62,70 @@ namespace GymApp
                         while (roleID == 4)
                         {
                                 Console.Clear();
-                                InstructorMenu();
-                        }
+                                InstructorMenu();// Calling the Instructor Menu Method if their role is 4
+                            }
                         }
                         else
                         {
-                            Console.WriteLine("Unknown role. Please try again");
+                            Console.WriteLine("Unknown role. Please try again"); //If their role if anything other than 1,2,3 or 4 it will loop back to the login method
                         }
                         break;
 
                     case "2": //Register Menu
                         {
                             Console.Clear();
-                            string choice1 = view.RegisterMenu();
-                            switch (choice1)
+                            string choice1 = view.RegisterMenu();//declaring the variable 'choice1' to call the register menu from console view
+                            switch (choice1)//Calling the register menu
                             {
                                 case "1":
                                     Console.Clear();
-                                    RegisterMember();
+                                    RegisterMember(); //Calling the register member method
                                     break;
 
                                 case "2":
                                     Console.Clear();
-                                    RegisterGym();
+                                    RegisterGym(); //Calling the register gym method
                                     break;
 
                                 case "3":
                                     Console.Clear();
-                                    RegisterAdmin();
+                                    RegisterAdmin();//Calling the register admin method
                                     break;
 
                                 case "4":
                                     Console.Clear();
-                                    RegisterInstructor();
+                                    RegisterInstructor();//Calling the register instructor method
                                     break;
                                 default:
-                                    Console.WriteLine("Invalid Registration choice");
+                                    Console.WriteLine("Invalid Registration choice"); //displays message if they picked anything else other than 1,2,3 or 4
                                     break;
                             }
                             Console.WriteLine();
                             Console.WriteLine("Registration complete. Please login now");
-                            Console.WriteLine("Press any Key to continue: ");
+                            Console.WriteLine("Press any Key to continue: "); //Loops back to the main menu to allow the user to login
                             Console.ReadKey();
                             Console.Clear();
                             break;
                         }
 
                     default:
-                        Console.WriteLine("Invalid option. Please try again.");
+                        Console.WriteLine("Invalid option. Please try again."); //message for invalid inputs
                         break;
                 }
 
             }
         }
 
-        static void MemberMenu()
+        static void MemberMenu() //Member menu method
         {
             char close;
-            string choice2 = view.MemberMenu();
-            switch (choice2)
+            string choice2 = view.MemberMenu(); 
+            switch (choice2)//Displaying member menu from console view
             {
                 case "1":
                     {
-                        ViewMemberSessions();
-                        view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
+                        ViewMemberSessions(); //Calling the viewmembersessions method
+                        view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program"); // Allowing the user to either go back to the main menu, or close the program *Is the same for all of the following
                         close = char.Parse(Console.ReadLine().ToUpper());
                         Console.Clear();
                         if (close == 'N')
@@ -145,21 +144,21 @@ namespace GymApp
             
         }
 
-        static void GymMenu()
+        static void GymMenu() //Gym menu method
         {
-            string choice2 = view.GymMenu();
-            switch (choice2)
+            string choice2 = view.GymMenu(); 
+            switch (choice2)//Displaying the gym menu from console view
             {
                 case "1":
                     {
                         char close;
                         string choice1 = view.GymSessionsMenu();
 
-                        switch (choice1)
+                        switch (choice1)//Displaying member menu from console view
                         {
                             case "1":
                                 {
-                                    ViewGymSessions();
+                                    ViewGymSessions(); //Calling the viewgymsessions method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -177,7 +176,7 @@ namespace GymApp
 
                             case "2":
                                 {
-                                    InsertNewGymSession();
+                                    InsertNewGymSession(); //Calling the insertnewgymsession method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -202,11 +201,11 @@ namespace GymApp
                         char close;
                         string choice1 = view.GymMembersMenu();
 
-                        switch (choice1)
+                        switch (choice1) //Displaying the gymmember menu from console view
                         {
                             case "1":
                                 {
-                                    ViewGymMembers();
+                                    ViewGymMembers(); //Calling the viewgym members method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -224,7 +223,7 @@ namespace GymApp
 
                             case "2":
                                 {
-                                    InsertNewGymMember();
+                                    InsertNewGymMember(); //Calling the insertnewgymmember method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -242,7 +241,7 @@ namespace GymApp
 
                             case "3":
                                 {
-                                    DeleteGymMember();
+                                    DeleteGymMember(); //Calling the deletegymmember method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -267,11 +266,11 @@ namespace GymApp
                         char close;
                         string choice1 = view.GymInstructorsMenu();
 
-                        switch (choice1)
+                        switch (choice1)//Displaying the gym instructor menu from console view
                         {
                             case "1":
                                 {
-                                    ViewGymInstructors();
+                                    ViewGymInstructors(); //Calling the viewgyminstructors method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -289,7 +288,7 @@ namespace GymApp
 
                             case "2":
                                 {
-                                    InsertNewGymInstructor();
+                                    InsertNewGymInstructor(); //Calling the insertnewgyminstructor method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -307,7 +306,7 @@ namespace GymApp
 
                             case "3":
                                 {
-                                    DeleteGymInstructor();
+                                    DeleteGymInstructor(); //Calling the deletegyminstructor method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -329,15 +328,15 @@ namespace GymApp
 
         }
 
-        static void InstructorMenu()
+        static void InstructorMenu() //Instructor menu method
         {
             char close;
             string choice2 = view.InstructorMenu();
-            switch (choice2)
+            switch (choice2) //Displaying the instructors menu
             {
                 case "1":
                     {
-                        ViewInstructorSessions();
+                        ViewInstructorSessions(); //Calling the viewinstructor sessions method
                         view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                         close = char.Parse(Console.ReadLine().ToUpper());
                         Console.Clear();
@@ -356,10 +355,10 @@ namespace GymApp
 
         }
 
-        static void AdminMenu()
+        static void AdminMenu() //Admin menu method
         {
             string choice2 = view.DisplayAdminMenu();
-            switch (choice2)
+            switch (choice2) //Displaying the admin menu 
             {
                 case "1": //Gym Table
                     {
@@ -367,13 +366,13 @@ namespace GymApp
                         char close;
                         string choice1 = view.GymTableMenu();
 
-                        switch (choice1)
+                        switch (choice1) //Displaying the gymtablemenu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<Gym> gyms = storageManager.GetAllGyms();
-                                    view.DisplayGyms(gyms);
+                                    List<Gym> gyms = storageManager.GetAllGyms(); //Calling the GetAllGyms from storage manager
+                                    view.DisplayGyms(gyms); //Calling the DisplayGyms from console view and returning gyms
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -392,7 +391,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateGymName();
+                                    UpdateGymName(); //Calling thw UpdateGymName method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -412,7 +411,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewGym();
+                                    InsertNewGym();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -431,7 +430,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteGymByName();
+                                    DeleteGymByName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -457,13 +456,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.CountryMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the country menu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<Country> countries = storageManager.GetAllCountries();
-                                    view.DisplayCountries(countries);
+                                    List<Country> countries = storageManager.GetAllCountries();//Calling the GetAllCountries from storage manager
+                                    view.DisplayCountries(countries);//Calling the Displaycountries from console view and returning countries
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -482,7 +481,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateCountryName();
+                                    UpdateCountryName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -502,7 +501,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewCountry();
+                                    InsertNewCountry();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -522,7 +521,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteCountryByName();
+                                    DeleteCountryByName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -548,13 +547,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.CityMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the city menu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<City> cities = storageManager.GetAllCities();
-                                    view.DisplayCities(cities);
+                                    List<City> cities = storageManager.GetAllCities();//Calling the GetAllCities from storage manager
+                                    view.DisplayCities(cities);//Calling the DisplayCities from console view and returning cities
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -573,7 +572,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateCityName();
+                                    UpdateCityName(); //Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -593,7 +592,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewCity();
+                                    InsertNewCity();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -613,7 +612,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteCityByName();
+                                    DeleteCityByName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -639,13 +638,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.SuburbMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the suburb menu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<Suburb> suburbs = storageManager.GetAllSuburbs();
-                                    view.DisplaySuburbs(suburbs);
+                                    List<Suburb> suburbs = storageManager.GetAllSuburbs();//Calling the GetAllSuburbs from storage manager
+                                    view.DisplaySuburbs(suburbs);//Calling the DisplaySuburbs from console view and returning that value 'suburbs'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -664,7 +663,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateSuburbName();
+                                    UpdateSuburbName(); //Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -684,7 +683,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewSuburb();
+                                    InsertNewSuburb();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -704,7 +703,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteSuburbByName();
+                                    DeleteSuburbByName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -730,13 +729,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.InstructorTableMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the instructor menu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<Instructor> instructors = storageManager.GetAllInstructors();
-                                    view.DisplayInstructors(instructors);
+                                    List<Instructor> instructors = storageManager.GetAllInstructors();//Calling the GetAllInstructors from storage manager
+                                    view.DisplayInstructors(instructors);//Calling the DisplayInstructors from console view and returning that value 'instructors'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -755,7 +754,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateInstructorName();
+                                    UpdateInstructorName(); //Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -775,7 +774,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewInstructor();
+                                    InsertNewInstructor();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -795,7 +794,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteInstructorByName();
+                                    DeleteInstructorByName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -821,13 +820,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.ClasstypeMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the classtype menu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<ClassType> classtypes = storageManager.GetAllClasstypes();
-                                    view.DisplayClasstypes(classtypes);
+                                    List<ClassType> classtypes = storageManager.GetAllClasstypes();//Calling the GetAllClasstypes from storage manager
+                                    view.DisplayClasstypes(classtypes);//Calling the DisplayClasstypes from console view and returning that value 'classtypes'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -846,7 +845,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateClasstypeName();
+                                    UpdateClasstypeName(); //Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -866,7 +865,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewClasstype();
+                                    InsertNewClasstype();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -886,7 +885,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteClasstype();
+                                    DeleteClasstype();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -912,13 +911,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.MemberTableMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the member menu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<Member> members = storageManager.GetAllMembers();
-                                    view.DisplayMembers(members);
+                                    List<Member> members = storageManager.GetAllMembers();//Calling the GetAllMembers from storage manager
+                                    view.DisplayMembers(members);//Calling the DisplayMembers from console view and returning that value 'members'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -937,7 +936,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateMemberFirstName();
+                                    UpdateMemberFirstName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -957,7 +956,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewMember();
+                                    InsertNewMember();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -977,7 +976,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteMemberByName();
+                                    DeleteMemberByName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1003,13 +1002,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.RoleMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the  rolemenu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<Role> roles = storageManager.GetAllRoles();
-                                    view.DisplayRoles(roles);
+                                    List<Role> roles = storageManager.GetAllRoles();//Calling the GetAllRoles from storage manager
+                                    view.DisplayRoles(roles);//Calling the DisplayRoles from console view and returning that value 'roles'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1028,7 +1027,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateRoleName();
+                                    UpdateRoleName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1048,7 +1047,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewRole();
+                                    InsertNewRole();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1068,7 +1067,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteRoleByName();
+                                    DeleteRoleByName();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1094,13 +1093,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.SessionbookingMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the sessionbooking menu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<Sessionbooking> sessionbookings = storageManager.GetAllSessions();
-                                    view.DisplaySessions(sessionbookings);
+                                    List<Sessionbooking> sessionbookings = storageManager.GetAllSessions();//Calling the GetAllSessions from storage manager
+                                    view.DisplaySessions(sessionbookings);//Calling the DisplaySessions from console view and returning that value 'sessionbookings'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1119,7 +1118,7 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    UpdateSessionDate();
+                                    UpdateSessionDate(); //Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1139,7 +1138,7 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    InsertNewSession();
+                                    InsertNewSession();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1159,7 +1158,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    DeleteSessionByID();
+                                    DeleteSessionByID();//Calling this method
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1186,13 +1185,13 @@ namespace GymApp
                         Console.Clear();
                         char close;
                         string choice1 = view.QueryMenu();
-                        switch (choice1)
+                        switch (choice1)//Displaying the query menu method
                         {
                             case "1":
                                 {
                                     Console.Clear();
-                                    List<Member> members = storageManager.Simple1QryMemberName();
-                                    view.Simple1QryMemberName(members);
+                                    List<Member> members = storageManager.Simple1QryMemberName();//Calling Simple1QryMemberName from storage manager
+                                    view.Simple1QryMemberName(members);//Calling the SimpleQryMemberName method from console view and returning that value 'members'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1211,8 +1210,8 @@ namespace GymApp
                             case "2":
                                 {
                                     Console.Clear();
-                                    List<ClassType> classtypes = storageManager.Simple2QryClassTypes();
-                                    view.Simple2QryClassTypes(classtypes);
+                                    List<ClassType> classtypes = storageManager.Simple2QryClassTypes();//Calling Simple2QryClasstypes from storage manager
+                                    view.Simple2QryClassTypes(classtypes);//Calling the Simple2QryClassTypes method from console view and returning that value 'classtypes'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1231,8 +1230,8 @@ namespace GymApp
                             case "3":
                                 {
                                     Console.Clear();
-                                    List<Member> members = storageManager.Simple3QryMemberContactDetails();
-                                    view.Simple3QryMemberContactDetails(members);
+                                    List<Member> members = storageManager.Simple3QryMemberContactDetails();//Calling Simple3QryMemberContactDetails from storage manager
+                                    view.Simple3QryMemberContactDetails(members);//Calling the Simple3QryMemberContactDetails method from console view and returning that value 'members'
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1251,7 +1250,7 @@ namespace GymApp
                             case "4":
                                 {
                                     Console.Clear();
-                                    storageManager.Simple4QryGymLocation();
+                                    storageManager.Simple4QryGymLocation(); //Calling simple qry 4 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1270,7 +1269,7 @@ namespace GymApp
                             case "5":
                                 {
                                     Console.Clear();
-                                    storageManager.Simple5QrySessionDetails();
+                                    storageManager.Simple5QrySessionDetails();//Calling simple qry 5 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1289,7 +1288,7 @@ namespace GymApp
                             case "6":
                                 {
                                     Console.Clear();
-                                    storageManager.Advanced1QryClassesUnder31();
+                                    storageManager.Advanced1QryClassesUnder31();//Calling advanced qry 1 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1308,7 +1307,7 @@ namespace GymApp
                             case "7":
                                 {
                                     Console.Clear();
-                                    storageManager.Advanced2QryInstructorsStartingWithA();
+                                    storageManager.Advanced2QryInstructorsStartingWithA();//Calling advanced qry 2 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1327,7 +1326,7 @@ namespace GymApp
                             case "8":
                                 {
                                     Console.Clear();
-                                    storageManager.Advanced3QryTop5MostExpensiveClasses();
+                                    storageManager.Advanced3QryTop5MostExpensiveClasses();//Calling advanced qry 3 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1346,7 +1345,7 @@ namespace GymApp
                             case "9":
                                 {
                                     Console.Clear();
-                                    storageManager.Advanced4QryMembersWithGmailOrOutlook();
+                                    storageManager.Advanced4QryMembersWithGmailOrOutlook();//Calling advanced qry 4 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1365,7 +1364,7 @@ namespace GymApp
                             case "10":
                                 {
                                     Console.Clear();
-                                    storageManager.Advanced5QrySessionsAfter27April();
+                                    storageManager.Advanced5QrySessionsAfter27April();//Calling advanced qry 5 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1384,7 +1383,7 @@ namespace GymApp
                             case "11":
                                 {
                                     Console.Clear();
-                                    storageManager.Complex1QryInstructorsWithSessions();
+                                    storageManager.Complex1QryInstructorsWithSessions();//Calling complex qry 1 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1403,7 +1402,7 @@ namespace GymApp
                             case "12":
                                 {
                                     Console.Clear();
-                                    storageManager.Complex2QryRevenuePerClassType();
+                                    storageManager.Complex2QryRevenuePerClassType();//Calling complex qry 2 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1422,7 +1421,7 @@ namespace GymApp
                             case "13":
                                 {
                                     Console.Clear();
-                                    storageManager.Complex3QrySessionsUnder30();
+                                    storageManager.Complex3QrySessionsUnder30();//Calling complex qry 3 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1441,7 +1440,7 @@ namespace GymApp
                             case "14":
                                 {
                                     Console.Clear();
-                                    storageManager.Complex4QryGymRevenue();
+                                    storageManager.Complex4QryGymRevenue();//Calling complex qry 4 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1460,7 +1459,7 @@ namespace GymApp
                             case "15":
                                 {
                                     Console.Clear();
-                                    storageManager.Complex5QryMemberSessionBooked();
+                                    storageManager.Complex5QryMemberSessionBooked();//Calling complex qry 5 from storage manager
                                     view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program");
                                     close = char.Parse(Console.ReadLine().ToUpper());
                                     Console.Clear();
@@ -1482,7 +1481,7 @@ namespace GymApp
                     }
 
                 default:
-                    Console.WriteLine("Invalid option. Please try again.");
+                    Console.WriteLine("Invalid option. Please try again."); //Message for if the user inputs something other than what is expected
                     break;
             }
         }
@@ -2128,39 +2127,3 @@ namespace GymApp
 
     }
 }
-
-
-
-
-
-
-/*
-   case "5":
-                    exit = true;
-                    break;
-*/
-
-/*
-        private static void login()
-        {
-            bool valid = false;
-            do
-            {
-                (string username, int password) = view.LoginMenu();
-                valid = storageManager.IsUserValid(username, password);
-                
-
-            } while (!valid);
-
-        }
-*/
-/*
-private static (string username, int password, int roleID) login()
-{
-
-    (string username, int password) = UsernamePassword();
-    int roleID = getrole();
-
-    return (username, password, roleID);
-}
-*/

@@ -17,22 +17,22 @@ namespace GymApp
     {
         private SqlConnection conn;
 
-        public StorageManager(string connectionString)
+        public StorageManager(string connectionString) //try catch to test the sql connection to my database
         {
-            try
+            try//If the connection was successful
             {
                 conn = new SqlConnection(connectionString);
                 conn.Open();
                 Console.WriteLine("Connection successful");
 
             }
-            catch (SqlException e)
+            catch (SqlException e)//If the connection was not successful
             {
                 Console.WriteLine("Connection NOT successful\n");
                 Console.WriteLine(e.Message);
 
             }
-            catch (Exception ex)
+            catch (Exception ex)//If any other error occured
             {
                 Console.WriteLine("An error occured\n");
                 Console.WriteLine(ex.Message);
@@ -42,7 +42,7 @@ namespace GymApp
 
         
 
-        public List<Gym> GetAllGyms()
+        public List<Gym> GetAllGyms() //Used to gather all gym records from my sql database
         {
             List<Gym> gyms = new List<Gym>();
             string sqlString = "SELECT * FROM Gym.gyms";
@@ -74,7 +74,7 @@ namespace GymApp
 
         }
 
-        public int UpdateGymName(int gymID, string gymname)
+        public int UpdateGymName(int gymID, string gymname) //Used to update the gymname field from gym records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Gym.gyms SET gymname = @gymname WHERE gymID = @gymID", conn))
             {
@@ -84,7 +84,7 @@ namespace GymApp
             }
         }
 
-        public int InsertGym(Gym gymtemp)
+        public int InsertGym(Gym gymtemp) //Used to insert new gyms into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, streetaddress, countryID, cityID, suburbID) VALUES (@gymname, @streetaddress, @countryID, @cityID, @suburbID); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -97,7 +97,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteGymByName(string gymname)
+        public int DeleteGymByName(string gymname) //Used to delete gyms from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Gym.gyms WHERE gymname = @gymname", conn))
             {
@@ -106,7 +106,7 @@ namespace GymApp
             }
         }
 
-        public List<Country> GetAllCountries()
+        public List<Country> GetAllCountries()//Used to gather all country records from my sql database
         {
             List<Country> countries = new List<Country>();
             string sqlString = "SELECT * FROM Location.country";
@@ -127,7 +127,7 @@ namespace GymApp
 
         }
 
-        public int UpdateCountryName(int countryID, string countryname)
+        public int UpdateCountryName(int countryID, string countryname)//Used to update the countryname field from country records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Location.country SET countryname = @countryname WHERE countryID = @countryID", conn))
             {
@@ -137,7 +137,7 @@ namespace GymApp
             }
         }
 
-        public int InsertCountry(Country countrytemp)
+        public int InsertCountry(Country countrytemp)//Used to insert new countries into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Location.country (countryname) VALUES (@countryname); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -146,7 +146,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteCountryByName(string countryname)
+        public int DeleteCountryByName(string countryname)//Used to delete countries from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.country WHERE countryname = @countryname", conn))
             {
@@ -155,7 +155,7 @@ namespace GymApp
             }
         }
 
-        public List<City> GetAllCities()
+        public List<City> GetAllCities()//Used to gather all city records from my sql database
         {
             List<City> cities = new List<City>();
             string sqlString = "SELECT * FROM Location.city";
@@ -176,7 +176,7 @@ namespace GymApp
 
         }
 
-        public int UpdateCityName(int cityID, string cityname)
+        public int UpdateCityName(int cityID, string cityname)//Used to update the cityname field from city records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Location.city SET cityname = @cityname WHERE cityID = @cityID", conn))
             {
@@ -186,7 +186,7 @@ namespace GymApp
             }
         }
 
-        public int InsertCity(City citytemp)
+        public int InsertCity(City citytemp)//Used to insert new cities into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Location.city (cityname) VALUES (@cityname); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -195,7 +195,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteCityByName(string cityname)
+        public int DeleteCityByName(string cityname)//Used to delete cities from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.city WHERE cityname = @cityname", conn))
             {
@@ -204,7 +204,7 @@ namespace GymApp
             }
         }
 
-        public List<Suburb> GetAllSuburbs()
+        public List<Suburb> GetAllSuburbs()//Used to gather all suburb records from my sql database
         {
             List<Suburb> suburbs = new List<Suburb>();
             string sqlString = "SELECT * FROM Location.suburb";
@@ -225,7 +225,7 @@ namespace GymApp
 
         }
 
-        public int UpdateSuburbName(int suburbID, string suburbname)
+        public int UpdateSuburbName(int suburbID, string suburbname)//Used to update the suburbname field from suburb records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Location.suburb SET suburbname = @suburbname WHERE suburbID = @suburbID", conn))
             {
@@ -235,7 +235,7 @@ namespace GymApp
             }
         }
 
-        public int InsertSuburb(Suburb suburbtemp)
+        public int InsertSuburb(Suburb suburbtemp)//Used to insert new suburbs into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Location.suburb (suburbname) VALUES (@suburbname); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -244,7 +244,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteSuburbByName(string suburbname)
+        public int DeleteSuburbByName(string suburbname)//Used to delete suburb records from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.suburb WHERE suburbname = @suburbname", conn))
             {
@@ -253,7 +253,7 @@ namespace GymApp
             }
         }
 
-        public List<Instructor> GetAllInstructors()
+        public List<Instructor> GetAllInstructors()//Used to gather all instructor records from my sql database
         {
             List<Instructor> instructors = new List<Instructor>();
             string sqlString = "SELECT * FROM Session.instructor";
@@ -280,7 +280,7 @@ namespace GymApp
 
         }
 
-        public int UpdateInstructorName(int instructorID, string instructorname)
+        public int UpdateInstructorName(int instructorID, string instructorname)//Used to update the instructorname field from instructor records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Session.instructor SET instructorname = @instructorname WHERE instructorID = @instructorID", conn))
             {
@@ -290,7 +290,7 @@ namespace GymApp
             }
         }
 
-        public int InsertInstructor(Instructor instructortemp)
+        public int InsertInstructor(Instructor instructortemp)//Used to insert new instructors into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.instructor (instructorname, gymID, phonenumber, emailaddress, username, password, roleID) VALUES (@instructorname, @gymID, @phonenumber, @emailaddress, @username, @password, @4); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -305,7 +305,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteInstructorByName(string instructorname)
+        public int DeleteInstructorByName(string instructorname)//Used to delete instructor records from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.instructor WHERE instructorname = @instructorname", conn))
             {
@@ -314,7 +314,7 @@ namespace GymApp
             }
         }
        
-        public List<ClassType> GetAllClasstypes()
+        public List<ClassType> GetAllClasstypes()//Used to gather all classtype records from my sql database
         {
             List<ClassType> classtypes = new List<ClassType>();
             string sqlString = "SELECT * FROM Session.classtype";
@@ -336,7 +336,7 @@ namespace GymApp
 
         }
 
-        public int UpdateClasstypeName(int classtypeID, string classtype)
+        public int UpdateClasstypeName(int classtypeID, string classtype)//Used to update the classtypename field from classtype records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Session.classtype SET classtype = @classtype WHERE classtypeID = @classtypeID", conn))
             {
@@ -346,7 +346,7 @@ namespace GymApp
             }
         }
 
-        public int InsertClasstype(ClassType classtypetemp)
+        public int InsertClasstype(ClassType classtypetemp)//Used to insert new classtypes into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.classtype (classtype) VALUES (@classtype); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -355,7 +355,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteClasstype(string classtype)
+        public int DeleteClasstype(string classtype)//Used to delete classtype records from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.classtype WHERE classtype = @classtype", conn))
             {
@@ -364,7 +364,7 @@ namespace GymApp
             }
         }
 
-        public List<Member> GetAllMembers()
+        public List<Member> GetAllMembers()//Used to gather all member records from my sql database
         {
             List<Member> members = new List<Member>();
             string sqlString = "SELECT * FROM Member.members";
@@ -392,7 +392,7 @@ namespace GymApp
 
         }
 
-        public int UpdateMemberFirstName(int memberID, string firstname)
+        public int UpdateMemberFirstName(int memberID, string firstname)//Used to update the firstname field from member records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Member.members SET firstname = @firstname WHERE memberID = @memberID", conn))
             {
@@ -402,7 +402,7 @@ namespace GymApp
             }
         }
 
-        public int InsertMember(Member membertemp)
+        public int InsertMember(Member membertemp)//Used to insert new members into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname, phonenumber, emailaddress, gymID, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @gymID, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -418,7 +418,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteMemberByName(string firstname, string lastname)
+        public int DeleteMemberByName(string firstname, string lastname)//Used to delete member records from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Member.members WHERE firstname = @firstname AND lastname = @lastname", conn))
             {
@@ -428,7 +428,7 @@ namespace GymApp
             }
         }
 
-        public List<Role> GetAllRoles()
+        public List<Role> GetAllRoles()//Used to gather all role records from my sql database
         {
             List<Role> roles = new List<Role>();
             string sqlString = "SELECT * FROM Role.roles";
@@ -449,7 +449,7 @@ namespace GymApp
 
         }
 
-        public int UpdateRoleName(int roleID, string rolename)
+        public int UpdateRoleName(int roleID, string rolename)//Used to update the rolename field from role records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Role.roles SET rolename = @rolesname WHERE roleID = @roleID", conn))
             {
@@ -459,7 +459,7 @@ namespace GymApp
             }
         }
 
-        public int InsertRole(Role roletemp)
+        public int InsertRole(Role roletemp)//Used to insert new roles into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Role.roles (rolename) VALUES (@rolename); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -468,7 +468,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteRoleByName(string rolename)
+        public int DeleteRoleByName(string rolename)//Used to delete role records from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Role.roles WHERE rolename = @rolename", conn))
             {
@@ -477,7 +477,7 @@ namespace GymApp
             }
         }
 
-        public List<Sessionbooking> GetAllSessions()
+        public List<Sessionbooking> GetAllSessions()//Used to gather all session records from my sql database
         {
             List<Sessionbooking> sessionbookings = new List<Sessionbooking>();
             string sqlString = "SELECT * FROM Session.sessionbooking";
@@ -504,7 +504,7 @@ namespace GymApp
 
         }
 
-        public int UpdateSessionDate(int sessionID, DateTime sessiondate)
+        public int UpdateSessionDate(int sessionID, DateTime sessiondate)//Used to update the sessiondate field from session records
         {
             using (SqlCommand cmd = new SqlCommand($"UPDATE Session.sessionbooking SET sessiondate = @sessiondate WHERE sessionID = @sessionID", conn))
             {
@@ -514,7 +514,7 @@ namespace GymApp
             }
         }
 
-        public int InsertSession(Sessionbooking sessionbookingtemp)
+        public int InsertSession(Sessionbooking sessionbookingtemp)//Used to insert new sessions into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.sessionbooking (instructorID, classtypeID, memberID, gymID, sessiondate) VALUES (@instructorID, @classtypeID, @memberID, @gymID, @sessiondate); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -527,7 +527,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteSessionByID(int sessionID)
+        public int DeleteSessionByID(int sessionID)//Used to delete session records from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.sessionbooking WHERE sessionID = @sessionID", conn))
             {
@@ -536,61 +536,9 @@ namespace GymApp
             }
         }
 
-        public List<User> GetAllUsers()
-        {
-            List<User> users = new List<User>();
-            string sqlString = "SELECT * FROM Login.users";
-            using (SqlCommand cmd = new SqlCommand(sqlString, conn))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
+        
 
-                        int userid = Convert.ToInt32(reader["userID"]);
-                        string username = reader["username"].ToString();
-                        int password = Convert.ToInt32(reader["password"]);
-                        int roleid = Convert.ToInt32(reader["roleID"]);
-                        users.Add(new User(userid, username, password, roleid));
-                    }
-                }
-
-            }
-            return users;
-
-        }
-
-        public int UpdateUserName(int userID, string username)
-        {
-            using (SqlCommand cmd = new SqlCommand($"UPDATE Login.users SET username = @username WHERE userID = @userID", conn))
-            {
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@userID", userID);
-                return cmd.ExecuteNonQuery();
-            }
-        }
-
-        public int InsertUser(User usertemp)
-        {
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Login.users (username, password, roleID) VALUES (@username, @password, @roleID); SELECT SCOPE_IDENTITY();", conn))
-            {
-                cmd.Parameters.AddWithValue("@username", usertemp.User_name);
-                cmd.Parameters.AddWithValue("@password", usertemp.Password);
-                cmd.Parameters.AddWithValue("@roleID", usertemp.Role_id);
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-
-        public int DeleteUserByName(string username)
-        {
-            using (SqlCommand cmd = new SqlCommand("DELETE FROM Login.users WHERE username = @username", conn))
-            {
-                cmd.Parameters.AddWithValue("@username", username);
-                return cmd.ExecuteNonQuery();
-            }
-        }
-
-        public bool IsUserValid(string username, int password)
+        public bool IsUserValid(string username, int password) // Used to check if what the user inputted was a valid username and password
         {
             var query = "SELECT * FROM Member.members WHERE username = @username AND password = @password";
             var command = new SqlCommand(query, conn);
@@ -624,7 +572,7 @@ namespace GymApp
 
         }
 
-        public int GetUserRole(string username, int password)
+        public int GetUserRole(string username, int password) //This is used to get the role from the inputted username and password from the user
         {
             var query = "SELECT roleID FROM Member.members WHERE username = @username AND password = @password UNION " +
                 "SELECT roleID FROM Gym.gyms WHERE username = @username AND password = @password UNION " +
@@ -648,7 +596,7 @@ namespace GymApp
             }
         }
 
-        public int GetMemberID(string username, int password)
+        public int GetMemberID(string username, int password)//This is used to get the ID from the member
         {
             var query = "SELECT memberID FROM Member.members WHERE username = @username AND password = @password";
 
@@ -673,7 +621,7 @@ namespace GymApp
             
         }
 
-        public int GetGymID(string username, int password)
+        public int GetGymID(string username, int password)//Used to get the ID from the gym
         {
             var query = "SELECT gymID FROM Gym.gyms WHERE username = @username AND password = @password";
 
@@ -698,7 +646,7 @@ namespace GymApp
 
         }
 
-        public int GetInstructorID(string username, int password)
+        public int GetInstructorID(string username, int password)//Used to get the ID from the instructor
         {
             var query = "SELECT instructorID FROM Session.instructor WHERE username = @username AND password = @password";
 
@@ -723,7 +671,7 @@ namespace GymApp
 
         }
 
-        public void ViewMemberSessions(int memberID)
+        public void ViewMemberSessions(int memberID) //Used to view all sessions that the member is signed up for from my database
         {
 
             string sqlstring = "Select Member.members.firstname, Member.members.lastname, Gym.gyms.gymname, Session.instructor.instructorname, Session.classtype.classtype, Session.classtype.classprice, Session.sessionbooking.sessiondate From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID And Member.members.memberID = @memberID;";
@@ -757,7 +705,7 @@ namespace GymApp
 
         }
 
-        public void ViewGymSessions(int gymID)
+        public void ViewGymSessions(int gymID) //Used to view all sessions that the gym is hosting from my database
         {
 
             string sqlstring = "Select Member.members.firstname, Member.members.lastname, Gym.gyms.gymname, Session.instructor.instructorname, Session.classtype.classtype, Session.classtype.classprice, Session.sessionbooking.sessiondate From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID And Gym.gyms.gymID = @gymID;";
@@ -791,7 +739,7 @@ namespace GymApp
 
         }
 
-        public int InsertGymSession(Sessionbooking sessionbookingtemp)
+        public int InsertGymSession(Sessionbooking sessionbookingtemp) //Used to insert new sessions on behalf of the gym
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.sessionbooking (instructorID, classtypeID, memberID, gymID, sessiondate) VALUES (@instructorID, @classtypeID, @memberID, @gymID, @sessiondate); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -804,7 +752,7 @@ namespace GymApp
             }
         }
 
-        public void ViewGymMembers(int gymID)
+        public void ViewGymMembers(int gymID) //Used to view all members that belong to a certain gym from my databse
         {
             string sqlstring = "Select Member.members.firstname, Member.members.lastname From Member.members Where gymID = @gymID";
             using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
@@ -831,7 +779,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteGymMember(string firstname, string lastname, int gymID)
+        public int DeleteGymMember(string firstname, string lastname, int gymID) //Used to delete members that belong to a certain gym from my database
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Member.members WHERE firstname = @firstname AND lastname = @lastname And gymID = @gymID", conn))
             {
@@ -842,7 +790,7 @@ namespace GymApp
             }
         }
 
-        public void ViewGymInstructors(int gymID)
+        public void ViewGymInstructors(int gymID) //Used to view all instructors that belong to a certain gym
         {
             string sqlstring = "Select Session.instructor.instructorname From Session.instructor Where gymID = @gymID";
             using (SqlCommand cmd = new SqlCommand(sqlstring, conn))
@@ -868,7 +816,7 @@ namespace GymApp
             }
         }
 
-        public int DeleteGymInstructor(string instructorname, int gymID)
+        public int DeleteGymInstructor(string instructorname, int gymID) //Used to delete an instructor that belongs to a certain gym from my databsae
         {
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.instructor WHERE instructorname = @instructorname And gymID = @gymID", conn))
             {
@@ -878,7 +826,7 @@ namespace GymApp
             }
         }
 
-        public void ViewInstructorSessions(int instructorID)
+        public void ViewInstructorSessions(int instructorID) //Used to view all sessions that an instructor is hosting
         {
 
             string sqlstring = "Select Member.members.firstname, Member.members.lastname, Gym.gyms.gymname, Session.instructor.instructorname, Session.classtype.classtype, Session.classtype.classprice, Session.sessionbooking.sessiondate From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID And Session.instructor.instructorID = @instructorID;";
@@ -912,7 +860,7 @@ namespace GymApp
 
         }
 
-        public int RegisterMember(Member membertemp)
+        public int RegisterMember(Member membertemp) //Made to register new member's into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname,phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @1); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -927,7 +875,7 @@ namespace GymApp
             }
         }
 
-        public int RegisterGym(Gym gymtemp)
+        public int RegisterGym(Gym gymtemp)//Made to register new gym's into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Gym.gyms (gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, password, roleID) " +
                 "VALUES (@gymname, @streetaddress, @countryID, @cityID, @suburbID, @phonenumber, @emailaddress, @password, @2); SELECT SCOPE_IDENTITY();", conn))
@@ -945,7 +893,7 @@ namespace GymApp
             }
         }
 
-        public int RegisterAdmin(Member membertemp)
+        public int RegisterAdmin(Member membertemp)//Made to register new admin's into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Member.members (firstname, lastname,phonenumber, emailaddress, username, password, roleID) VALUES (@firstname, @lastname, @phonenumber, @emailaddress, @username, @password, @3); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -960,7 +908,7 @@ namespace GymApp
             }
         }
 
-        public int RegisterInstructor(Instructor instructortemp)
+        public int RegisterInstructor(Instructor instructortemp)//Made to register new instructors's into my database
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.instructor (instructorname, gymID, phonenumber, emailaddress, username, password, roleID) VALUES (@instructorname, @gymID, @phonenumber, @emailaddress, @username, @password, @4); SELECT SCOPE_IDENTITY();", conn))
             {
@@ -975,7 +923,7 @@ namespace GymApp
             }
         }
 
-        public List<Member> Simple1QryMemberName()
+        public List<Member> Simple1QryMemberName() //Created to gather records from my database according to the criteria of simpleqry1
         {
             List<Member> members = new List<Member>();
             string sqlstring = "SELECT * FROM Member.members";
@@ -1004,7 +952,7 @@ namespace GymApp
             return members;
         }
 
-        public List<ClassType> Simple2QryClassTypes()
+        public List<ClassType> Simple2QryClassTypes()//Created to gather records from my database according to the criteria of simpleqry2
         {
             List<ClassType> classtypes = new List<ClassType>();
             string sqlstring = "Select * From Session.classtype";
@@ -1027,7 +975,7 @@ namespace GymApp
             return classtypes;
         }
 
-        public List<Member> Simple3QryMemberContactDetails()
+        public List<Member> Simple3QryMemberContactDetails()//Created to gather records from my database according to the criteria of simpleqry3
         {
             List<Member> members = new List<Member>();
             string sqlstring = "SELECT * FROM Member.members";
@@ -1057,7 +1005,7 @@ namespace GymApp
         }
 
 
-        public void Simple4QryGymLocation()
+        public void Simple4QryGymLocation()//Created to gather records from my database according to the criteria of simpleqry4
         {
             
             string sqlstring = "Select Gym.gyms.gymname, Gym.gyms.streetaddress, Location.suburb.suburbname, Location.city.cityname, Location.country.countryname From Gym.gyms, Location.suburb, Location.city, Location.country Where Gym.gyms.suburbID = Location.suburb.suburbID And Gym.gyms.cityID = Location.city.cityID And Gym.gyms.countryID = Location.country.countryID;";
@@ -1083,7 +1031,7 @@ namespace GymApp
             }
         }
 
-        public void Simple5QrySessionDetails()
+        public void Simple5QrySessionDetails()//Created to gather records from my database according to the criteria of simpleqry5
         {
 
             string sqlstring = "Select Member.members.firstname, Member.members.lastname, Gym.gyms.gymname, Session.instructor.instructorname, Session.classtype.classtype, Session.classtype.classprice, Session.sessionbooking.sessiondate From Session.sessionbooking, Session.instructor, Session.classtype, Member.members, Gym.gyms Where Session.sessionbooking.instructorID = Session.instructor.instructorID And Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.memberID = Member.members.memberID And Session.sessionbooking.gymID = Gym.gyms.gymID;";
@@ -1113,7 +1061,7 @@ namespace GymApp
             
         }
 
-        public void Advanced1QryClassesUnder31()
+        public void Advanced1QryClassesUnder31()//Created to gather records from my database according to the criteria of advancedquery1
         {
             string sqlstring = "Select DISTINCT classtype, classprice From Session.classtype Where classprice <= '30' Order By classprice ASC;";
 
@@ -1136,7 +1084,7 @@ namespace GymApp
             }
         }
 
-        public void Advanced2QryInstructorsStartingWithA()
+        public void Advanced2QryInstructorsStartingWithA()//Created to gather records from my database according to the criteria of advancedquery2
         {
             string sqlstring = "Select DISTINCT si.instructorname From Session.instructor as si, Session.classtype as sc, Session.sessionbooking as ss Where si.instructorID = ss.instructorID And si.instructorname LIKE 'a%';";
 
@@ -1158,7 +1106,7 @@ namespace GymApp
             }
         }
 
-        public void Advanced3QryTop5MostExpensiveClasses()
+        public void Advanced3QryTop5MostExpensiveClasses()//Created to gather records from my database according to the criteria of advancedquery3
         {
             string sqlstring = "Select Top 5 classtype, classprice From Session.classtype Order By classprice DESC;";
 
@@ -1181,7 +1129,7 @@ namespace GymApp
             }
         }
 
-        public void Advanced4QryMembersWithGmailOrOutlook()
+        public void Advanced4QryMembersWithGmailOrOutlook()//Created to gather records from my database according to the criteria of advancedquery4
         {
             string sqlstring = "Select firstname, lastname, emailaddress From Member.members Where emailaddress LIKE '%gmail%' OR emailaddress LIKE '%outlook%';";
 
@@ -1205,7 +1153,7 @@ namespace GymApp
             }
         }
 
-        public void Advanced5QrySessionsAfter27April()
+        public void Advanced5QrySessionsAfter27April()//Created to gather records from my database according to the criteria of advancedquery5
         {
             string sqlstring = "Select sessionID, sessiondate From Session.sessionbooking Where sessiondate > '2025-04-27 14:00:00.123' Order By sessionID;";
 
@@ -1228,7 +1176,7 @@ namespace GymApp
             }
         }
 
-        public void Complex1QryInstructorsWithSessions()
+        public void Complex1QryInstructorsWithSessions()//Created to gather records from my database according to the criteria of complexqry1
         {
             string sqlstring = "Select Session.instructor.instructorname, COUNT(sessionID) as sessioncount From Session.sessionbooking, Session.instructor WHERE Session.sessionbooking.instructorID = Session.instructor.instructorID Group By Session.instructor.instructorname;";
 
@@ -1251,7 +1199,7 @@ namespace GymApp
             }
         }
 
-        public void Complex2QryRevenuePerClassType()
+        public void Complex2QryRevenuePerClassType()//Created to gather records from my database according to the criteria of complexqry2
         {
             string sqlstring = "Select Session.classtype.classtype, SUM(Session.classtype.classprice) as totalrevenue, AVG(Session.classtype.classprice) as averagerevenue From Session.sessionbooking, Session.classtype Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID Group By Session.classtype.classtype;";
 
@@ -1275,7 +1223,7 @@ namespace GymApp
             }
         }
 
-        public void Complex3QrySessionsUnder30()
+        public void Complex3QrySessionsUnder30()//Created to gather records from my database according to the criteria of complexqry3
         {
             string sqlstring = "Select COUNT(Session.sessionbooking.sessionID) as sessionsunder30dollars From Session.sessionbooking, Session.classtype Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.classtype.classprice < '30';";
 
@@ -1297,7 +1245,7 @@ namespace GymApp
             }
         }
 
-        public void Complex4QryGymRevenue()
+        public void Complex4QryGymRevenue()//Created to gather records from my database according to the criteria of complexqry4
         {
             string sqlstring = "Select Gym.gyms.gymname as Gym, SUM(Session.classtype.classprice) as totalrevenue, AVG(Session.classtype.classprice) as averagerevenuepersession From Session.sessionbooking, Session.classtype, Gym.gyms Where Session.sessionbooking.classtypeID = Session.classtype.classtypeID And Session.sessionbooking.gymID = Gym.gyms.gymID Group By Gym.gyms.gymname;";
 
@@ -1321,7 +1269,7 @@ namespace GymApp
             }
         }
 
-        public void Complex5QryMemberSessionBooked()
+        public void Complex5QryMemberSessionBooked()//Created to gather records from my database according to the criteria of complexqry5
         {
             string sqlstring = "Select Member.members.firstname as membername, Member.members.emailaddress as emailaddress, COUNT(sessionID) as sessionsbooked From Session.sessionbooking, Member.members Where Session.sessionbooking.memberID = Member.members.memberID Group By Member.members.emailaddress, Member.members.firstname;";
 
@@ -1345,7 +1293,7 @@ namespace GymApp
             }
         }
 
-        public void CloseConnection()
+        public void CloseConnection() //Used to close the connection to my database
         {
             if (conn != null && conn.State == ConnectionState.Open)
             {
