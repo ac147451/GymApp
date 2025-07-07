@@ -964,7 +964,7 @@ namespace GymApp
         {
             using (SqlCommand cmd = new SqlCommand("INSERT INTO Session.instructor (instructorname, gymID, phonenumber, emailaddress, username, password, roleID) VALUES (@instructorname, @gymID, @phonenumber, @emailaddress, @username, @password, @4); SELECT SCOPE_IDENTITY();", conn))
             {
-                cmd.Parameters.AddWithValue("@instructor", instructortemp.Instructor_name);
+                cmd.Parameters.AddWithValue("@instructorname", instructortemp.Instructor_name);
                 cmd.Parameters.AddWithValue("@gymID", instructortemp.Gym_id);
                 cmd.Parameters.AddWithValue("@phonenumber", instructortemp.Phonenumber);
                 cmd.Parameters.AddWithValue("@emailaddress", instructortemp.Emailaddress);
