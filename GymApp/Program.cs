@@ -31,6 +31,7 @@ namespace GymApp
                 switch (choice)
                 {
                     case "1":
+                        Console.Clear();
                         int roleID = login();
                         if (roleID == 1)
                         {
@@ -73,30 +74,34 @@ namespace GymApp
 
                     case "2": //Register Menu
                         {
+                            Console.Clear();
                             string choice1 = view.RegisterMenu();
                             switch (choice1)
                             {
                                 case "1":
-
+                                    Console.Clear();
                                     RegisterMember();
                                     break;
 
                                 case "2":
-
+                                    Console.Clear();
                                     RegisterGym();
                                     break;
 
                                 case "3":
+                                    Console.Clear();
                                     RegisterAdmin();
                                     break;
 
                                 case "4":
+                                    Console.Clear();
                                     RegisterInstructor();
                                     break;
                                 default:
                                     Console.WriteLine("Invalid Registration choice");
                                     break;
                             }
+                            Console.WriteLine();
                             Console.WriteLine("Registration complete. Please login now");
                             Console.WriteLine("Press any Key to continue: ");
                             Console.ReadKey();
