@@ -363,6 +363,7 @@ namespace GymApp
             {
                 case "1": //Gym Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.GymTableMenu();
 
@@ -450,6 +451,7 @@ namespace GymApp
 
                 case "2": //Country Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.CountryMenu();
                         switch (choice1)
@@ -536,6 +538,7 @@ namespace GymApp
 
                 case "3": //City Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.CityMenu();
                         switch (choice1)
@@ -622,6 +625,7 @@ namespace GymApp
 
                 case "4": //Suburb Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.SuburbMenu();
                         switch (choice1)
@@ -708,6 +712,7 @@ namespace GymApp
 
                 case "5": //Instructor Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.InstructorTableMenu();
                         switch (choice1)
@@ -794,6 +799,7 @@ namespace GymApp
 
                 case "6": //Classtype Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.ClasstypeMenu();
                         switch (choice1)
@@ -880,6 +886,7 @@ namespace GymApp
 
                 case "7": //Member Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.MemberTableMenu();
                         switch (choice1)
@@ -966,6 +973,7 @@ namespace GymApp
 
                 case "8": //Role Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.RoleMenu();
                         switch (choice1)
@@ -1052,6 +1060,7 @@ namespace GymApp
 
                 case "9": //Sessionbooking Table
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.SessionbookingMenu();
                         switch (choice1)
@@ -1139,6 +1148,7 @@ namespace GymApp
 
                 case "10": //Queries
                     {
+                        Console.Clear();
                         char close;
                         string choice1 = view.QueryMenu();
                         switch (choice1)
