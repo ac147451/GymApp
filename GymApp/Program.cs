@@ -126,14 +126,14 @@ namespace GymApp
                     {
                         ViewMemberSessions(); //Calling the viewmembersessions method
                         view.DisplayMessage("Enter 'Y' if you would like to go back to the Main Menu, or Type 'N' if you want to Close this program"); // Allowing the user to either go back to the main menu, or close the program *Is the same for all of the following
-                        close = char.Parse(Console.ReadLine().ToUpper());
-                        Console.Clear();
-                        if (close == 'N')
+                        close = char.Parse(Console.ReadLine().ToUpper()); //takes char input and converts it to upper case letters
+                        Console.Clear(); //clears the page
+                        if (close == 'N') //If the user chose 'N' will close the sql connection
                         {
                             storageManager.CloseConnection();
                             Environment.Exit(0);
                         }
-                        else
+                        else //If not, will continue on with the menu loop
                         {
                             break;
                         }
@@ -1817,75 +1817,75 @@ namespace GymApp
 
         private static int Roleid()
         {
-            int roleID;
+            int roleID; //declaring roleID
 
             do
             {
-                (string username, int password) = login(); //takes the username and password values from UsernamePassword()
+                (string username, int password) = login(); //takes the username and password values from login()
                 roleID = storageManager.GetUserRole(username, password); //Runs storagemanager method to obtain the user's roleID
 
                 if (roleID == 0) //If user's ID stays 0, meaning the username and password doesn't currently exist in the database
                 {
                     Console.WriteLine("Invalid username or pin. Please try again."); //Displays error message
                 }
-            } while (roleID == 0);
+            } while (roleID == 0);//do-while loop to keep looping method while the roleID is incorrect
             return (roleID); //returns roleID value
         }
 
         private static void ViewMemberSessions()
         {
-            int memberID;
+            int memberID; //declaring memberID
 
             do
             {
-                (string username, int password) = login();
-                memberID = storageManager.GetMemberID(username, password);
-                storageManager.ViewMemberSessions(memberID);
+                (string username, int password) = login(); //calls login method and return username and password details
+                memberID = storageManager.GetMemberID(username, password); //Calls method from storage manager to capture the memberID from the username and password fields
+                storageManager.ViewMemberSessions(memberID); //Calls another method from storage manager and returns memberID value
 
-                if (memberID == 0)
+                if (memberID == 0) //If member's ID stays 0, meaning the username and password doesn't currently exist in the database
                 {
-                    Console.WriteLine("Invalid username or pin. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again."); //DIsplays error message
                 }
 
-            } while (memberID == 0);
-           
+            } while (memberID == 0);//do-while loop to keep looping method while the memberID is incorrect
+
         }
         
         private static void ViewGymSessions()
         {
-            int gymID;
+            int gymID;//declaring gymID
 
             do
             {
-                (string username, int password) = login();
-                gymID = storageManager.GetGymID(username, password);
-                storageManager.ViewGymSessions(gymID);
+                (string username, int password) = login();//calls login method and return username and password details
+                gymID = storageManager.GetGymID(username, password);//Calls method from storage manager to capture the gymID from the username and password fields
+                storageManager.ViewGymSessions(gymID);//Calls another method from storage manager and returns memberID value
 
-                if (gymID == 0)
+                if (gymID == 0)//If gym's ID stays 0, meaning the username and password doesn't currently exist in the database
                 {
-                    Console.WriteLine("Invalid username or pin. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again.");//DIsplays error message
                 }
 
-            } while (gymID == 0);
+            } while (gymID == 0); //do-while loop to keep looping method while the gymID is incorrect
 
         }
 
         private static void InsertNewGymSession()
         {
-            (string username, int password) = login();
+            (string username, int password) = login(); //calls login method and returns username and password fields
             view.DisplayMessage("Enter the instructor's ID: ");
-            int instructorID = view.GetIntInput();
+            int instructorID = view.GetIntInput(); //Gathers user's input for instructor ID
             view.DisplayMessage("Enter the classtype's ID: ");
-            int classtypeID = view.GetIntInput();
+            int classtypeID = view.GetIntInput();//Gathers user's input for classtypeID
             view.DisplayMessage("Enter the member's ID: ");
-            int memberID = view.GetIntInput();
+            int memberID = view.GetIntInput();//Gathers user's input for memberID
             view.DisplayMessage("Enter the sessiondate: Year - Month - Day Hour:Minute:Second.123");
-            DateTime sessiondate = view.GetDateTimeInput();
-            int gymID = storageManager.GetGymID(username, password);
-            int sessionID = 0;
+            DateTime sessiondate = view.GetDateTimeInput();//Gathers user's input for sessiondate
+            int gymID = storageManager.GetGymID(username, password); //Calls the GetGymID method from storage manager to obtain the gymID from the username and password
+            int sessionID = 0; //Defaults session ID as 0
             Sessionbooking sessionbooking1 = new Sessionbooking(sessionID, instructorID, classtypeID, memberID, gymID, sessiondate);
-            int generatedID = storageManager.InsertGymSession(sessionbooking1);
-            view.DisplayMessage($"New session inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertGymSession(sessionbooking1); //Calls method from storage manager and returns sessionbooking1 value
+            view.DisplayMessage($"New session inserted with ID: {generatedID}"); //Displays the sessions new ID
 
         }
 
@@ -1895,57 +1895,57 @@ namespace GymApp
 
             do
             {
-                (string username, int password) = login();
-                gymID = storageManager.GetGymID(username, password);
-                storageManager.ViewGymMembers(gymID);
+                (string username, int password) = login();//calls login method and returns username and password fields
+                gymID = storageManager.GetGymID(username, password);//Calls the GetGymID method from storage manager to obtain the gymID from the username and password
+                storageManager.ViewGymMembers(gymID); //Calls this method from storage manager to view all members that have the same gymID as the user's gymID
 
-                if (gymID == 0)
+                if (gymID == 0)//If gym's ID stays 0, meaning the username and password doesn't currently exist in the database
                 {
-                    Console.WriteLine("Invalid username or pin. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again.");//DIsplays error message
                 }
 
-            } while (gymID == 0);
+            } while (gymID == 0);//do-while loop to keep looping method while the gymID is incorrect
 
         }
 
         private static void InsertNewGymMember()
         {
-            (string username1, int password1) = login();
+            (string username1, int password1) = login();//calls login method and returns username and password fields
             view.DisplayMessage("Enter the new member's firstname: ");
-            string firstname = view.GetInput();
+            string firstname = view.GetInput();//Gathers user's input for firstname
             view.DisplayMessage("Enter the new member's lastname: ");
-            string lastname = view.GetInput();
+            string lastname = view.GetInput();//Gathers user's input for lastname
             view.DisplayMessage("Enter the new member's phonenumber: ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Gathers user's input for phonenumber
             view.DisplayMessage("Enter the new member's emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Gathers user's input for emailaddress
             view.DisplayMessage("Enter the new member's username: ");
-            string username = view.GetInput();
+            string username = view.GetInput();//Gathers user's input for username
             view.DisplayMessage("Enter the new member's pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int memberID = 0;
-            int gymID = storageManager.GetGymID(username1, password1);
+            int password = view.GetIntInput();//Gathers user's input for password
+            int memberID = 0; //Defaults memberID as 0
+            int gymID = storageManager.GetGymID(username1, password1); //Calls the GetGymID method from storage manager to obtain the gymID from the username and password
             Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, 1);
-            int generatedID = storageManager.InsertMember(member1);
-            view.DisplayMessage($"New member inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertMember(member1);//Calls method from storage manager and returns member1 value
+            view.DisplayMessage($"New member inserted with ID: {generatedID}");//Displays the new member's ID
 
         }
 
         private static void DeleteGymMember()
         {
 
-                (string username, int password) = login();
+                (string username, int password) = login();//calls login method and returns username and password fields
                 view.DisplayMessage("Enter the member's firstname: ");
-                string firstname = view.GetInput();
-                view.DisplayMessage("Enter the member's lastname: ");
-                string lastname = view.GetInput();
-                int gymID = storageManager.GetGymID(username, password);
-                int rowsAffected = storageManager.DeleteGymMember(firstname, lastname, gymID);
-                if (rowsAffected == 0)
-                {
-                    view.DisplayMessage("Invalid member, please log back in after closing this app and retry");
+                string firstname = view.GetInput();//Gathers user's input for firstname
+            view.DisplayMessage("Enter the member's lastname: ");
+                string lastname = view.GetInput();//Gathers user's input for lastname
+            int gymID = storageManager.GetGymID(username, password);//Calls the GetGymID method from storage manager to obtain the gymID from the username and password
+            int rowsAffected = storageManager.DeleteGymMember(firstname, lastname, gymID); //Calls deletegymmember method from storage manager and returns firstname, lastname, and gymID fields
+                if (rowsAffected == 0)//If gym's ID stays 0, meaning the username and password doesn't currently exist in the database
+            {
+                    view.DisplayMessage("Invalid member, please log back in after closing this app and retry"); //Error Message
                 }
-                else
+                else //If gym's ID changes then will show how many records were altered in the database
                 {
                     view.DisplayMessage($"Rows Affected: {rowsAffected}");
                 }
@@ -1953,78 +1953,78 @@ namespace GymApp
 
         private static void ViewGymInstructors()
         {
-            int gymID;
+            int gymID;//declaring gymID
 
             do
             {
-                (string username, int password) = login();
-                gymID = storageManager.GetGymID(username, password);
-                storageManager.ViewGymInstructors(gymID);
+                (string username, int password) = login();//calls login method and returns username and password fields
+                gymID = storageManager.GetGymID(username, password);//Calls the GetGymID method from storage manager to obtain the gymID from the username and password
+                storageManager.ViewGymInstructors(gymID); //Calls method from storage manager and returns gymID field
 
-                if (gymID == 0)
+                if (gymID == 0)//If gym's ID stays 0, meaning the username and password doesn't currently exist in the database
                 {
-                    Console.WriteLine("Invalid username or password. Please try again.");
+                    Console.WriteLine("Invalid username or password. Please try again."); //Error message
                 }
 
-            } while (gymID == 0);
+            } while (gymID == 0);//Will continue loop if gymID stays invalid
 
         }
 
         private static void InsertNewGymInstructor()
         {
-            (string username1, int password1) = login();
+            (string username1, int password1) = login();//calls login method and returns username and password fields
             view.DisplayMessage("Enter the new instructor name: ");
-            string instructorname = view.GetInput();
+            string instructorname = view.GetInput();//Gathers user's input for instructorname
             view.DisplayMessage("Enter the new instructor's phonenumber: ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Gathers user's input for phonenumber
             view.DisplayMessage("Enter the new instructor's emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Gathers user's input for emailaddress
             view.DisplayMessage("Enter the new instructor's username: ");
-            string username = view.GetInput();
+            string username = view.GetInput();//Gathers user's input for username
             view.DisplayMessage("Enter the new instructors's pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int roleID = 4;
-            int gymID = storageManager.GetGymID(username1, password1);
-            int instructorID = 0;
+            int password = view.GetIntInput();//Gathers user's input for password
+            int roleID = 4; //automatically declaring roleID as 4 as it is an instructor
+            int gymID = storageManager.GetGymID(username1, password1);//Calls the GetGymID method from storage manager to obtain the gymID from the username and password
+            int instructorID = 0; //Defaults instructorID as 0
             Instructor instructor1 = new Instructor(instructorID, instructorname, gymID, phonenumber, emailaddress, username, password, roleID);
-            int generatedID = storageManager.InsertInstructor(instructor1);
-            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertInstructor(instructor1); //Calls insertinstructor method from storage manager and returns isntructor1 value
+            view.DisplayMessage($"New instructor inserted with ID: {generatedID}"); //Displays the new instructor's ID
 
         }
 
         private static void DeleteGymInstructor()
         {
-            (string username, int password) = login();
+            (string username, int password) = login();//calls login method and returns username and password fields
             view.DisplayMessage("Enter the instructor name to delete: ");
-            string instructorname = view.GetInput();
-            int gymID = storageManager.GetGymID(username, password);
-            int rowsAffected = storageManager.DeleteGymInstructor(instructorname, gymID);
-            if (rowsAffected == 0)
+            string instructorname = view.GetInput();//Gathers user's input for instructorname
+            int gymID = storageManager.GetGymID(username, password);//Calls the GetGymID method from storage manager to obtain the gymID from the username and password
+            int rowsAffected = storageManager.DeleteGymInstructor(instructorname, gymID);//Calls deletegymmember method from storage manager and returns instructorname and gymID fields
+            if (rowsAffected == 0)//If rows affected stays 0, meaning no instructor was found
             {
-                view.DisplayMessage("Invalid member, please log back in after closing this app and retry");
+                view.DisplayMessage("Invalid instructor, please log back in after closing this app and retry");//Error message
             }
-            else
+            else//If gym's ID changes then will show how many records were altered in the database
             {
-                view.DisplayMessage($"Rows Affected: {rowsAffected}");
+                view.DisplayMessage($"Rows Affected: {rowsAffected}"); //Displays how many records were altered
             }
         }
 
         private static void ViewInstructorSessions()
         {
-            int instructorID;
+            int instructorID;//declaring instructorID variable
 
             do
             {
-                (string username, int password) = login();
-                instructorID = storageManager.GetInstructorID(username, password);
-                storageManager.ViewInstructorSessions(instructorID);
+                (string username, int password) = login();//calls login method and returns username and password fields
+                instructorID = storageManager.GetInstructorID(username, password);//Calls the GetInstructorID method from storage manager to obtain the instructorID from the username and password
+                storageManager.ViewInstructorSessions(instructorID);//Calls method from storage manager and returns instructorID field
 
-                if (instructorID == 0)
+                if (instructorID == 0)//If instructor's ID stays 0, meaning the username and password doesn't currently exist in the database
                 {
-                    Console.WriteLine("Invalid username or pin. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again.");//Error message
                 }
 
-            } while (instructorID == 0);
+            } while (instructorID == 0);//Will continue loop if instructorID stays invalid
 
         }
 
@@ -2032,94 +2032,94 @@ namespace GymApp
         private static void RegisterMember()
         {
             view.DisplayMessage("Enter your firstname: ");
-            string firstname = view.GetInput();
+            string firstname = view.GetInput(); //Takes user input for firstname
             view.DisplayMessage("Enter your lastname: ");
-            string lastname = view.GetInput();
+            string lastname = view.GetInput();//Takes user input for lastname
             view.DisplayMessage("Enter your phonenumber (no spaces in between): ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Takes user input for phonenumber
             view.DisplayMessage("Enter your emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Takes user input for emailaddress
             view.DisplayMessage("Enter your gym's ID: ");
-            int gymID = view.GetIntInput();
+            int gymID = view.GetIntInput();//Takes user input for gymID
             view.DisplayMessage("Enter your user name: ");
-            string username = view.GetInput();
+            string username = view.GetInput();//Takes user input for username
             view.DisplayMessage("Enter your pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int roleID = 1;
-            int memberID = 0;
+            int password = view.GetIntInput();//Takes user input for password
+            int roleID = 1; //Manually making the roleID 1 as we're registering a member
+            int memberID = 0; //making the memberID 0 as a default
             Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, roleID);
-            int generatedID = storageManager.RegisterMember(member1);
-            view.DisplayMessage($"New member inserted with ID: {generatedID}");
+            int generatedID = storageManager.RegisterMember(member1); //Calls method from storage manager and returns member1
+            view.DisplayMessage($"New member inserted with ID: {generatedID}"); //Displays the new member's ID
         }
         
         private static void RegisterGym()
         {
             view.DisplayMessage("Enter your gym's name: ");
-            string gymname = view.GetInput();
+            string gymname = view.GetInput();//Takes user input for gymname
             view.DisplayMessage("Enter your gym's street address: ");
-            string streetaddress = view.GetInput();
+            string streetaddress = view.GetInput();//Takes user input for streetaddress
             view.DisplayMessage("Enter the country ID where your gym is located: ");
-            int countryID = view.GetIntInput();
+            int countryID = view.GetIntInput();//Takes user input for countryID
             view.DisplayMessage("Enter the city ID where your gym is located: ");
-            int cityID = view.GetIntInput();
+            int cityID = view.GetIntInput();//Takes user input for cityID
             view.DisplayMessage("Enter the suburb ID where your gym is located: ");
-            int suburbID = view.GetIntInput();
+            int suburbID = view.GetIntInput();//Takes user input for suburbID
             view.DisplayMessage("Enter your phonenumber (no spaces in between): ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Takes user input for phonenumber
             view.DisplayMessage("Enter your emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Takes user input for emailaddress
             view.DisplayMessage("Enter your gym's username: ");
-            string username = view.GetInput();
+            string username = view.GetInput();//Takes user input for username
             view.DisplayMessage("Enter your pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int roleID = 2;
-            int gymID = 0;
+            int password = view.GetIntInput();//Takes user input for pin 
+            int roleID = 2; //Making the roleID 2 as we're registering a gym
+            int gymID = 0;//Default gymID is 0
             Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, username, password, roleID);
-            int generatedID = storageManager.RegisterGym(gym1);
-            view.DisplayMessage($"New gym inserted with ID: {generatedID}");
+            int generatedID = storageManager.RegisterGym(gym1); //Calling method from storage manager and returning gym1
+            view.DisplayMessage($"New gym inserted with ID: {generatedID}"); //displaying the gym's new ID
         }
         
         private static void RegisterAdmin()
         {
             view.DisplayMessage("Enter your firstname: ");
-            string firstname = view.GetInput();
+            string firstname = view.GetInput();//Takes user input for firstname
             view.DisplayMessage("Enter your lastname: ");
-            string lastname = view.GetInput();
+            string lastname = view.GetInput();//Takes user input for lastname
             view.DisplayMessage("Enter your phonenumber (no spaces in between): ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Takes user input for phonenumber
             view.DisplayMessage("Enter your emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Takes user input for emailaddress
             view.DisplayMessage("Enter your user name: ");
-            string username = view.GetInput();
+            string username = view.GetInput();//Takes user input for username
             view.DisplayMessage("Enter your pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int roleID = 3;
-            int memberID = 0;
-            int gymID = 1;
+            int password = view.GetIntInput();//Takes user input for password
+            int roleID = 3; //Making the roleID 3 as we're registering an admin
+            int memberID = 0; //Default memberID is 0
+            int gymID = 1; //Default gymID is 1
             Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, roleID);
-            int generatedID = storageManager.RegisterAdmin(member1);
-            view.DisplayMessage($"New admin inserted with ID: {generatedID}");
+            int generatedID = storageManager.RegisterAdmin(member1);//Calling method from storage manager and returning member1
+            view.DisplayMessage($"New admin inserted with ID: {generatedID}"); //displaying the gym's new ID
         }
         
         private static void RegisterInstructor()
         {
             view.DisplayMessage("Enter your name: ");
-            string instructorname = view.GetInput();
+            string instructorname = view.GetInput();//Takes user input for instructorname
             view.DisplayMessage("Enter the gymID of the gym you work for: ");
-            int gymID = view.GetIntInput();
+            int gymID = view.GetIntInput();//Takes user input for gymID
             view.DisplayMessage("Enter your phonenumber (no spaces in between): ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Takes user input for phonenumber
             view.DisplayMessage("Enter your emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Takes user input for emailaddress
             view.DisplayMessage("Enter your user name: ");
-            string username = view.GetInput();
+            string username = view.GetInput();//Takes user input for username
             view.DisplayMessage("Enter your pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int roleID = 4;
-            int instructorID = 0;
+            int password = view.GetIntInput();//Takes user input for password
+            int roleID = 4; //Making the roleID 4
+            int instructorID = 0; //Defaulting the instructor ID as 0
             Instructor instructor1 = new Instructor(instructorID, instructorname, gymID, phonenumber, emailaddress, username, password, roleID);
-            int generatedID = storageManager.RegisterInstructor(instructor1);
-            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
+            int generatedID = storageManager.RegisterInstructor(instructor1); //Calling RegisterInstructor from storage manager and returning instructor1
+            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");//Displaying the instructor's new ID
         }
 
 
