@@ -37,7 +37,7 @@ namespace GymApp.View
         {
             Console.WriteLine("Who are you?");
             Console.WriteLine("1. A Member of a gym");
-            Console.WriteLine("2. Staff for a gym");
+            Console.WriteLine("2. A Gym");
             Console.WriteLine("3. Admin");
             Console.WriteLine("4. Class Instructor for a gym");
             Console.WriteLine("Please choose one of the above: ");
