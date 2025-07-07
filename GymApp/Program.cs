@@ -31,7 +31,7 @@ namespace GymApp
                 {
                     case "1":
                         Console.Clear();
-                        int roleID = login(); //Calling the login menu to gather the user's roleID
+                        int roleID = Roleid(); //Calling the login menu to gather the user's roleID
                         if (roleID == 1)
                         {
                         while (roleID == 1)
@@ -1490,346 +1490,346 @@ namespace GymApp
         {
 
             view.DisplayMessage("Enter the gymID to update: ");
-            int gymID = view.GetIntInput();
+            int gymID = view.GetIntInput(); //Grabs user input for gymID
             view.DisplayMessage("Enter the new gym name: ");
-            string gymname = view.GetInput();
-            int rowsAffected = storageManager.UpdateGymName(gymID, gymname);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            string gymname = view.GetInput();//Grabs user input for gymname
+            int rowsAffected = storageManager.UpdateGymName(gymID, gymname); //Calls method from storage manager and returns gymID and gymname fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}"); //Displays how many records were affected
         }
 
         private static void InsertNewGym()
         {
             view.DisplayMessage("Enter the new gym name: ");
-            string gymname = view.GetInput();
+            string gymname = view.GetInput();//Grabs user input for gymname
             view.DisplayMessage("Enter the street address: ");
-            string streetaddress = view.GetInput();
+            string streetaddress = view.GetInput();//Grabs user input for streetaddress
             view.DisplayMessage("Enter the country ID: ");
-            int countryID = view.GetIntInput();
+            int countryID = view.GetIntInput();//Grabs user input for countryID
             view.DisplayMessage("Enter the city ID: ");
-            int cityID = view.GetIntInput();
+            int cityID = view.GetIntInput(); //Grabs user input for cityID
             view.DisplayMessage("Enter the suburb ID: ");
-            int suburbID = view.GetIntInput();
+            int suburbID = view.GetIntInput();//Grabs user input for suburbID
             view.DisplayMessage("Enter the phonenumber: ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Grabs user input for phonenumber
             view.DisplayMessage("Enter the emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Grabs user input for emailaddress
             view.DisplayMessage("Enter your username: ");
-            string username = view.GetInput();
+            string username = view.GetInput();//Grabs user input for username
             view.DisplayMessage("Enter the gym's pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int roleID = 2;
-            int gymID = 0;
+            int password = view.GetIntInput();//Grabs user input for password
+            int roleID = 2; //Automatically makes roleID 2 as it is a gym
+            int gymID = 0; //Defaults gymID as 0
             Gym gym1 = new Gym(gymID, gymname, streetaddress, countryID, cityID, suburbID, phonenumber, emailaddress, username, password, roleID);
-            int generatedID = storageManager.InsertGym(gym1);
-            view.DisplayMessage($"New gym inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertGym(gym1); //Calls method from storage manager and returns value gym1
+            view.DisplayMessage($"New gym inserted with ID: {generatedID}"); //Displays variable to show the new gym's ID
 
         }
 
         private static void DeleteGymByName()
         {
             view.DisplayMessage("Enter the gym name to delete: ");
-            string gymname = view.GetInput();
-            int rowsAffected = storageManager.DeleteGymByName(gymname);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            string gymname = view.GetInput();//Grabs user input for gymname
+            int rowsAffected = storageManager.DeleteGymByName(gymname);//Calls method from storage manager and returns gymname field
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void UpdateCountryName()
         {
 
             view.DisplayMessage("Enter the countryID to update: ");
-            int countryID = view.GetIntInput();
+            int countryID = view.GetIntInput();//Grabs user input for countryID
             view.DisplayMessage("Enter the new country name: ");
-            string countryname = view.GetInput();
-            int rowsAffected = storageManager.UpdateCountryName(countryID, countryname);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            string countryname = view.GetInput();//Grabs user input for countryname
+            int rowsAffected = storageManager.UpdateCountryName(countryID, countryname);//Calls method from storage manager and returns countryID and countryname fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void InsertNewCountry()
         {
             view.DisplayMessage("Enter the new country name: ");
-            string countryname = view.GetInput();
-            int countryID = 0;
+            string countryname = view.GetInput();//Grabs user input for countryname
+            int countryID = 0;//Defaults countryID as 0
             Country country1 = new Country(countryID, countryname);
-            int generatedID = storageManager.InsertCountry(country1);
-            view.DisplayMessage($"New country inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertCountry(country1);//Calls method from storage manager and returns value country1
+            view.DisplayMessage($"New country inserted with ID: {generatedID}");//Displays variable to show the new countries ID
 
         }
 
         private static void DeleteCountryByName()
         {
             view.DisplayMessage("Enter the country name to delete: ");
-            string countryname = view.GetInput();
-            int rowsAffected = storageManager.DeleteCountryByName(countryname);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            string countryname = view.GetInput();//Grabs user input for countryname
+            int rowsAffected = storageManager.DeleteCountryByName(countryname);//Calls method from storage manager and returns countryname field
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void UpdateCityName()
         {
 
             view.DisplayMessage("Enter the cityID to update: ");
-            int cityID = view.GetIntInput();
+            int cityID = view.GetIntInput();//Grabs user input for cityID
             view.DisplayMessage("Enter the new city name: ");
-            string cityname = view.GetInput();
-            int rowsAffected = storageManager.UpdateCityName(cityID, cityname);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            string cityname = view.GetInput();//Grabs user input for cityname
+            int rowsAffected = storageManager.UpdateCityName(cityID, cityname);//Calls method from storage manager and returns cityID and cityname fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void InsertNewCity()
         {
             view.DisplayMessage("Enter the new city name: ");
-            string cityname = view.GetInput();
-            int cityID = 0;
+            string cityname = view.GetInput();//Grabs user input for cityname
+            int cityID = 0;//Defaults cityID as 0
             City city1 = new City(cityID, cityname);
-            int generatedID = storageManager.InsertCity(city1);
-            view.DisplayMessage($"New city inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertCity(city1);//Calls method from storage manager and returns value city1
+            view.DisplayMessage($"New city inserted with ID: {generatedID}");//Displays variable to show the new cities ID
 
         }
 
         private static void DeleteCityByName()
         {
             view.DisplayMessage("Enter the city name to delete: ");
-            string cityname = view.GetInput();
-            int rowsAffected = storageManager.DeleteCityByName(cityname);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            string cityname = view.GetInput();//Grabs user input for cityname
+            int rowsAffected = storageManager.DeleteCityByName(cityname);//Calls method from storage manager and returns cityname field
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void UpdateSuburbName()
         {
 
             view.DisplayMessage("Enter the suburbID to update: ");
-            int suburbID = view.GetIntInput();
+            int suburbID = view.GetIntInput();//Grabs user input for suburbID
             view.DisplayMessage("Enter the new suburb name: ");
-            string suburbname = view.GetInput();
-            int rowsAffected = storageManager.UpdateSuburbName(suburbID, suburbname);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            string suburbname = view.GetInput();//Grabs user input for suburbname
+            int rowsAffected = storageManager.UpdateSuburbName(suburbID, suburbname);//Calls method from storage manager and returns suburbID and suburbname fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void InsertNewSuburb()
         {
             view.DisplayMessage("Enter the new suburb name: ");
-            string suburbname = view.GetInput();
-            int suburbID = 0;
+            string suburbname = view.GetInput();//Grabs user input for suburbname
+            int suburbID = 0;//Defaults suburbID as 0
             Suburb suburb1 = new Suburb(suburbID, suburbname);
-            int generatedID = storageManager.InsertSuburb(suburb1);
-            view.DisplayMessage($"New suburb inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertSuburb(suburb1);//Calls method from storage manager and returns value suburb1
+            view.DisplayMessage($"New suburb inserted with ID: {generatedID}");//Displays variable to show the new suburbs ID
 
         }
 
         private static void DeleteSuburbByName()
         {
             view.DisplayMessage("Enter the suburb name to delete: ");
-            string suburbname = view.GetInput();
-            int rowsAffected = storageManager.DeleteSuburbByName(suburbname);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            string suburbname = view.GetInput();//Grabs user input for suburbname
+            int rowsAffected = storageManager.DeleteSuburbByName(suburbname);//Calls method from storage manager and returns suburbname field
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void UpdateInstructorName()
         {
 
             view.DisplayMessage("Enter the instructorID to update: ");
-            int instructorID = view.GetIntInput();
+            int instructorID = view.GetIntInput();//Grabs user input for instructorID
             view.DisplayMessage("Enter the new instructor name: ");
-            string instructorname = view.GetInput();
-            int rowsAffected = storageManager.UpdateInstructorName(instructorID, instructorname);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            string instructorname = view.GetInput();//Grabs user input for instructorname
+            int rowsAffected = storageManager.UpdateInstructorName(instructorID, instructorname);//Calls method from storage manager and returns instructorID and instructorname fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void InsertNewInstructor()
         {
             view.DisplayMessage("Enter the new instructor name: ");
-            string instructorname = view.GetInput();
+            string instructorname = view.GetInput();//Grabs user input for instructorname
             view.DisplayMessage("Enter the gym ID that the instructor is with: ");
-            int gymID = view.GetIntInput();
+            int gymID = view.GetIntInput();//Grabs user input for gymID
             view.DisplayMessage("Enter the new instructor's phonenumber: ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Grabs user input for phonenumber
             view.DisplayMessage("Enter the new instructor's emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Grabs user input for emailaddress
             view.DisplayMessage("Enter the new instructor's username: ");
-            string username = view.GetInput();
+            string username = view.GetInput();//Grabs user input for username
             view.DisplayMessage("Enter the new instructors's pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int roleID = 4;
-            int instructorID = 0;
+            int password = view.GetIntInput();//Grabs user input for password/pin
+            int roleID = 4;//Automatically makes roleID 4 as it is an instructor
+            int instructorID = 0;//Defaults instructorID as 0
             Instructor instructor1 = new Instructor(instructorID, instructorname, gymID, phonenumber, emailaddress, username, password, roleID);
-            int generatedID = storageManager.InsertInstructor(instructor1);
-            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertInstructor(instructor1);//Calls method from storage manager and returns value instructor1
+            view.DisplayMessage($"New instructor inserted with ID: {generatedID}");//Displays variable to show the new instructors ID
 
         }
 
         private static void DeleteInstructorByName()
         {
             view.DisplayMessage("Enter the instructor name to delete: ");
-            string instructorname = view.GetInput();
-            int rowsAffected = storageManager.DeleteInstructorByName(instructorname);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            string instructorname = view.GetInput();//Grabs user input for instructorname
+            int rowsAffected = storageManager.DeleteInstructorByName(instructorname);//Calls method from storage manager and returns instructorname field
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void UpdateClasstypeName()
         {
 
             view.DisplayMessage("Enter the classtypeID to update: ");
-            int classtypeID = view.GetIntInput();
+            int classtypeID = view.GetIntInput();//Grabs user input for classtypeID
             view.DisplayMessage("Enter the new classtype name: ");
-            string classtype = view.GetInput();
-            int rowsAffected = storageManager.UpdateClasstypeName(classtypeID, classtype);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            string classtype = view.GetInput();//Grabs user input for classtypename
+            int rowsAffected = storageManager.UpdateClasstypeName(classtypeID, classtype);//Calls method from storage manager and returns classtypeID and classtype fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void InsertNewClasstype()
         {
             view.DisplayMessage("Enter the new classtype: ");
-            string classtype = view.GetInput();
+            string classtype = view.GetInput();//Grabs user input for classtype
             view.DisplayMessage("Enter the price of the new classtype: ");
-            int classprice = view.GetIntInput();
-            int classtypeID = 0;
+            int classprice = view.GetIntInput();//Grabs user input for classprice
+            int classtypeID = 0;//Defaults instructorID as 0
             ClassType classtype1 = new ClassType(classtypeID, classtype, classprice);
-            int generatedID = storageManager.InsertClasstype(classtype1);
-            view.DisplayMessage($"New class type inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertClasstype(classtype1);//Calls method from storage manager and returns value classtype1
+            view.DisplayMessage($"New class type inserted with ID: {generatedID}");//Displays variable to show the new classtypes ID
 
         }
 
         private static void DeleteClasstype()
         {
             view.DisplayMessage("Enter the classtype to delete: ");
-            string classtype = view.GetInput();
-            int rowsAffected = storageManager.DeleteClasstype(classtype);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            string classtype = view.GetInput();//Grabs user input for classtype
+            int rowsAffected = storageManager.DeleteClasstype(classtype);//Calls method from storage manager and returns classtype field
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void UpdateMemberFirstName()
         {
 
             view.DisplayMessage("Enter the memberID to update: ");
-            int memberID = view.GetIntInput();
+            int memberID = view.GetIntInput();//Grabs user input for memberID
             view.DisplayMessage("Enter the new member's first name: ");
-            string firstname = view.GetInput();
-            int rowsAffected = storageManager.UpdateMemberFirstName(memberID, firstname);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            string firstname = view.GetInput();//Grabs user input for firstname
+            int rowsAffected = storageManager.UpdateMemberFirstName(memberID, firstname);//Calls method from storage manager and returns memberID and firstname fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void InsertNewMember()
         {
             view.DisplayMessage("Enter the new member's firstname: ");
-            string firstname = view.GetInput();
+            string firstname = view.GetInput();//Grabs user input for firstname
             view.DisplayMessage("Enter the new member's lastname: ");
-            string lastname = view.GetInput();
+            string lastname = view.GetInput();//Grabs user input for lastname
             view.DisplayMessage("Enter the new member's phonenumber: ");
-            Int64 phonenumber = view.GetInt64Input();
+            Int64 phonenumber = view.GetInt64Input();//Grabs user input for phonenumber
             view.DisplayMessage("Enter the new member's emailaddress: ");
-            string emailaddress = view.GetInput();
+            string emailaddress = view.GetInput();//Grabs user input for emailaddress
             view.DisplayMessage("Enter the member's gym ID: ");
-            int gymID = view.GetIntInput();
+            int gymID = view.GetIntInput();//Grabs user input for gymID
             view.DisplayMessage("Enter the new member's username: ");         
-            string username = view.GetInput();
+            string username = view.GetInput();//Grabs user input for username
             view.DisplayMessage("Enter the new member's pin (4-8 digits): ");
-            int password = view.GetIntInput();
-            int memberID = 0;
+            int password = view.GetIntInput();//Grabs user input for password
+            int memberID = 0;//Defaults memberID as 0
             Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, 1);
-            int generatedID = storageManager.InsertMember(member1);
-            view.DisplayMessage($"New member inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertMember(member1);//Calls method from storage manager and returns value member1
+            view.DisplayMessage($"New member inserted with ID: {generatedID}");//Displays variable to show the new members ID
 
         }
 
         private static void DeleteMemberByName()
         {
             view.DisplayMessage("Enter the member's firstname: ");
-            string firstname = view.GetInput();
+            string firstname = view.GetInput();//Grabs user input for firstname
             view.DisplayMessage("Enter the member's lastname: ");
-            string lastname = view.GetInput();
-            int rowsAffected = storageManager.DeleteMemberByName(firstname, lastname);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            string lastname = view.GetInput();//Grabs user input for lastname
+            int rowsAffected = storageManager.DeleteMemberByName(firstname, lastname);//Calls method from storage manager and returns firstname and lastname fields
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void UpdateRoleName()
         {
 
             view.DisplayMessage("Enter the roleID to update: ");
-            int roleID = view.GetIntInput();
+            int roleID = view.GetIntInput();//Grabs user input for roleID
             view.DisplayMessage("Enter the new role name: ");
-            string rolename = view.GetInput();
-            int rowsAffected = storageManager.UpdateRoleName(roleID, rolename);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            string rolename = view.GetInput();//Grabs user input for rolename
+            int rowsAffected = storageManager.UpdateRoleName(roleID, rolename);//Calls method from storage manager and returns roleID and rolename fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void InsertNewRole()
         {
             view.DisplayMessage("Enter the new role name: ");
-            string rolename = view.GetInput();
-            int roleID = 0;
+            string rolename = view.GetInput();//Grabs user input for rolename
+            int roleID = 0;//Defaults roleID as 0
             Role role1 = new Role(roleID, rolename);
-            int generatedID = storageManager.InsertRole(role1);
-            view.DisplayMessage($"New role inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertRole(role1);//Calls method from storage manager and returns value role1
+            view.DisplayMessage($"New role inserted with ID: {generatedID}");//Displays variable to show the new roles ID
 
         }
 
         private static void DeleteRoleByName()
         {
             view.DisplayMessage("Enter the role name to delete: ");
-            string rolename = view.GetInput();
-            int rowsAffected = storageManager.DeleteRoleByName(rolename);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            string rolename = view.GetInput();//Grabs user input for rolename
+            int rowsAffected = storageManager.DeleteRoleByName(rolename);//Calls method from storage manager and returns rolename field
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void UpdateSessionDate()
         {
 
             view.DisplayMessage("Enter the sessionID to update: ");
-            int sessionID = view.GetIntInput();
-            view.DisplayMessage("Enter the session date: ");
-            DateTime sessiondate = view.GetDateTimeInput();
-            int rowsAffected = storageManager.UpdateSessionDate(sessionID, sessiondate);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
+            int sessionID = view.GetIntInput();//Grabs user input for sessionID
+            view.DisplayMessage("Enter the new session date: ");
+            DateTime sessiondate = view.GetDateTimeInput();//Grabs user input for sessiondate
+            int rowsAffected = storageManager.UpdateSessionDate(sessionID, sessiondate);//Calls method from storage manager and returns sessionID and sessiondate fields
+            view.DisplayMessage($"Rows affected: {rowsAffected}");//Displays how many records were affected
         }
 
         private static void InsertNewSession()
         {
             view.DisplayMessage("Enter the instructor's ID: ");
-            int instructorID = view.GetIntInput();
+            int instructorID = view.GetIntInput();//Grabs user input for instructorID
             view.DisplayMessage("Enter the classtype's ID: ");
-            int classtypeID = view.GetIntInput();
+            int classtypeID = view.GetIntInput();//Grabs user input for classtypeID
             view.DisplayMessage("Enter the member's ID: ");
-            int memberID = view.GetIntInput();
+            int memberID = view.GetIntInput();//Grabs user input for memberID
             view.DisplayMessage("Enter the gym's ID: ");
-            int gymID = view.GetIntInput();
+            int gymID = view.GetIntInput();//Grabs user input for gymID
             view.DisplayMessage("Enter the sessiondate: ");
-            DateTime sessiondate = view.GetDateTimeInput();
-            int sessionID = 0;
+            DateTime sessiondate = view.GetDateTimeInput();//Grabs user input for sessiondate
+            int sessionID = 0;//Defaults roleID as 0
             Sessionbooking sessionbooking1 = new Sessionbooking(sessionID, instructorID, classtypeID, memberID, gymID, sessiondate);
-            int generatedID = storageManager.InsertSession(sessionbooking1);
-            view.DisplayMessage($"New session inserted with ID: {generatedID}");
+            int generatedID = storageManager.InsertSession(sessionbooking1);//Calls method from storage manager and returns value sessionbooking1
+            view.DisplayMessage($"New session inserted with ID: {generatedID}");//Displays variable to show the new sessions ID
 
         }
 
         private static void DeleteSessionByID()
         {
             view.DisplayMessage("Enter the sessionID to delete: ");
-            int sessionID = view.GetIntInput();
-            int rowsAffected = storageManager.DeleteSessionByID(sessionID);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
+            int sessionID = view.GetIntInput();//Grabs user input for sessionID
+            int rowsAffected = storageManager.DeleteSessionByID(sessionID);//Calls method from storage manager and returns sessionID field
+            view.DisplayMessage($"Rows Affected: {rowsAffected}");//Displays how many records were affected
         }
 
-        private static (string username, int password) UsernamePassword()
+        private static (string username, int password) login() //Method used to take login details
         {
-            (string username, int password) = view.LoginMenu();
+            (string username, int password) = view.LoginMenu(); //Calls the Login menu and returns input for the username and password
 
-            return (username, password);
+            return (username, password); //returns username and password values
         }
 
-        private static int login()
+        private static int Roleid()
         {
             int roleID;
 
             do
             {
-                (string username, int password) = UsernamePassword();
-                roleID = storageManager.GetUserRole(username, password);
+                (string username, int password) = login(); //takes the username and password values from UsernamePassword()
+                roleID = storageManager.GetUserRole(username, password); //Runs storagemanager method to obtain the user's roleID
 
-                if (roleID == 0)
+                if (roleID == 0) //If user's ID stays 0, meaning the username and password doesn't currently exist in the database
                 {
-                    Console.WriteLine("Invalid username or pin. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again."); //Displays error message
                 }
             } while (roleID == 0);
-            return (roleID);
+            return (roleID); //returns roleID value
         }
 
         private static void ViewMemberSessions()
@@ -1838,7 +1838,7 @@ namespace GymApp
 
             do
             {
-                (string username, int password) = UsernamePassword();
+                (string username, int password) = login();
                 memberID = storageManager.GetMemberID(username, password);
                 storageManager.ViewMemberSessions(memberID);
 
@@ -1857,7 +1857,7 @@ namespace GymApp
 
             do
             {
-                (string username, int password) = UsernamePassword();
+                (string username, int password) = login();
                 gymID = storageManager.GetGymID(username, password);
                 storageManager.ViewGymSessions(gymID);
 
@@ -1872,7 +1872,7 @@ namespace GymApp
 
         private static void InsertNewGymSession()
         {
-            (string username, int password) = UsernamePassword();
+            (string username, int password) = login();
             view.DisplayMessage("Enter the instructor's ID: ");
             int instructorID = view.GetIntInput();
             view.DisplayMessage("Enter the classtype's ID: ");
@@ -1895,7 +1895,7 @@ namespace GymApp
 
             do
             {
-                (string username, int password) = UsernamePassword();
+                (string username, int password) = login();
                 gymID = storageManager.GetGymID(username, password);
                 storageManager.ViewGymMembers(gymID);
 
@@ -1910,7 +1910,7 @@ namespace GymApp
 
         private static void InsertNewGymMember()
         {
-            (string username1, int password1) = UsernamePassword();
+            (string username1, int password1) = login();
             view.DisplayMessage("Enter the new member's firstname: ");
             string firstname = view.GetInput();
             view.DisplayMessage("Enter the new member's lastname: ");
@@ -1934,7 +1934,7 @@ namespace GymApp
         private static void DeleteGymMember()
         {
 
-                (string username, int password) = UsernamePassword();
+                (string username, int password) = login();
                 view.DisplayMessage("Enter the member's firstname: ");
                 string firstname = view.GetInput();
                 view.DisplayMessage("Enter the member's lastname: ");
@@ -1957,7 +1957,7 @@ namespace GymApp
 
             do
             {
-                (string username, int password) = UsernamePassword();
+                (string username, int password) = login();
                 gymID = storageManager.GetGymID(username, password);
                 storageManager.ViewGymInstructors(gymID);
 
@@ -1972,7 +1972,7 @@ namespace GymApp
 
         private static void InsertNewGymInstructor()
         {
-            (string username1, int password1) = UsernamePassword();
+            (string username1, int password1) = login();
             view.DisplayMessage("Enter the new instructor name: ");
             string instructorname = view.GetInput();
             view.DisplayMessage("Enter the new instructor's phonenumber: ");
@@ -1994,7 +1994,7 @@ namespace GymApp
 
         private static void DeleteGymInstructor()
         {
-            (string username, int password) = UsernamePassword();
+            (string username, int password) = login();
             view.DisplayMessage("Enter the instructor name to delete: ");
             string instructorname = view.GetInput();
             int gymID = storageManager.GetGymID(username, password);
@@ -2015,7 +2015,7 @@ namespace GymApp
 
             do
             {
-                (string username, int password) = UsernamePassword();
+                (string username, int password) = login();
                 instructorID = storageManager.GetInstructorID(username, password);
                 storageManager.ViewInstructorSessions(instructorID);
 
