@@ -1578,7 +1578,7 @@ namespace GymApp
             string emailaddress = view.GetInput();
             view.DisplayMessage("Enter the new instructor's username: ");
             string username = view.GetInput();
-            view.DisplayMessage("Enter the new instructors's password pin: ");
+            view.DisplayMessage("Enter the new instructors's pin (4-8 digits): ");
             int password = view.GetIntInput();
             int roleID = 4;
             int instructorID = 0;
@@ -1653,7 +1653,7 @@ namespace GymApp
             int gymID = view.GetIntInput();
             view.DisplayMessage("Enter the new member's username: ");         
             string username = view.GetInput();
-            view.DisplayMessage("Enter the new member's password pin: ");
+            view.DisplayMessage("Enter the new member's pin (4-8 digits): ");
             int password = view.GetIntInput();
             int memberID = 0;
             Member member1 = new Member(memberID, firstname, lastname, phonenumber, emailaddress, gymID, username, password, 1);
@@ -1740,40 +1740,6 @@ namespace GymApp
             view.DisplayMessage($"Rows Affected: {rowsAffected}");
         }
 
-        private static void UpdateUserName()
-        {
-
-            view.DisplayMessage("Enter the userID to update: ");
-            int userID = view.GetIntInput();
-            view.DisplayMessage("Enter the new user name: ");
-            string username = view.GetInput();
-            int rowsAffected = storageManager.UpdateUserName(userID, username);
-            view.DisplayMessage($"Rows affected: {rowsAffected}");
-        }
-
-        private static void InsertNewUser()
-        {
-            view.DisplayMessage("Enter the new user name: ");
-            string username = view.GetInput();
-            view.DisplayMessage("Enter the password: ");
-            int password = view.GetIntInput();
-            view.DisplayMessage("Enter the role ID: ");
-            int roleID = view.GetIntInput();
-            int userID = 0;
-            User user1 = new User(userID, username, password, roleID);
-            int generatedID = storageManager.InsertUser(user1);
-            view.DisplayMessage($"New user inserted with ID: {generatedID}");
-
-        }
-
-        private static void DeleteUserByName()
-        {
-            view.DisplayMessage("Enter the user name to delete: ");
-            string username = view.GetInput();
-            int rowsAffected = storageManager.DeleteUserByName(username);
-            view.DisplayMessage($"Rows Affected: {rowsAffected}");
-        }
-
         private static (string username, int password) UsernamePassword()
         {
             (string username, int password) = view.LoginMenu();
@@ -1792,7 +1758,7 @@ namespace GymApp
 
                 if (roleID == 0)
                 {
-                    Console.WriteLine("Invalid username or password. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again.");
                 }
             } while (roleID == 0);
             return (roleID);
@@ -1810,7 +1776,7 @@ namespace GymApp
 
                 if (memberID == 0)
                 {
-                    Console.WriteLine("Invalid username or password. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again.");
                 }
 
             } while (memberID == 0);
@@ -1829,7 +1795,7 @@ namespace GymApp
 
                 if (gymID == 0)
                 {
-                    Console.WriteLine("Invalid username or password. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again.");
                 }
 
             } while (gymID == 0);
@@ -1867,7 +1833,7 @@ namespace GymApp
 
                 if (gymID == 0)
                 {
-                    Console.WriteLine("Invalid username or password. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again.");
                 }
 
             } while (gymID == 0);
@@ -1887,7 +1853,7 @@ namespace GymApp
             string emailaddress = view.GetInput();
             view.DisplayMessage("Enter the new member's username: ");
             string username = view.GetInput();
-            view.DisplayMessage("Enter the new member's password pin: ");
+            view.DisplayMessage("Enter the new member's pin (4-8 digits): ");
             int password = view.GetIntInput();
             int memberID = 0;
             int gymID = storageManager.GetGymID(username1, password1);
@@ -1947,7 +1913,7 @@ namespace GymApp
             string emailaddress = view.GetInput();
             view.DisplayMessage("Enter the new instructor's username: ");
             string username = view.GetInput();
-            view.DisplayMessage("Enter the new instructors's password pin: ");
+            view.DisplayMessage("Enter the new instructors's pin (4-8 digits): ");
             int password = view.GetIntInput();
             int roleID = 4;
             int gymID = storageManager.GetGymID(username1, password1);
@@ -1987,7 +1953,7 @@ namespace GymApp
 
                 if (instructorID == 0)
                 {
-                    Console.WriteLine("Invalid username or password. Please try again.");
+                    Console.WriteLine("Invalid username or pin. Please try again.");
                 }
 
             } while (instructorID == 0);
