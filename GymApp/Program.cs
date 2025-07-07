@@ -36,20 +36,23 @@ namespace GymApp
                         {
                         while (roleID == 1)
                         {
-                            MemberMenu(); // Calling the Member Menu Method if their role is a member
+                                Console.Clear();
+                                MemberMenu(); // Calling the Member Menu Method if their role is a member
                         }
                         }
                         else if (roleID == 2)
                         {
                         while (roleID == 2)
                         {
-                            GymMenu();
+                                Console.Clear();
+                                GymMenu();
                         }
                         }
                         else if (roleID == 3)
                         {
                         while (roleID == 3)
                         {
+                                Console.Clear();
                             AdminMenu();
                         }
 
@@ -58,7 +61,8 @@ namespace GymApp
                         {
                         while (roleID == 4)
                         {
-                            InstructorMenu();
+                                Console.Clear();
+                                InstructorMenu();
                         }
                         }
                         else
