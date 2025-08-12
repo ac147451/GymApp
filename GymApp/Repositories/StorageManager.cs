@@ -102,7 +102,40 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Gym.gyms WHERE gymname = @gymname", conn))
             {
                 cmd.Parameters.AddWithValue("@gymname", gymname);
-                return cmd.ExecuteNonQuery();
+                    
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Record deleted successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No record found with that ID.");
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        if (ex.Number == 547) // Foreign key violation
+                        {
+                            Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"SQL Error: {ex.Message}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"General Error: {ex.Message}");
+                    }
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+
+                return 0;
+
             }
         }
 
@@ -151,7 +184,37 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.country WHERE countryname = @countryname", conn))
             {
                 cmd.Parameters.AddWithValue("@countryname", countryname);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 
@@ -200,7 +263,37 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.city WHERE cityname = @cityname", conn))
             {
                 cmd.Parameters.AddWithValue("@cityname", cityname);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 
@@ -249,7 +342,37 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Location.suburb WHERE suburbname = @suburbname", conn))
             {
                 cmd.Parameters.AddWithValue("@suburb", suburbname);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 
@@ -310,7 +433,37 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.instructor WHERE instructorname = @instructorname", conn))
             {
                 cmd.Parameters.AddWithValue("@instructorname", instructorname);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
        
@@ -360,7 +513,37 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.classtype WHERE classtype = @classtype", conn))
             {
                 cmd.Parameters.AddWithValue("@classtype", classtype);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 
@@ -424,7 +607,37 @@ namespace GymApp
             {
                 cmd.Parameters.AddWithValue("@firstname", firstname);
                 cmd.Parameters.AddWithValue("@lastname", lastname);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 
@@ -473,7 +686,37 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Role.roles WHERE rolename = @rolename", conn))
             {
                 cmd.Parameters.AddWithValue("@rolename", rolename);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 
@@ -532,7 +775,37 @@ namespace GymApp
             using (SqlCommand cmd = new SqlCommand("DELETE FROM Session.sessionbooking WHERE sessionID = @sessionID", conn))
             {
                 cmd.Parameters.AddWithValue("@sessionID", sessionID);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 
@@ -786,7 +1059,37 @@ namespace GymApp
                 cmd.Parameters.AddWithValue("@firstname", firstname);
                 cmd.Parameters.AddWithValue("@lastname", lastname);
                 cmd.Parameters.AddWithValue("@gymID", gymID);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 
@@ -822,7 +1125,37 @@ namespace GymApp
             {
                 cmd.Parameters.AddWithValue("@instructorname", instructorname);
                 cmd.Parameters.AddWithValue("@gymID", gymID);
-                return cmd.ExecuteNonQuery();
+                try
+                {
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Record deleted successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No record found with that ID.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // Foreign key violation
+                    {
+                        Console.WriteLine("Error: Cannot delete this record because it is referenced in another table.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Error: {ex.Message}");
+                }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                return 0;
             }
         }
 

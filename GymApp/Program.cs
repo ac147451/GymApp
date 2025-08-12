@@ -16,8 +16,8 @@ namespace GymApp
         private static StorageManager storageManager;//declaring this vairable to connect to storagemanager.cs
         private static ConsoleView view;//declaring this vairable to connect to storagemanager.cs
         static void Main(string[] args)
-        {
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\samka\\OneDrive - Avondale College\\12TPISQL\\GymApp\\GymApp\\DBFile\\GymDatabase\\source\\repos\\ac147451\\GymDatabase\\GymDatabase\\SQLScripts\\SQL Scripts\\GymDatabase.mdf\";Integrated Security=True;Connect Timeout=30";
+        {   
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\samka\\OneDrive - Avondale College\\12TPIHandIn (3)\\12TPIHandIn\\GymDatabasePublish\\GymDatabase.mdf\";Integrated Security=True;Connect Timeout=30";
             //connecting to my sql database
             storageManager = new StorageManager(connectionString); //declaring this vairable to connect to storagemanager.cs
             view = new ConsoleView(); //declaring this vairable to connect to storagemanager.cs
@@ -385,6 +385,7 @@ namespace GymApp
                                     {
                                         break;
                                     }
+
                                 }
                                 break;
 
